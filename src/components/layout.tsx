@@ -13,9 +13,7 @@ export default function Layout(props: Props) {
   return (
     <div className="w-full  flex flex-col">
       <Navbar loggedin={loggedin} />
-      <div className="mx-auto lg:w-10/12 md:w-2/3 w-full grow py-4 flex flex-col ">
-        {children}
-      </div>
+      <div className="mx-auto w-10/12 grow py-4 flex flex-col ">{children}</div>
       <Footer />
     </div>
   );

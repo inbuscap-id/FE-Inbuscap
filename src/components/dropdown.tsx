@@ -51,7 +51,7 @@ export default function Dropdown(props: Props) {
         <DropdownMenuContent>
           <Link to="/loggedin">
             <DropdownMenuItem className="cursor-pointer">
-              loggedin
+              Login
             </DropdownMenuItem>
           </Link>
           <Link to="/register">

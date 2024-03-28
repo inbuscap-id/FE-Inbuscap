@@ -1,105 +1,98 @@
-import DataTable from "@/components/data-table";
 import Layout from "@/components/layout";
-import { TUser } from "@/utils/apis/users/type";
-import { ColumnDef } from "@tanstack/react-table";
-import { Edit, Trash2, UserCheck, UserX } from "lucide-react";
-import { useMemo, useState } from "react";
+import ProposalCard from "@/components/proposal-card";
+import landingImg from "@/assets/img.png";
+import { Separator } from "@/components/ui/separator";
 
 function Homepage() {
-  const [datas, setDatas] = useState<TUser[]>([
-    {
-      fullname: "Muhammad Bagir",
-      email: "bagir3008@gmail.com",
-      handphone: "085912345678",
-      password: "4545",
-      ktp: "3573052004030001",
-      npwp: "123456789003000",
-    },
-    {
-      fullname: "Muhammad Bagir",
-      email: "bagir3008@gmail.com",
-      handphone: "085912345678",
-      password: "4545",
-      ktp: "3573052004030001",
-      npwp: "123456789003000",
-    },
-  ]);
-
-  const columns = useMemo<ColumnDef<TUser>[]>(
-    () => [
-      {
-        header: "No",
-        accessorKey: "no",
-        cell: (info) => info.row.index + 1,
-        footer: (props) => props.column.id,
-        size: 50,
-      },
-      {
-        header: "Fullname",
-        accessorKey: "fullname",
-        cell: (info) => info.getValue(),
-        footer: (props) => props.column.id,
-        size: 200,
-      },
-      {
-        header: "Email",
-        accessorKey: "email",
-        cell: (info) => info.getValue(),
-        footer: (props) => props.column.id,
-      },
-      {
-        header: "No HP",
-        accessorKey: "handphone",
-        cell: (info) => info.getValue(),
-        footer: (props) => props.column.id,
-      },
-      {
-        header: "No KTP",
-        accessorKey: "ktp",
-        cell: (info) => info.getValue(),
-        footer: (props) => props.column.id,
-      },
-      {
-        header: "NPWP",
-        accessorKey: "npwp",
-        cell: (info) => String(info.getValue()),
-        footer: (props) => props.column.id,
-        size: 80,
-      },
-      {
-        header: "Approval",
-        id: "approval",
-        cell: (info) => (
-          <div className="flex gap-3">
-            <UserCheck className="text-green-700" />
-            <UserX className="text-red-700" />
-          </div>
-        ),
-        footer: (props) => props.column.id,
-        size: 50,
-      },
-      {
-        header: "Action",
-        id: "action",
-        cell: (info) => (
-          <div className="flex gap-3">
-            <Edit className="text-blue-700" />
-            <Trash2 className="text-red-700" />
-          </div>
-        ),
-        footer: (props) => props.column.id,
-        size: 50,
-      },
-    ],
-    []
-  );
-
   return (
     <>
-      <Layout loggedin={false}>
-        <div className="h-dvh">
-          Ini Content
-          <DataTable columns={columns} datas={datas} />
+      <Layout loggedin={true}>
+        <div className=" flex flex-col items-center">
+          <div className="flex justify-between items-center mb-10">
+            <div className="w-1/2">
+              <div className="mt-10">
+                <p className="font-bold text-5xl mb-5">
+                  What is{" "}
+                  <span className="font-lora font-bold text-[#00ac26]">
+                    Inbuscap.id
+                  </span>{" "}
+                  ?
+                </p>
+                <p className="text-lg tracking-wider leading-6">
+                  Inbuscap.id (Investing Business Capital) is an online platform
+                  that connects investors with entrepreneurs who need funding.
+                  This platform was founded with the aim of :
+                </p>
+                <ul className="list-disc ms-10 text-lg tracking-wider leading-6">
+                  <li>
+                    Helping investors find potential and trusted investment
+                    opportunities.
+                  </li>
+                  <li>
+                    Helping entrepreneurs get funding to develop their
+                    businesses.
+                  </li>
+                </ul>
+              </div>
+              <br />
+
+              <p className="text-lg tracking-wider leading-6">
+                Inbuscap.id offers two main services :
+              </p>
+
+              <div className="text-md tracking-wider leading-6 ms-5">
+                <div>
+                  <p className="font-bold">1. Investment Services</p>
+                  <p>Inbuscap.id provides a platform for investors to:</p>
+                  <ol className="list-disc ms-10">
+                    <li>
+                      Looking for investment opportunities in various business
+                      sectors.
+                    </li>
+                    <li>Make investments easily and safely.</li>
+                    <li>Monitor their investment performance in real-time.</li>
+                  </ol>
+                </div>
+              </div>
+              <br />
+              <div className="text-md tracking-wider leading-6 ms-5">
+                <p className="font-bold">2. Business Funding Services</p>
+                <p>Inbuscap.id provides a platform for entrepreneurs to :</p>
+                <ol className="list-disc ms-10">
+                  <li>Submit a funding proposal for your business.</li>
+                  <li>
+                    Looking for investors who are interested in his business.
+                  </li>
+                  <li>Receive funding to develop their business.</li>
+                </ol>
+              </div>
+            </div>
+            <div className="w-1/2 bg-red-100">
+              <img src={landingImg} alt="" className="w-full" />
+            </div>
+          </div>
+
+          <div className="w-full flex flex-col items-center">
+            <h1 className="self-start font-semibold text-3xl mb-5">
+              All Bussiness
+            </h1>
+
+            <Separator className="mb-10 rounded-full bg-[#006516]" />
+
+            <ProposalCard
+              title="Nasi Goreng Pak Syukur"
+              desc="Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates qui, pariatur dolores ipsum atque quod assumenda a, maxime earum vitae facilis, tempore numquam molestiae sequi. Nisi cupiditate odio dolorum fugiat?"
+              target={10000000}
+              collected={0}
+              withOption
+            />
+            <ProposalCard
+              title="Cafe Abnormal"
+              desc="Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque quo laboriosam impedit error repellat maiores."
+              target={50000000}
+              collected={3000000}
+            />
+          </div>
         </div>
       </Layout>
     </>

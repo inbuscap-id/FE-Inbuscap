@@ -84,6 +84,7 @@ function Homepage() {
               desc="Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates qui, pariatur dolores ipsum atque quod assumenda a, maxime earum vitae facilis, tempore numquam molestiae sequi. Nisi cupiditate odio dolorum fugiat?"
               target={10000000}
               collected={0}
+              navigate={"/detail-proposal/1"}
               withOption
             />
             <ProposalCard
@@ -91,6 +92,7 @@ function Homepage() {
               desc="Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque quo laboriosam impedit error repellat maiores."
               target={50000000}
               collected={3000000}
+              navigate={"/detail-proposal/2"}
             />
           </div>
         </div>

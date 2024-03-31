@@ -10,24 +10,23 @@ import {
 } from "./ui/dropdown-menu";
 import { useState } from "react";
 import CustomAlert from "./custom-alert";
+import { Link } from "react-router-dom";
+import { formatRupiah } from "@/utils/format-money";
+
 
 interface Props {
   title: string;
   desc: string;
   target: number;
   collected: number;
+  navigate: string;
   withOption?: boolean;
 }
-
-let rupiah = new Intl.NumberFormat("id-ID", {
-  style: "currency",
-  currency: "IDR",
-});
 
 export default function ProposalCard(props: Props) {
   const [showArchiveDialog, setShowArchiveDialog] = useState(false);
   const [showDeleteDialog, setShowDeleteDialog] = useState(false);
-  const { title, desc, target, collected, withOption } = props;
+  const { title, desc, target, collected, navigate, withOption } = props;
   let persentase = (collected / target) * 100;
 
   return (
@@ -68,22 +67,24 @@ export default function ProposalCard(props: Props) {
             <></>
           )}
 
-          <div>
-            <p className="text-2xl font-semibold">{title}</p>
-            <p className="text-xl">
-              {rupiah.format(collected)} / {rupiah.format(target)}
-            </p>
-            <p className="my-2 text-sm">{desc}</p>
-            <p>{persentase}%</p>
-            <Progress
-              value={persentase}
-              className="mb-4 border border-[#006516] bg-slate-200"
-            />
+        <div>
+          <p className="text-2xl font-semibold">{title}</p>
+          <p className="text-xl">
+            {formatRupiah.format(collected)} / {formatRupiah.format(target)}
+          </p>
+          <p className="my-2 text-sm">{desc}</p>
+          <p>{persentase}%</p>
+          <Progress
+            value={persentase}
+            className="mb-4 border border-[#006516] bg-slate-200"
+          />
+          <Link to={navigate}>
             <Button className="w-1/4 bg-[#00ad26] hover:bg-[#006516]">
               See Details
             </Button>
-          </div>
+          </Link>
         </div>
+      </div>
       </div>
       <CustomAlert
         open={showArchiveDialog}

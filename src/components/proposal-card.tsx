@@ -8,22 +8,20 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "./ui/dropdown-menu";
+import { Link } from "react-router-dom";
+import { formatRupiah } from "@/utils/format-money";
 
 interface Props {
   title: string;
   desc: string;
   target: number;
   collected: number;
+  navigate: string;
   withOption?: boolean;
 }
 
-let rupiah = new Intl.NumberFormat("id-ID", {
-  style: "currency",
-  currency: "IDR",
-});
-
 export default function ProposalCard(props: Props) {
-  const { title, desc, target, collected, withOption } = props;
+  const { title, desc, target, collected, navigate, withOption } = props;
   let persentase = (collected / target) * 100;
 
   return (
@@ -63,7 +61,7 @@ export default function ProposalCard(props: Props) {
         <div>
           <p className="text-2xl font-semibold">{title}</p>
           <p className="text-xl">
-            {rupiah.format(collected)} / {rupiah.format(target)}
+            {formatRupiah.format(collected)} / {formatRupiah.format(target)}
           </p>
           <p className="my-2 text-sm">{desc}</p>
           <p>{persentase}%</p>
@@ -71,9 +69,11 @@ export default function ProposalCard(props: Props) {
             value={persentase}
             className="mb-4 border border-[#006516] bg-slate-200"
           />
-          <Button className="w-1/4 bg-[#00ad26] hover:bg-[#006516]">
-            See Details
-          </Button>
+          <Link to={navigate}>
+            <Button className="w-1/4 bg-[#00ad26] hover:bg-[#006516]">
+              See Details
+            </Button>
+          </Link>
         </div>
       </div>
     </div>

@@ -12,13 +12,23 @@ import Withdraw from "@/pages/user/withdraw";
 import MyProfile from "@/pages/admin";
 import ListOfUsers from "@/pages/admin/list-of-users";
 import ListOfProposals from "@/pages/admin/list-of-proposals";
+import Profile from "@/pages/user";
+import Verification from "@/pages/user/verification";
+import InvestedBusiness from "@/pages/user/invested-business";
+import CreateBusiness from "@/pages/user/create-business";
+import UpdateProposal from "@/pages/user/update-proposal";
 
 const router = createBrowserRouter([
   { path: "/", element: <Homepage /> },
   { path: "/login", element: <Login /> },
   { path: "/register", element: <Register /> },
-  { path: "/verification", element: <Verifikasi /> },
+  { path: "/verifications", element: <Verifikasi /> },
+  { path: "/profile", element: <Profile /> },
+  { path: "/verification", element: <Verification /> },
+  { path: "/create-business", element: <CreateBusiness /> },
+  { path: "/update-proposal", element: <UpdateProposal /> },
   { path: "/my-proposals", element: <MyProposals /> },
+  { path: "/invested-business", element: <InvestedBusiness /> },
   { path: "/detail-proposal/:id_proposal", element: <DetailProposal /> },
   { path: "/archive-proposals", element: <ArchiveProposals /> },
   { path: "/withdraw", element: <Withdraw /> },

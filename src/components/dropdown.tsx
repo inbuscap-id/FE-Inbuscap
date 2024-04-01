@@ -30,7 +30,7 @@ export default function Dropdown(props: Props) {
         <DropdownMenuContent align="end" forceMount>
           <DropdownMenuLabel>My Account</DropdownMenuLabel>
           <DropdownMenuSeparator />
-          <Link to="/my-profile">
+          <Link to="/profile">
             <DropdownMenuItem className="cursor-pointer flex gap-2">
               <User className="w-5" />
               My Profile

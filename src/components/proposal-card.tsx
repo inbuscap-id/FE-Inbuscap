@@ -25,6 +25,7 @@ interface Props {
 
 export default function ProposalCard(props: Props) {
   const [showPublicDialog, setShowPublicDialog] = useState(false);
+  const [showEditDialog, setShowEditDialog] = useState(false);
   const [showArchiveDialog, setShowArchiveDialog] = useState(false);
   const [showDeleteDialog, setShowDeleteDialog] = useState(false);
 
@@ -45,7 +46,7 @@ export default function ProposalCard(props: Props) {
             <div className="self-end">
               <DropdownMenu>
                 <DropdownMenuTrigger>
-                  <Ellipsis />
+                  <Ellipsis className="mb-10" />
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end" forceMount>
                   {archive ? (
@@ -70,7 +71,7 @@ export default function ProposalCard(props: Props) {
                     </>
                   )}
 
-                  <DropdownMenuItem className="flex gap-2">
+                  <DropdownMenuItem onClick={() => setShowEditDialog(true)} className="flex gap-2">
                     <EditIcon className="w-5" /> Edit
                   </DropdownMenuItem>
                   <DropdownMenuItem
@@ -86,7 +87,7 @@ export default function ProposalCard(props: Props) {
             <></>
           )}
 
-          <div>
+          <div className="mb-7">
             <p className="text-2xl font-semibold">{title}</p>
             <p className="text-xl">
               {formatRupiah.format(collected)} / {formatRupiah.format(target)}
@@ -111,6 +112,14 @@ export default function ProposalCard(props: Props) {
         description="Proposal ini akan dapat terlihat lagi oleh publik, artinya crowd funding dilanjutkan."
         onCancel={() => {
           setShowPublicDialog(false);
+        }}
+      />
+      <CustomAlert
+        open={showEditDialog}
+        title="Kamu Yakin ingin mengedit Proposal ini?"
+        description="Mengarahkan ke halaman edit proposal"
+        onCancel={() => {
+          setShowEditDialog(false);
         }}
       />
       <CustomAlert

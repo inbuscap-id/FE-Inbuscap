@@ -7,6 +7,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { Archive, DollarSignIcon, LogOut, User } from "lucide-react";
 import { Link } from "react-router-dom";
 
 interface Props {
@@ -26,29 +27,35 @@ export default function Dropdown(props: Props) {
       </DropdownMenuTrigger>
 
       {loggedin ? (
-        <DropdownMenuContent>
+        <DropdownMenuContent align="end" forceMount>
           <DropdownMenuLabel>My Account</DropdownMenuLabel>
           <DropdownMenuSeparator />
           <Link to="/my-profile">
-            <DropdownMenuItem className="cursor-pointer">
+            <DropdownMenuItem className="cursor-pointer flex gap-2">
+              <User className="w-5" />
               My Profile
             </DropdownMenuItem>
           </Link>
           <Link to="/archive-proposals">
-            <DropdownMenuItem className="cursor-pointer">
+            <DropdownMenuItem className="cursor-pointer flex gap-2">
+              <Archive className="w-5" />
               Archive Proposals
             </DropdownMenuItem>
           </Link>
           <Link to="/withdraw">
-            <DropdownMenuItem className="cursor-pointer">
+            <DropdownMenuItem className="cursor-pointer flex gap-2">
+              <DollarSignIcon className="w-5" />
               Withdraw
             </DropdownMenuItem>
           </Link>
           <DropdownMenuSeparator />
-          <DropdownMenuItem className="cursor-pointer">Logout</DropdownMenuItem>
+          <DropdownMenuItem className="cursor-pointer flex gap-2">
+            <LogOut className="w-5" />
+            Logout
+          </DropdownMenuItem>
         </DropdownMenuContent>
       ) : (
-        <DropdownMenuContent>
+        <DropdownMenuContent align="end" forceMount>
           <Link to="/loggedin">
             <DropdownMenuItem className="cursor-pointer">
               Login

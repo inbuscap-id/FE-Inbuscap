@@ -18,7 +18,7 @@ module.exports = {
     },
     extend: {
       fontFamily: {
-        lora: ['Lora', 'serif'],
+        lora: ["Lora", "serif"],
       },
       colors: {
         border: "hsl(var(--border))",

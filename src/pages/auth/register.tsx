@@ -33,7 +33,7 @@ const Register = () => {
             toast({
                 description: result.message,
             });
-            navigate("/login");
+            navigate("/verification");
         }catch(error){
             toast({
                 title: "Oops! Something went wrong.",
@@ -51,7 +51,7 @@ const Register = () => {
         <CardHeader>
           <CardTitle className="text-center">Register</CardTitle>
           <CardDescription className="text-center">
-            Already have an account? sign <Link to="/verification" className="text-primary underline">here</Link>
+            Already have an account? sign <Link to="/login" className="text-primary underline">here</Link>
           </CardDescription>
         </CardHeader>
         <CardContent></CardContent>

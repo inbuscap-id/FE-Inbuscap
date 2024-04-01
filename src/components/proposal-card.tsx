@@ -1,7 +1,7 @@
 import nasigoreng from "@/assets/nasigoreng.jpg";
 import { Button } from "./ui/button";
 import { Progress } from "./ui/progress";
-import { Archive, EditIcon, Ellipsis, Trash } from "lucide-react";
+import { Archive, EarthIcon, EditIcon, Ellipsis, Trash } from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -13,7 +13,6 @@ import CustomAlert from "./custom-alert";
 import { Link } from "react-router-dom";
 import { formatRupiah } from "@/utils/format-money";
 
-
 interface Props {
   title: string;
   desc: string;
@@ -21,12 +20,17 @@ interface Props {
   collected: number;
   navigate: string;
   withOption?: boolean;
+  archive?: boolean;
 }
 
 export default function ProposalCard(props: Props) {
+  const [showPublicDialog, setShowPublicDialog] = useState(false);
   const [showArchiveDialog, setShowArchiveDialog] = useState(false);
   const [showDeleteDialog, setShowDeleteDialog] = useState(false);
-  const { title, desc, target, collected, navigate, withOption } = props;
+
+  const { title, desc, target, collected, navigate, withOption, archive } =
+    props;
+
   let persentase = (collected / target) * 100;
 
   return (
@@ -43,14 +47,29 @@ export default function ProposalCard(props: Props) {
                 <DropdownMenuTrigger>
                   <Ellipsis />
                 </DropdownMenuTrigger>
-                <DropdownMenuContent>
-                  <DropdownMenuItem
-                    className="flex gap-2"
-                    onClick={() => setShowArchiveDialog(true)}
-                  >
-                    <Archive className="w-5" />
-                    Archive
-                  </DropdownMenuItem>
+                <DropdownMenuContent align="end" forceMount>
+                  {archive ? (
+                    <>
+                      <DropdownMenuItem
+                        className="flex gap-2"
+                        onClick={() => setShowPublicDialog(true)}
+                      >
+                        <EarthIcon className="w-5" />
+                        Go Public
+                      </DropdownMenuItem>
+                    </>
+                  ) : (
+                    <>
+                      <DropdownMenuItem
+                        className="flex gap-2"
+                        onClick={() => setShowArchiveDialog(true)}
+                      >
+                        <Archive className="w-5" />
+                        Archive
+                      </DropdownMenuItem>
+                    </>
+                  )}
+
                   <DropdownMenuItem className="flex gap-2">
                     <EditIcon className="w-5" /> Edit
                   </DropdownMenuItem>
@@ -67,35 +86,37 @@ export default function ProposalCard(props: Props) {
             <></>
           )}
 
-        <div>
-          <p className="text-2xl font-semibold">{title}</p>
-          <p className="text-xl">
-            {formatRupiah.format(collected)} / {formatRupiah.format(target)}
-          </p>
-          <p className="my-2 text-sm">{desc}</p>
-          <p>{persentase}%</p>
-          <Progress
-            value={persentase}
-            className="mb-4 border border-[#006516] bg-slate-200"
-          />
-          <Link to={navigate}>
-            <Button className="w-1/4 bg-[#00ad26] hover:bg-[#006516]">
-              See Details
-            </Button>
-          </Link>
+          <div>
+            <p className="text-2xl font-semibold">{title}</p>
+            <p className="text-xl">
+              {formatRupiah.format(collected)} / {formatRupiah.format(target)}
+            </p>
+            <p className="my-2 text-sm">{desc}</p>
+            <p>{persentase}%</p>
+            <Progress
+              value={persentase}
+              className="mb-4 border border-[#006516] bg-slate-200"
+            />
+            <Link to={navigate}>
+              <Button className="w-1/4 bg-[#00ad26] hover:bg-[#006516]">
+                See Details
+              </Button>
+            </Link>
+          </div>
         </div>
       </div>
-      </div>
+      <CustomAlert
+        open={showPublicDialog}
+        title="Kamu Yakin Untuk Mempublikasikan Kembali Proposal?"
+        description="Proposal ini akan dapat terlihat lagi oleh publik, artinya crowd funding dilanjutkan."
+        onCancel={() => {
+          setShowPublicDialog(false);
+        }}
+      />
       <CustomAlert
         open={showArchiveDialog}
         title="Kamu Yakin Untuk Mengarsip Proposal Ini?"
         description="Proposal ini akan tersimpan di halaman Archive Proposals' dan tidak akan terlihat oleh publik."
-        // onAction={async () => {
-        //   try {
-        //     await onDelete(postID);
-        //     setShowDeleteDialog(false);
-        //   } catch (error) {}
-        // }}
         onCancel={() => {
           setShowArchiveDialog(false);
         }}

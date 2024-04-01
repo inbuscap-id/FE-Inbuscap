@@ -5,7 +5,6 @@ import { Separator } from "@/components/ui/separator";
 
 function Homepage() {
   return (
-    <>
       <Layout loggedin={true}>
         <div className=" flex flex-col items-center">
           <div className="flex justify-between items-center mb-10">

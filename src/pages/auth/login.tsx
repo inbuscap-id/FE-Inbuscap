@@ -1,6 +1,12 @@
 import { CustomFormField } from "@/components/custom-formfield";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Form } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/components/ui/use-toast";
@@ -26,7 +32,8 @@ const Login = () => {
   async function onSubmit(data: LoginType) {
     try {
       const result = await userLogin(data);
-      changeToken(result.payload?.token);
+      // changeToken(result.payload?.token);
+      console.log(result);
       toast({
         description: "Hello, welcome back!",
       });
@@ -41,58 +48,66 @@ const Login = () => {
   }
 
   return (
-    <div className="flex w-full h-screen">
-      <div className="w-full flex items-center justify-center md:w-1/2">
-    <Card className="w-3/4 md:w-3/4 lg:w-1/2">
-        <CardHeader>
-          <CardTitle className="text-center">Login</CardTitle>
-          <CardDescription className="text-center">Don't have an account? Create account <Link to="/register" className="text-primary underline">here</Link></CardDescription>
-        </CardHeader>
-        <CardContent>
-          <Form {...form}>
-            <form
-              data-testid="form-login"
-              onSubmit={form.handleSubmit(onSubmit)}
-              className="space-y-6"
-            >
-              <CustomFormField
-                control={form.control}
-                name="email"
-                label="Email"
+    <div className="flex w-full justify-between h-screen">
+      <div className="w-full flex items-center justify-center md:w-2/3">
+        <Card className="w-3/4 md:w-3/4 lg:w-1/2">
+          <CardHeader>
+            <CardTitle className="text-center">Login</CardTitle>
+            <CardDescription className="text-center">
+              Don't have an account? Create account{" "}
+              <Link to="/register" className="text-primary underline">
+                here
+              </Link>
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <Form {...form}>
+              <form
+                data-testid="form-login"
+                onSubmit={form.handleSubmit(onSubmit)}
+                className="space-y-4"
               >
-                {(field) => (
-                  <Input
-                    data-testid="input-email"
-                    placeholder="name@mail.com"
-                    type="email"
-                    disabled={form.formState.isSubmitting}
-                    aria-disabled={form.formState.isSubmitting}
-                    {...field} className="rounded-full"
-                  />
-                )}
-              </CustomFormField>
-              <CustomFormField
-                control={form.control}
-                name="password"
-                label="Password"
-              >
-                {(field) => (
-                  <Input
-                    data-testid="input-password"
-                    placeholder="Password"
-                    type="password"
-                    disabled={form.formState.isSubmitting}
-                    aria-disabled={form.formState.isSubmitting}
-                    {...field} className="rounded-full"
-                  />
-                )}
-              </CustomFormField>
-              
+                <CustomFormField
+                  control={form.control}
+                  name="email"
+                  label="Email"
+                >
+                  {(field) => (
+                    <Input
+                      data-testid="input-email"
+                      placeholder="name@mail.com"
+                      type="email"
+                      disabled={form.formState.isSubmitting}
+                      aria-disabled={form.formState.isSubmitting}
+                      {...field}
+                      className="rounded-full"
+                    />
+                  )}
+                </CustomFormField>
+                <CustomFormField
+                  control={form.control}
+                  name="password"
+                  label="Password"
+                >
+                  {(field) => (
+                    <Input
+                      data-testid="input-password"
+                      placeholder="Password"
+                      type="password"
+                      disabled={form.formState.isSubmitting}
+                      aria-disabled={form.formState.isSubmitting}
+                      {...field}
+                      className="rounded-full"
+                    />
+                  )}
+                </CustomFormField>
+
                 <Button
                   data-testid="btn-submit"
                   type="submit"
                   disabled={form.formState.isSubmitting}
-                  aria-disabled={form.formState.isSubmitting} className="rounded-full"
+                  aria-disabled={form.formState.isSubmitting}
+                  className="rounded-full"
                 >
                   {form.formState.isSubmitting ? (
                     <>
@@ -103,17 +118,18 @@ const Login = () => {
                     " Login "
                   )}
                 </Button>
-            
-          </form>
-          </Form>
-        </CardContent>
-      </Card>
+              </form>
+            </Form>
+          </CardContent>
+        </Card>
       </div>
-      <div className="hidden lg:flex h-full w-1/2 items-center justify-center rounded-l-[50px] img-bg">
-      <p className="z-50 text-7xl text-white text-right font-lora font-semibold tracking-wide leading-snug subpixel-antialiased">Investing<br/>Business Capitol<br/>(Inbuscap.id)</p>
+      <div className="img-bg hidden lg:flex h-full w-1/3 items-center justify-end rounded-l-[50px] px-12">
+        <p className="z-50 text-5xl text-white text-right font-lora font-semibold tracking-wide leading-snug subpixel-antialiased">
+          Investing Business Capital (Inbuscap.id)
+        </p>
       </div>
     </div>
-   );     
+  );
 };
 
 export default Login;

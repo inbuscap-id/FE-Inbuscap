@@ -1,4 +1,3 @@
-import nasigoreng from "@/assets/nasigoreng.jpg";
 import { Button } from "./ui/button";
 import { Progress } from "./ui/progress";
 import { Archive, EarthIcon, EditIcon, Ellipsis, Trash } from "lucide-react";
@@ -18,7 +17,8 @@ interface Props {
   desc: string;
   target: number;
   collected: number;
-  navigate: string;
+  image: string;
+  id: number;
   withOption?: boolean;
   archive?: boolean;
 }
@@ -28,7 +28,7 @@ export default function ProposalCard(props: Props) {
   const [showArchiveDialog, setShowArchiveDialog] = useState(false);
   const [showDeleteDialog, setShowDeleteDialog] = useState(false);
 
-  const { title, desc, target, collected, navigate, withOption, archive } =
+  const { title, desc, image, target, collected, id, withOption, archive } =
     props;
 
   let persentase = (collected / target) * 100;
@@ -37,7 +37,7 @@ export default function ProposalCard(props: Props) {
     <>
       <div className="w-11/12 mx-auto flex bg-slate-50 border border-[#00ad26] rounded-xl mb-10">
         <div className="w-full bg-red-100 rounded-xl">
-          <img src={nasigoreng} alt="" className="w-full h-full rounded-xl" />
+          <img src={image} alt="" className="w-full h-full rounded-xl" />
         </div>
 
         <div className="flex flex-col w-11/12 justify-center p-5">
@@ -97,7 +97,7 @@ export default function ProposalCard(props: Props) {
               value={persentase}
               className="mb-4 border border-[#006516] bg-slate-200"
             />
-            <Link to={navigate}>
+            <Link to={`/detail-proposal/${id}`}>
               <Button className="w-1/4 bg-[#00ad26] hover:bg-[#006516]">
                 See Details
               </Button>

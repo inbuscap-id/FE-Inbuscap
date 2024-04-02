@@ -1,3 +1,4 @@
+import nasigoreng from "@/assets/nasigoreng.jpg";
 import Layout from "@/components/layout";
 import ProposalCard from "@/components/proposal-card";
 import { Button } from "@/components/ui/button";
@@ -17,7 +18,8 @@ export default function MyProposals() {
           desc="Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid odit impedit commodi iusto veniam sapiente fugiat? Minus expedita deserunt cupiditate?"
           target={10000000}
           collected={5000000}
-          navigate="../detail-proposal/3"
+          image={nasigoreng}
+          id={1}
           withOption
         />
         <ProposalCard
@@ -25,7 +27,8 @@ export default function MyProposals() {
           desc=" Lorem ipsum dolor, sit amet consectetur adipisicing elit. Blanditiis maxime non error facere sint ullam delectus repellendus quod quis obcaecati?"
           target={20000000}
           collected={4000000}
-          navigate="../detail-proposal/4"
+          image={nasigoreng}
+          id={2}
           withOption
         />
       </Layout>

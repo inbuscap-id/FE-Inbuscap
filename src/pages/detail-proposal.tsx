@@ -9,7 +9,7 @@ export default function DetailProposal() {
 
   return (
     <>
-      <Layout loggedin={true}>
+      <Layout>
         {/* <p>detail {param.id_proposal}</p> */}
 
         <div className="w-2/3 mx-auto mb-5">

@@ -3,7 +3,7 @@ import ProposalCard from "@/components/proposal-card";
 
 export default function ArchiveProposals() {
   return (
-    <Layout loggedin={true}>
+    <Layout>
       <div className="mb-5 mt-2 flex justify-between">
         <p className="text-2xl font-semibold">Archive Proposals</p>
       </div>

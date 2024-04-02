@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 export default function MyProposals() {
   return (
     <>
-      <Layout loggedin={true}>
+      <Layout>
         <div className="mb-5 mt-2 flex justify-between">
           <p className="text-2xl font-semibold">My Proposals</p>
           <Button className="bg-[#00ad26] hover:bg-[#006516]">

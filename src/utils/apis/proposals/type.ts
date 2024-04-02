@@ -5,5 +5,7 @@ export interface IProposals {
   image: string;
   description: string;
   capital: number;
+  proposal: string;
   collected: number;
+  profit: number;
 }

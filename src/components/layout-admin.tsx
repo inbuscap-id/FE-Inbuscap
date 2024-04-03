@@ -1,8 +1,9 @@
 import { LogOut } from "lucide-react";
 import { ReactNode } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { cn } from "@/lib/utils";
+import { Button } from "./ui/button";
 
 interface Props {
   children: ReactNode;
@@ -10,7 +11,13 @@ interface Props {
 
 export default function Layout(props: Props) {
   const location = useLocation();
+  const navigate = useNavigate();
+ 
   const { children } = props;
+  
+  const handleLogout = () => {
+    navigate("/login");
+  };
 
   return (
     <div className="w-full min-h-dvh flex">
@@ -30,31 +37,31 @@ export default function Layout(props: Props) {
               <p>My Profile</p>
             </Link>
             <Link
-              to="/admin/list-of-users"
+              to="/admin/users"
               className={cn(
                 "hover:text-white",
-                location.pathname === "/admin/list-of-users"
+                location.pathname === "/admin/users"
                   ? "text-white "
                   : ""
               )}
             >
-              <p>List of Users</p>
+              <p>Users</p>
             </Link>
             <Link
-              to="/admin/list-of-proposals"
+              to="/admin/businesses"
               className={cn(
                 "hover:text-white",
-                location.pathname === "/admin/list-of-proposals"
+                location.pathname === "/admin/businesses"
                   ? "text-white "
                   : ""
               )}
             >
-              <p>List of Proposals</p>
+              <p>Businesses</p>
             </Link>
           </div>
           <div className="w-full h-1/4 flex justify-center items-center">
-            <LogOut className="me-2 text-green-100 hover:text-white" />
-            <p className="text-green-100 hover:text-white">Logout</p>
+            
+            <Button variant="ghost" className="text-green-100 hover:bg-transparent hover:text-white" onClick={handleLogout}><LogOut className="me-2 text-green-100 hover:text-white" />Logout</Button>
           </div>
         </div>
       </div>

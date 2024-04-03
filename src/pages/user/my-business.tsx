@@ -2,16 +2,19 @@ import nasigoreng from "@/assets/nasigoreng.jpg";
 import Layout from "@/components/layout";
 import ProposalCard from "@/components/proposal-card";
 import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 
-export default function MyProposals() {
+export default function MyBusiness() {
   return (
     <>
       <Layout>
         <div className="mb-5 mt-2 flex justify-between">
           <p className="text-2xl font-semibold">My Proposals</p>
+          <Link to="/create-business">
           <Button className="bg-[#00ad26] hover:bg-[#006516]">
             + Create A Bussiness
           </Button>
+          </Link>
         </div>
         <ProposalCard
           title="Nasi Goreng Pak Syukur"

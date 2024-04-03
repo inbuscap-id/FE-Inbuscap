@@ -40,7 +40,7 @@ const Register = () => {
       toast({
         description: result.message,
       });
-      navigate("/verification");
+      navigate("/login");
     } catch (error) {
       toast({
         title: "Oops! Something went wrong.",

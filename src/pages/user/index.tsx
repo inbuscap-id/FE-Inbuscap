@@ -41,7 +41,7 @@ export default function Profile() {
           <AvatarImage src="https://github.com/shadcn.png" />
           <AvatarFallback>CN</AvatarFallback>
         </Avatar>
-        <Card className="md:w-3/4 mt-5">
+        <Card className="w-full sm:block mt-5">
         <CardContent>
         <Form {...form}>
               <form

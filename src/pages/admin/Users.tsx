@@ -68,7 +68,7 @@ export default function Users() {
       },
       {
         header: "Status",
-        id: "approval",
+        id: "status",
         cell: (info) => (
           <div className="flex gap-3">
             <p className="">Pending</p>

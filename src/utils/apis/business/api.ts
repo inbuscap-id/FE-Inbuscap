@@ -4,7 +4,7 @@ import { IBusiness } from "./type";
 
 export const getBusinesses = async () => {
   try {
-    const response = await axiosWithConfig("/proposals");
+    const response = await axiosWithConfig("https://virtserver.swaggerhub.com/BAGIR3008/Inbuscap/1.0.0/proposals");
 
     return response.data as IResponsePagination<IBusiness[]>;
   } catch (error: any) {
@@ -14,7 +14,7 @@ export const getBusinesses = async () => {
 
 export const getDetailBusiness = async (proposal_id: string) => {
   try {
-    const response = await axiosWithConfig(`/proposals/${proposal_id}`);
+    const response = await axiosWithConfig(`https://virtserver.swaggerhub.com/BAGIR3008/Inbuscap/1.0.0/proposals/${proposal_id}`);
 
     return response.data as IResponseData<IBusiness>;
   } catch (error: any) {

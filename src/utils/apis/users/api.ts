@@ -4,7 +4,9 @@ import { TUser } from "./type";
 
 export const getUser = async () => {
   try {
-    const response = await axiosWithConfig("/user");
+    const response = await axiosWithConfig(
+      "https://virtserver.swaggerhub.com/BAGIR3008/Inbuscap/1.0.0/user"
+    );
 
     return response.data as IResponseData<TUser>;
   } catch (error: any) {

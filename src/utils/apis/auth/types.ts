@@ -17,7 +17,7 @@ export const registerSchema = z.object({
   handphone: z.string().min(8, { message: "Phone Number minimum length is 8" }),
   password: z
     .string()
-    .min(6, { message: "Password must be at least 6 characters" }),
+    .min(8, { message: "Password must be at least 8 characters" }),
   ktp: z.string().min(16, { message: "Ktp Number minimum length is 16" }),
   npwp: z.string().min(8, { message: "Phone Number minimum length is 16" }),
 });

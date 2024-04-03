@@ -14,7 +14,7 @@ export const userLogin = async (body: LoginType) => {
 
 export const userRegister = async (body: RegisterType) => {
   try {
-    const response = await axiosWithConfig.post(`/user`, body);
+    const response = await axiosWithConfig.post(`/users`, body);
 
     return response.data as IResponse;
   } catch (error: any) {

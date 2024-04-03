@@ -3,7 +3,7 @@ import Layout from "@/components/layout-admin";
 import { TUser } from "@/utils/apis/users/type";
 import { ColumnDef } from "@tanstack/react-table";
 import { useMemo, useState } from "react";
-import { Edit, Trash2, UserCheck, UserX } from "lucide-react";
+import { Edit, Ellipsis, Trash2, UserCheck, UserX } from "lucide-react";
 
 export default function ListOfUsers() {
   const [datas, setDatas] = useState<TUser[]>([
@@ -71,8 +71,7 @@ export default function ListOfUsers() {
         id: "approval",
         cell: (info) => (
           <div className="flex gap-3">
-            <UserCheck className="text-green-700" />
-            <UserX className="text-red-700" />
+            <Ellipsis className="text-green-700" />
           </div>
         ),
         footer: (props) => props.column.id,

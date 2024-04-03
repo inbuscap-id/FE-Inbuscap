@@ -25,7 +25,6 @@ interface Props {
 
 export default function ProposalCard(props: Props) {
   const [showPublicDialog, setShowPublicDialog] = useState(false);
-  const [showEditDialog, setShowEditDialog] = useState(false);
   const [showArchiveDialog, setShowArchiveDialog] = useState(false);
   const [showDeleteDialog, setShowDeleteDialog] = useState(false);
 
@@ -71,8 +70,8 @@ export default function ProposalCard(props: Props) {
                     </>
                   )}
 
-                  <DropdownMenuItem onClick={() => setShowEditDialog(true)} className="flex gap-2">
-                    <EditIcon className="w-5" /> Edit
+                  <DropdownMenuItem className="flex gap-2">
+                    <EditIcon className="w-5" /><Link to="/update-proposal">Edit</Link> 
                   </DropdownMenuItem>
                   <DropdownMenuItem
                     className="text-red-600 flex gap-2"
@@ -112,14 +111,6 @@ export default function ProposalCard(props: Props) {
         description="Proposal ini akan dapat terlihat lagi oleh publik, artinya crowd funding dilanjutkan."
         onCancel={() => {
           setShowPublicDialog(false);
-        }}
-      />
-      <CustomAlert
-        open={showEditDialog}
-        title="Kamu Yakin ingin mengedit Proposal ini?"
-        description="Mengarahkan ke halaman edit proposal"
-        onCancel={() => {
-          setShowEditDialog(false);
         }}
       />
       <CustomAlert

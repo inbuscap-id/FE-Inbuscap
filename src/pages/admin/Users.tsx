@@ -3,9 +3,9 @@ import Layout from "@/components/layout-admin";
 import { TUser } from "@/utils/apis/users/type";
 import { ColumnDef } from "@tanstack/react-table";
 import { useMemo, useState } from "react";
-import { Edit, Trash2, UserCheck, UserX } from "lucide-react";
+import { Edit, Ellipsis, Trash2, UserCheck, UserX } from "lucide-react";
 
-export default function ListOfUsers() {
+export default function Users() {
   const [datas, setDatas] = useState<TUser[]>([
     {
       fullname: "Muhammad Bagir",
@@ -67,6 +67,17 @@ export default function ListOfUsers() {
         size: 80,
       },
       {
+        header: "Status",
+        id: "approval",
+        cell: (info) => (
+          <div className="flex gap-3">
+            <p className="">Pending</p>
+          </div>
+        ),
+        footer: (props) => props.column.id,
+        size: 50,
+      },
+      {
         header: "Approval",
         id: "approval",
         cell: (info) => (
@@ -96,7 +107,7 @@ export default function ListOfUsers() {
   return (
     <Layout>
       <div className="w-full text-xl font-semibold mb-4">
-        <p>List of Users</p>
+        <p>Users</p>
       </div>
       <div className="w-full">
         <DataTable columns={columns} datas={datas} />

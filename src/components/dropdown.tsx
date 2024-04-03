@@ -9,10 +9,17 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { useAuthStore } from "@/utils/zustand/store";
 import { Archive, DollarSignIcon, LogOut, User } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { Button } from "./ui/button";
 
 export default function Dropdown() {
   const isLoggedIn = useAuthStore((state) => state.isLoggedIn);
+
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    navigate("/login");
+  };
 
   return (
     <DropdownMenu>
@@ -27,16 +34,16 @@ export default function Dropdown() {
         <DropdownMenuContent align="end" forceMount>
           <DropdownMenuLabel>My Account</DropdownMenuLabel>
           <DropdownMenuSeparator />
-          <Link to="/my-profile">
+          <Link to="/profile">
             <DropdownMenuItem className="cursor-pointer flex gap-2">
               <User className="w-5" />
               My Profile
             </DropdownMenuItem>
           </Link>
-          <Link to="/archive-proposals">
+          <Link to="/archive-business">
             <DropdownMenuItem className="cursor-pointer flex gap-2">
               <Archive className="w-5" />
-              Archive Proposals
+              Archive Business
             </DropdownMenuItem>
           </Link>
           <Link to="/withdraw">
@@ -47,8 +54,7 @@ export default function Dropdown() {
           </Link>
           <DropdownMenuSeparator />
           <DropdownMenuItem className="cursor-pointer flex gap-2">
-            <LogOut className="w-5" />
-            Logout
+            <Button variant="ghost" className="hover:bg-transparent" onClick={handleLogout}><LogOut className="w-5" />Logout</Button>
           </DropdownMenuItem>
         </DropdownMenuContent>
       ) : (

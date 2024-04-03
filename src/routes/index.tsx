@@ -7,7 +7,7 @@ import Verifikasi from "@/pages/auth/verifikasi";
 import MyBusiness from "@/pages/user/my-business";
 import DetailBusiness from "@/pages/detail-business";
 import NotFound from "@/pages/404";
-import ArchiveBusiness from "@/pages/user/archive-proposals";
+import ArchiveBusiness from "@/pages/user/archive-business";
 import Withdraw from "@/pages/user/withdraw";
 import MyProfile from "@/pages/admin";
 import Profile from "@/pages/user";

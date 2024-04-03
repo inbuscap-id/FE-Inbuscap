@@ -10,8 +10,7 @@ import {
 import { useAuthStore } from "@/utils/zustand/store";
 import { Archive, DollarSignIcon, LogOut, User } from "lucide-react";
 import { toast } from "./ui/use-toast";
-import { Link, useNavigate } from "react-router-dom";
-import { Button } from "./ui/button";
+import { Link } from "react-router-dom";
 
 export default function Dropdown() {
   const isLoggedIn = useAuthStore((state) => state.token);

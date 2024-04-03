@@ -11,7 +11,7 @@ export interface TWithdraw {
 }
 
 export default function Withdraw() {
-  const [datas, setDatas] = useState<TWithdraw[]>([
+  const [datas] = useState<TWithdraw[]>([
     {
       amount: "2000000",
       date: "27 Maret 2024",

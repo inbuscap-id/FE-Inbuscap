@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { CardDescription } from "@/components/ui/card";
 import { Form } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { VerificationType, verificationSchema } from "@/utils/apis/auth";
+import { VerificationType, verificationSchema } from "@/utils/apis/auth/types";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
@@ -22,7 +22,7 @@ export default function Verification() {
 
     return (
       <>
-        <Layout loggedin={true}>
+        <Layout>
           <div className="mb-10 mt-2 flex gap-20">
           <Link to={"/profile"}>
             <Button variant="ghost" className="hover:bg-transparent text-2xl font-semibold hover:font-bold">My Profile</Button>

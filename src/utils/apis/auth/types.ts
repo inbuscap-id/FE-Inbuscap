@@ -28,13 +28,6 @@ export const verificationSchema = z.object({
   photo_selfie: z.string().min(1, { message: "Upload your photo first" }),
 });
 
-export const ProposalValidation = z.object({
-  title: z.string().min(10, { message: "Minimum 10 characters." }).max(2200, { message: "Maximum 2,200 caracters" }),
-  description: z.string().min(6, { message: "Minimum 6 characters." }).max(2200, { message: "Maximum 2,200 caracters" }),
-  capital: z.string().min(8, { message: "Phone Number minimum length is 8" }),
-  file: z.custom<File[]>(),
-});
-
 export const adminSchema = z.object({
   fullname: z.string().min(1, { message: "Full name is required" }),
   email: z

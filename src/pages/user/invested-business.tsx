@@ -2,10 +2,11 @@ import Layout from "@/components/layout";
 import ProposalCard from "@/components/proposal-card";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
+import Gambar from "@/assets/nasigoreng.jpg"
 
 export default function InvestedBusiness() {
   return (
-    <Layout loggedin={true}>
+    <Layout>
       <div className="mb-10 mt-2 flex gap-20">
           <Link to={"/profile"}>
             <Button variant="ghost" className="hover:bg-transparent text-2xl font-semibold hover:font-bold">My Profile</Button>
@@ -22,7 +23,8 @@ export default function InvestedBusiness() {
         desc="Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid odit impedit commodi iusto veniam sapiente fugiat? Minus expedita deserunt cupiditate?"
         target={10000000}
         collected={5000000}
-        navigate="../detail-proposal/3"
+        id={1}
+        image={Gambar}
         withOption
         archive
       />
@@ -31,7 +33,8 @@ export default function InvestedBusiness() {
         desc=" Lorem ipsum dolor, sit amet consectetur adipisicing elit. Blanditiis maxime non error facere sint ullam delectus repellendus quod quis obcaecati?"
         target={20000000}
         collected={4000000}
-        navigate="../detail-proposal/4"
+        id={2}
+        image={Gambar}
         withOption
         archive
       />

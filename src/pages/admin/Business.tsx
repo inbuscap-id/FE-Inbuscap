@@ -1,30 +1,34 @@
 import DataTable from "@/components/data-table";
 import Layout from "@/components/layout-admin";
+import { AdmBusiness } from "@/utils/apis/business/type";
+import { ColumnDef } from "@tanstack/react-table";
 import { Edit, Ellipsis, Trash2 } from "lucide-react";
 import { useMemo, useState } from "react";
 
 export default function Business() {
   
-    const [datas, setDatas] = useState<TUser[]>([
+    const [datas, setDatas] = useState<AdmBusiness[]>([
       {
-        businesstitle: "Nasi Goreng",
-        detail: "Pendanaan untuk usaha Nasi Goreng",
-        owner: "Ade Prasetyo",
-        amount: "Rp.5000.000,-",
-        shareprofit: "70% / 30%",
-        file: "proposal-nasi-goreng.pdf",
+        title: "Nasi Goreng",
+        description: "Pendanaan untuk usaha Nasi Goreng",
+        fullname: "Ade Prasetyo",
+        capital: 5000000,
+        profit: 70,
+        collected: 2000000,
+        proposal: "proposal-nasi-goreng.pdf",
       },
       {
-        businesstitle: "Coffee Abnormal",
-        detail: "Pendanaan untuk usaha Coffee Shop",
-        owner: "Franco",
-        amount: "Rp.50.000.000,-",
-        shareprofit: "70% / 30%",
-        file: "proposal-coffee-abnormal.pdf",
+        title: "Coffee Abnormal",
+        description: "Pendanaan untuk usaha Coffee Shop",
+        fullname: "Franco",
+        capital: 50000000,
+        profit: 70,
+        collected: 3000000,
+        proposal: "proposal-coffee-abnormal.pdf",
       },
     ]);
   
-    const columns = useMemo<ColumnDef<TUser>[]>(
+    const columns = useMemo<ColumnDef<AdmBusiness>[]>(
       () => [
         {
           header: "No",
@@ -35,39 +39,46 @@ export default function Business() {
         },
         {
           header: "Business Title",
-          accessorKey: "businesstitle",
+          accessorKey: "title",
           cell: (info) => info.getValue(),
           footer: (props) => props.column.id,
           size: 100,
         },
         {
           header: "Detail",
-          accessorKey: "detail",
+          accessorKey: "description",
           cell: (info) => info.getValue(),
           footer: (props) => props.column.id,
         },
         {
           header: "Owner",
-          accessorKey: "owner",
+          accessorKey: "fullname",
           cell: (info) => info.getValue(),
           footer: (props) => props.column.id,
         },
         {
           header: "Amount",
-          accessorKey: "amount",
+          accessorKey: "capital",
           cell: (info) => info.getValue(),
           footer: (props) => props.column.id,
         },
         {
           header: "Share Profit",
-          accessorKey: "shareprofit",
+          accessorKey: "profit",
           cell: (info) => String(info.getValue()),
           footer: (props) => props.column.id,
           size: 90,
         },
         {
-        header: "File",
-        accessorKey: "file",
+        header: "Proposal",
+        accessorKey: "proposal",
+        cell: (info) => String(info.getValue()),
+        footer: (props) => props.column.id,
+        size: 0,
+      },
+      {
+        header: "Collected",
+        accessorKey: "collected",
         cell: (info) => String(info.getValue()),
         footer: (props) => props.column.id,
         size: 0,

@@ -9,7 +9,7 @@ export default function CustomDropdownProfile() {
     <DropdownMenuLabel>My Account</DropdownMenuLabel>
     <DropdownMenuSeparator />
     <DropdownMenuItem>My Profile</DropdownMenuItem>
-    <DropdownMenuItem>Archive Proposals</DropdownMenuItem>
+    <DropdownMenuItem>Archive Business</DropdownMenuItem>
     <DropdownMenuItem>Withdraw</DropdownMenuItem>
     <DropdownMenuSeparator />
     <DropdownMenuItem>Logout</DropdownMenuItem>

@@ -102,7 +102,7 @@ export default function Verification() {
                   data-testid="btn-submit"
                   disabled={form.formState.isSubmitting}
                   aria-disabled={form.formState.isSubmitting}
-                  className="rounded-2xl px-6">Edit
+                  className="rounded-2xl px-6 bg-white text-primary border-2 border-primary hover:text-white">Edit
         </Button>
         <Button type="submit"
                   data-testid="btn-submit"

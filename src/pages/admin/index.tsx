@@ -82,7 +82,7 @@ export default function MyProfile() {
                   data-testid="btn-submit"
                   disabled={form.formState.isSubmitting}
                   aria-disabled={form.formState.isSubmitting}
-                  className="rounded-2xl px-6">Edit
+                  className="rounded-2xl px-6 text-primary bg-white hover:text-white border-2 border-primary">Edit
             </Button>
             <Button type="submit"
                   data-testid="btn-submit"

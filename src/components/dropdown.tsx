@@ -43,10 +43,10 @@ export default function Dropdown(props: Props) {
               My Profile
             </DropdownMenuItem>
           </Link>
-          <Link to="/archive-proposals">
+          <Link to="/archive-business">
             <DropdownMenuItem className="cursor-pointer flex gap-2">
               <Archive className="w-5" />
-              Archive Proposals
+              Archive Business
             </DropdownMenuItem>
           </Link>
           <Link to="/withdraw">

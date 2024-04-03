@@ -18,7 +18,7 @@ interface Props {
   desc: string;
   target: number;
   collected: number;
-  navigate: string;
+  id: number;
   withOption?: boolean;
   archive?: boolean;
 }
@@ -28,7 +28,7 @@ export default function ProposalCard(props: Props) {
   const [showArchiveDialog, setShowArchiveDialog] = useState(false);
   const [showDeleteDialog, setShowDeleteDialog] = useState(false);
 
-  const { title, desc, target, collected, navigate, withOption, archive } =
+  const { title, desc, target, collected, id, withOption, archive } =
     props;
 
   let persentase = (collected / target) * 100;
@@ -97,7 +97,7 @@ export default function ProposalCard(props: Props) {
               value={persentase}
               className="mb-4 border border-[#006516] bg-slate-200"
             />
-            <Link to={navigate}>
+            <Link to={`/detail-business/${id}`}>
               <Button className="w-1/4 bg-[#00ad26] hover:bg-[#006516]">
                 See Details
               </Button>

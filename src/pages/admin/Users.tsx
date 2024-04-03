@@ -67,11 +67,23 @@ export default function Users() {
         size: 80,
       },
       {
+        header: "Status",
+        id: "approval",
+        cell: (info) => (
+          <div className="flex gap-3">
+            <p className="">Pending</p>
+          </div>
+        ),
+        footer: (props) => props.column.id,
+        size: 50,
+      },
+      {
         header: "Approval",
         id: "approval",
         cell: (info) => (
           <div className="flex gap-3">
-            <Ellipsis className="text-green-700" />
+            <UserCheck className="text-green-700" />
+            <UserX className="text-red-700" />
           </div>
         ),
         footer: (props) => props.column.id,

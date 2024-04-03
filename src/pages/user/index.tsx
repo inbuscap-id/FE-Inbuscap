@@ -2,6 +2,7 @@ import { CustomFormField } from "@/components/custom-formfield";
 import Layout from "@/components/layout";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
 import { Form } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { RegisterType, registerSchema } from "@/utils/apis/auth";
@@ -25,7 +26,7 @@ export default function Profile() {
     return (
       <>
         <Layout loggedin={true}>
-          <div className="mb-10 mt-2 flex gap-20">
+          <div className="mb-6 mt-2 flex gap-10">
           <Link to={"/profile"}>
             <Button variant="ghost" className="hover:bg-transparent text-2xl font-semibold hover:font-bold">My Profile</Button>
             </Link>
@@ -41,10 +42,11 @@ export default function Profile() {
           <AvatarImage src="https://github.com/shadcn.png" />
           <AvatarFallback>CN</AvatarFallback>
         </Avatar>
+        <Card className="md:w-3/4 mt-5">
+        <CardContent>
         <Form {...form}>
               <form
                 data-testid="form-register"
-                // onSubmit={form.handleSubmit(onSubmit)}
                 className="space-y-6"
               >
                 <CustomFormField
@@ -127,31 +129,29 @@ export default function Profile() {
                     />
                   )}
                 </CustomFormField>
+        <Button type="submit"
+                  data-testid="btn-submit"
+                  disabled={form.formState.isSubmitting}
+                  aria-disabled={form.formState.isSubmitting}
+                  className="rounded-2xl px-6">Edit
+        </Button>
+        <Button type="submit"
+                  data-testid="btn-submit"
+                  disabled={form.formState.isSubmitting}
+                  aria-disabled={form.formState.isSubmitting}
+                  className="rounded-2xl px-6 mx-6">Save
+        </Button>
+        <Button type="submit"
+                  data-testid="btn-submit"
+                  disabled={form.formState.isSubmitting}
+                  aria-disabled={form.formState.isSubmitting}
+                  className="rounded-2xl px-6 bg-white text-primary border-2 border-primary hover:bg-primary hover:text-white">Delete
+        </Button>
             </form>
         </Form>
-        <div className="grid items-start justify-start p-5 px-0 pb-60">
-        <Button type="submit"
-                  data-testid="btn-submit"
-                  disabled={form.formState.isSubmitting}
-                  aria-disabled={form.formState.isSubmitting}
-                  className="rounded-2xl mx-20">Edit
-        </Button>
-        <Button type="submit"
-                  data-testid="btn-submit"
-                  disabled={form.formState.isSubmitting}
-                  aria-disabled={form.formState.isSubmitting}
-                  className="rounded-2xl mx-20">Save
-        </Button>
-        <Button type="submit"
-                  data-testid="btn-submit"
-                  disabled={form.formState.isSubmitting}
-                  aria-disabled={form.formState.isSubmitting}
-                  className="rounded-2xl mx-20">Delete
-        </Button>
-        </div>
-        </div>
-        
-          
+        </CardContent>
+        </Card>
+        </div>  
         </Layout>
       </>
     );

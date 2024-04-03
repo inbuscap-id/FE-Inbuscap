@@ -1,14 +1,11 @@
 import Dropdown from "@/components/dropdown";
 import { cn } from "@/lib/utils";
+import { useAuthStore } from "@/utils/zustand/store";
 import { Link, useLocation } from "react-router-dom";
 
-interface Props {
-  loggedin: boolean;
-}
-
-export default function Navbar(props: Props) {
+export default function Navbar() {
   const location = useLocation();
-  const { loggedin } = props;
+  const isLoggedIn = useAuthStore((state) => state.isLoggedIn);
 
   return (
     <nav className="w-full bg-[#00ad26] flex justify-center items-center sticky top-0 z-10">
@@ -20,7 +17,7 @@ export default function Navbar(props: Props) {
         </div>
         <div>
           <ul className="flex justify-center items-center gap-10">
-            {loggedin ? (
+            {isLoggedIn ? (
               <>
                 <li
                   className={cn(
@@ -73,7 +70,7 @@ export default function Navbar(props: Props) {
             )}
 
             <li>
-              <Dropdown loggedin={loggedin} />
+              <Dropdown />
             </li>
           </ul>
         </div>

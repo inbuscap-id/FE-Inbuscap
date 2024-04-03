@@ -56,7 +56,7 @@ export default function Withdraw() {
     []
   );
   return (
-    <Layout loggedin={true}>
+    <Layout>
       <div className="mb-5 mt-2 flex flex-col justify-between">
         <p className="text-2xl font-semibold ">Withdraw</p>
         <div className="mb-3">

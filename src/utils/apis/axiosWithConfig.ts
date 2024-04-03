@@ -8,7 +8,9 @@ export const setAxiosConfig = (token: string) => {
 };
 
 axiosWithConfig.interceptors.request.use((axiosConfig) => {
-  axiosConfig.baseURL = "https://virtserver.swaggerhub.com/BAGIR3008/Inbuscap/1.0.0";
+  axiosConfig.baseURL =
+    "https://virtserver.swaggerhub.com/BAGIR3008/Inbuscap/1.0.0";
+  // axiosConfig.baseURL = "http://54.169.185.156:8000";
   if (bearerToken) {
     axiosConfig.headers.Authorization = `Bearer ${bearerToken}`;
   }

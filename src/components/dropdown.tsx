@@ -7,16 +7,13 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { useAuthStore } from "@/utils/zustand/store";
 import { Archive, DollarSignIcon, LogOut, User } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import { Button } from "./ui/button";
 
-interface Props {
-  loggedin?: boolean;
-}
-
-export default function Dropdown(props: Props) {
-  const { loggedin } = props;
+export default function Dropdown() {
+  const isLoggedIn = useAuthStore((state) => state.isLoggedIn);
 
   const navigate = useNavigate();
 
@@ -33,7 +30,7 @@ export default function Dropdown(props: Props) {
         </Avatar>
       </DropdownMenuTrigger>
 
-      {loggedin ? (
+      {isLoggedIn ? (
         <DropdownMenuContent align="end" forceMount>
           <DropdownMenuLabel>My Account</DropdownMenuLabel>
           <DropdownMenuSeparator />
@@ -62,7 +59,7 @@ export default function Dropdown(props: Props) {
         </DropdownMenuContent>
       ) : (
         <DropdownMenuContent align="end" forceMount>
-          <Link to="/loggedin">
+          <Link to="/login">
             <DropdownMenuItem className="cursor-pointer">
               Login
             </DropdownMenuItem>

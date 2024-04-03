@@ -2,10 +2,28 @@ import Layout from "@/components/layout";
 import ProposalCard from "@/components/proposal-card";
 import landingImg from "@/assets/img.png";
 import { Separator } from "@/components/ui/separator";
+import { getProposals } from "@/utils/apis/proposals/api";
+import { useEffect, useState } from "react";
+import { IProposals } from "@/utils/apis/proposals/type";
+import { toast } from "sonner";
 
 function Homepage() {
+  const [datas, setDatas] = useState<IProposals[]>([]);
+
+  useEffect(() => {
+    handleGetProposals();
+  }, []);
+
+  const handleGetProposals = async () => {
+    try {
+      const result = await getProposals();
+      setDatas(result.data);
+    } catch (error) {
+      toast((error as Error).message.toString());
+    }
+  };
   return (
-    <Layout loggedin={true}>
+    <Layout>
       <div className=" flex flex-col items-center">
         <div className="flex justify-between items-center mb-10">
           <div className="w-1/2">
@@ -77,21 +95,17 @@ function Homepage() {
 
           <Separator className="mb-10 rounded-full bg-[#006516]" />
 
-          <ProposalCard
-            title="Nasi Goreng Pak Syukur"
-            desc="Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates qui, pariatur dolores ipsum atque quod assumenda a, maxime earum vitae facilis, tempore numquam molestiae sequi. Nisi cupiditate odio dolorum fugiat?"
-            target={10000000}
-            collected={0}
-            navigate={"/detail-proposal/1"}
-            withOption
-          />
-          <ProposalCard
-            title="Cafe Abnormal"
-            desc="Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque quo laboriosam impedit error repellat maiores."
-            target={50000000}
-            collected={3000000}
-            navigate={"/detail-proposal/2"}
-          />
+          {datas.map((data) => (
+            <ProposalCard
+              key={data.id}
+              title={data.title}
+              desc={data.description}
+              image={data.image}
+              target={data.capital}
+              collected={data.collected}
+              id={data.id}
+            />
+          ))}
         </div>
       </div>
     </Layout>

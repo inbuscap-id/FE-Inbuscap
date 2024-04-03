@@ -31,7 +31,7 @@ export default function ProposalCard(props: Props) {
   const { title, desc, image, target, collected, id, withOption, archive } =
     props;
 
-  let persentase = (collected / target) * 100;
+  let persentase = Math.round((collected / target) * 100);
 
   return (
     <>
@@ -71,7 +71,8 @@ export default function ProposalCard(props: Props) {
                   )}
 
                   <DropdownMenuItem className="flex gap-2">
-                    <EditIcon className="w-5" /><Link to="/update-business">Edit</Link> 
+                    <EditIcon className="w-5" />
+                    <Link to="/update-business">Edit</Link>
                   </DropdownMenuItem>
                   <DropdownMenuItem
                     className="text-red-600 flex gap-2"

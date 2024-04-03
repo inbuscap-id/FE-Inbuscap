@@ -1,89 +1,93 @@
 import DataTable from "@/components/data-table";
 import Layout from "@/components/layout-admin";
-import { TUser } from "@/utils/apis/users/type";
+import { AdmBusiness } from "@/utils/apis/business/type";
 import { ColumnDef } from "@tanstack/react-table";
+import { Edit, Ellipsis, Trash2 } from "lucide-react";
 import { useMemo, useState } from "react";
-import { Edit, Trash2, UserCheck, UserX } from "lucide-react";
 
-export default function Users() {
-  const [datas, setDatas] = useState<TUser[]>([
+export default function Business() {
+  const [datas] = useState<AdmBusiness[]>([
     {
-      fullname: "Muhammad Bagir",
-      email: "bagir3008@gmail.com",
-      handphone: "085912345678",
-      password: "4545",
-      ktp: "3573052004030001",
-      npwp: "123456789003000",
+      title: "Nasi Goreng",
+      description: "Pendanaan untuk usaha Nasi Goreng",
+      fullname: "Ade Prasetyo",
+      capital: 5000000,
+      profit: 70,
+      collected: 2000000,
+      proposal: "proposal-nasi-goreng.pdf",
     },
     {
-      fullname: "Muhammad Bagir",
-      email: "bagir3008@gmail.com",
-      handphone: "085912345678",
-      password: "4545",
-      ktp: "3573052004030001",
-      npwp: "123456789003000",
+      title: "Coffee Abnormal",
+      description: "Pendanaan untuk usaha Coffee Shop",
+      fullname: "Franco",
+      capital: 50000000,
+      profit: 70,
+      collected: 3000000,
+      proposal: "proposal-coffee-abnormal.pdf",
     },
   ]);
 
-  const columns = useMemo<ColumnDef<TUser>[]>(
+  const columns = useMemo<ColumnDef<AdmBusiness>[]>(
     () => [
       {
         header: "No",
         accessorKey: "no",
         cell: (info) => info.row.index + 1,
         footer: (props) => props.column.id,
-        size: 50,
+        size: 20,
       },
       {
-        header: "Fullname",
+        header: "Business Title",
+        accessorKey: "title",
+        cell: (info) => info.getValue(),
+        footer: (props) => props.column.id,
+        size: 100,
+      },
+      {
+        header: "Detail",
+        accessorKey: "description",
+        cell: (info) => info.getValue(),
+        footer: (props) => props.column.id,
+      },
+      {
+        header: "Owner",
         accessorKey: "fullname",
         cell: (info) => info.getValue(),
         footer: (props) => props.column.id,
-        size: 200,
       },
       {
-        header: "Email",
-        accessorKey: "email",
+        header: "Amount",
+        accessorKey: "capital",
         cell: (info) => info.getValue(),
         footer: (props) => props.column.id,
       },
       {
-        header: "No HP",
-        accessorKey: "handphone",
-        cell: (info) => info.getValue(),
-        footer: (props) => props.column.id,
-      },
-      {
-        header: "No KTP",
-        accessorKey: "ktp",
-        cell: (info) => info.getValue(),
-        footer: (props) => props.column.id,
-      },
-      {
-        header: "NPWP",
-        accessorKey: "npwp",
+        header: "Share Profit",
+        accessorKey: "profit",
         cell: (info) => String(info.getValue()),
         footer: (props) => props.column.id,
-        size: 80,
+        size: 90,
       },
       {
-        header: "Status",
-        id: "status",
-        cell: (info) => (
-          <div className="flex gap-3">
-            <p className="">Pending</p>
-          </div>
-        ),
+        header: "Proposal",
+        accessorKey: "proposal",
+        cell: (info) => String(info.getValue()),
         footer: (props) => props.column.id,
-        size: 50,
+        size: 0,
+      },
+      {
+        header: "Collected",
+        accessorKey: "collected",
+        cell: (info) => String(info.getValue()),
+        footer: (props) => props.column.id,
+        size: 0,
       },
       {
         header: "Approval",
         id: "approval",
-        cell: (info) => (
+        cell: () => (
           <div className="flex gap-3">
-            <UserCheck className="text-green-700" />
-            <UserX className="text-red-700" />
+            <Ellipsis className="text-green-700" />
           </div>
         ),
         footer: (props) => props.column.id,
@@ -92,7 +96,7 @@ export default function Users() {
       {
         header: "Action",
         id: "action",
-        cell: (info) => (
+        cell: () => (
           <div className="flex gap-3">
             <Edit className="text-blue-700" />
             <Trash2 className="text-red-700" />
@@ -107,7 +111,7 @@ export default function Users() {
   return (
     <Layout>
       <div className="w-full text-xl font-semibold mb-4">
-        <p>Users</p>
+        <p>Businesses</p>
       </div>
       <div className="w-full">
         <DataTable columns={columns} datas={datas} />

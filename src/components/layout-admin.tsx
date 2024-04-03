@@ -12,16 +12,16 @@ interface Props {
 export default function Layout(props: Props) {
   const location = useLocation();
   const navigate = useNavigate();
- 
+
   const { children } = props;
-  
+
   const handleLogout = () => {
     navigate("/login");
   };
 
   return (
     <div className="w-full min-h-dvh flex">
-      <div className="min-h-dvh w-2/12 bg-[#00ad26] rounded-r-2xl text-white flex flex-col">
+      <div className="min-h-dvh w-72 bg-[#00ad26] rounded-r-2xl text-white flex flex-col">
         <div className="w-full h-1/6 flex justify-center items-center tracking-wide">
           <p className="font-lora font-bold text-2xl">Inbuscap.id</p>
         </div>
@@ -40,9 +40,7 @@ export default function Layout(props: Props) {
               to="/admin/users"
               className={cn(
                 "hover:text-white",
-                location.pathname === "/admin/users"
-                  ? "text-white "
-                  : ""
+                location.pathname === "/admin/users" ? "text-white " : ""
               )}
             >
               <p>Users</p>
@@ -51,17 +49,21 @@ export default function Layout(props: Props) {
               to="/admin/businesses"
               className={cn(
                 "hover:text-white",
-                location.pathname === "/admin/businesses"
-                  ? "text-white "
-                  : ""
+                location.pathname === "/admin/businesses" ? "text-white " : ""
               )}
             >
               <p>Businesses</p>
             </Link>
           </div>
           <div className="w-full h-1/4 flex justify-center items-center">
-            
-            <Button variant="ghost" className="text-green-100 hover:bg-transparent hover:text-white" onClick={handleLogout}><LogOut className="me-2 text-green-100 hover:text-white" />Logout</Button>
+            <Button
+              variant="ghost"
+              className="text-green-100 hover:bg-transparent hover:text-white"
+              onClick={handleLogout}
+            >
+              <LogOut className="me-2 text-green-100 hover:text-white" />
+              Logout
+            </Button>
           </div>
         </div>
       </div>

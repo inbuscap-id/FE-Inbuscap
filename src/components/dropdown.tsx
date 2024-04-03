@@ -10,9 +10,18 @@ import {
 import { useAuthStore } from "@/utils/zustand/store";
 import { Archive, DollarSignIcon, LogOut, User } from "lucide-react";
 import { Link } from "react-router-dom";
+import { toast } from "./ui/use-toast";
 
 export default function Dropdown() {
-  const isLoggedIn = useAuthStore((state) => state.isLoggedIn);
+  const isLoggedIn = useAuthStore((state) => state.token);
+  const resetToken = useAuthStore((state) => state.resetAuth);
+
+  function handleLogout() {
+    resetToken();
+    toast({
+      description: "Logout Successfully",
+    });
+  }
 
   return (
     <DropdownMenu>
@@ -46,7 +55,10 @@ export default function Dropdown() {
             </DropdownMenuItem>
           </Link>
           <DropdownMenuSeparator />
-          <DropdownMenuItem className="cursor-pointer flex gap-2">
+          <DropdownMenuItem
+            className="cursor-pointer flex gap-2"
+            onClick={() => handleLogout()}
+          >
             <LogOut className="w-5" />
             Logout
           </DropdownMenuItem>

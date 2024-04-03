@@ -5,7 +5,7 @@ import { Link, useLocation } from "react-router-dom";
 
 export default function Navbar() {
   const location = useLocation();
-  const isLoggedIn = useAuthStore((state) => state.isLoggedIn);
+  const isLoggedIn = useAuthStore((state) => state.token);
 
   return (
     <nav className="w-full bg-[#00ad26] flex justify-center items-center sticky top-0 z-10">

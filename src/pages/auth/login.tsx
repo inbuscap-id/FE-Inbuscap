@@ -10,16 +10,19 @@ import {
 import { Form } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/components/ui/use-toast";
-import { LoginType, loginSchema, userLogin } from "@/utils/apis/auth";
+import { userLogin } from "@/utils/apis/auth/api";
+import { LoginType, loginSchema } from "@/utils/apis/auth/types";
+import { getUser } from "@/utils/apis/users/api";
+import { useAuthStore } from "@/utils/zustand/store";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Loader2 } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 
 const Login = () => {
-  // const { changeToken } = useToken();
   const navigate = useNavigate();
   const { toast } = useToast();
+  const addToken = useAuthStore((state) => state.addAuth);
 
   const form = useForm<LoginType>({
     resolver: zodResolver(loginSchema),
@@ -29,13 +32,18 @@ const Login = () => {
     },
   });
 
-  async function onSubmit(data: LoginType) {
+  const handleGetUser = async () => {
+    const result = await getUser();
+    useAuthStore.getState().setUser(result);
+  };
+
+  async function handleLogin(data: LoginType) {
     try {
       const result = await userLogin(data);
-      // changeToken(result.payload?.token);
-      console.log(result);
+      addToken(result.data);
+      handleGetUser();
       toast({
-        description: "Hello, welcome back!",
+        description: "Hello, Welcome to Inbuscap.id",
       });
       navigate("/");
     } catch (error) {
@@ -64,7 +72,7 @@ const Login = () => {
             <Form {...form}>
               <form
                 data-testid="form-login"
-                onSubmit={form.handleSubmit(onSubmit)}
+                onSubmit={form.handleSubmit(handleLogin)}
                 className="space-y-4"
               >
                 <CustomFormField

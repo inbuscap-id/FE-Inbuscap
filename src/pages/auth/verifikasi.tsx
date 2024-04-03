@@ -9,15 +9,12 @@ import {
 } from "@/components/ui/card";
 import { Form } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { VerificationType, verificationSchema } from "@/utils/apis/auth";
+import { VerificationType, verificationSchema } from "@/utils/apis/auth/types";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Loader2 } from "lucide-react";
 import { useForm } from "react-hook-form";
 
 const Verifikasi = () => {
-  // const navigate = useNavigate();
-  // const { toast } = useToast();
-
   const form = useForm<VerificationType>({
     resolver: zodResolver(verificationSchema),
     defaultValues: {
@@ -26,21 +23,6 @@ const Verifikasi = () => {
       photo_selfie: "",
     },
   });
-
-  // async function onSubmit(data:VerificationType) {
-  //     try{
-  //         const result = await userVerification(data);
-  //         toast({
-  //             description: result.message,
-  //         });
-  //         navigate("/login");
-  //     }catch(error){
-  //         toast({
-  //             title: "Oops! Something went wrong.",
-  //             description: (error as Error).message,
-  //             variant: "destructive",
-  //         });
-  //     }
 
   return (
     <div className="flex w-full justify-between h-screen">

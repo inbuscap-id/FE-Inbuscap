@@ -22,6 +22,7 @@ function Homepage() {
       toast((error as Error).message.toString());
     }
   };
+
   return (
     <Layout>
       <div className=" flex flex-col items-center">

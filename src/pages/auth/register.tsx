@@ -6,7 +6,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 
-import { RegisterType, registerSchema, userRegister } from "@/utils/apis/auth";
 import { Button } from "@/components/ui/button";
 import { Loader2 } from "lucide-react";
 import {
@@ -16,6 +15,8 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { RegisterType, registerSchema } from "@/utils/apis/auth/types";
+import { userRegister } from "@/utils/apis/auth/api";
 
 const Register = () => {
   const navigate = useNavigate();

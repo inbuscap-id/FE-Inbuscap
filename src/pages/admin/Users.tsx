@@ -5,7 +5,7 @@ import { ColumnDef } from "@tanstack/react-table";
 import { useMemo, useState } from "react";
 import { Edit, Ellipsis, Trash2, UserCheck, UserX } from "lucide-react";
 
-export default function ListOfUsers() {
+export default function Users() {
   const [datas, setDatas] = useState<TUser[]>([
     {
       fullname: "Muhammad Bagir",
@@ -95,7 +95,7 @@ export default function ListOfUsers() {
   return (
     <Layout>
       <div className="w-full text-xl font-semibold mb-4">
-        <p>List of Users</p>
+        <p>Users</p>
       </div>
       <div className="w-full">
         <DataTable columns={columns} datas={datas} />

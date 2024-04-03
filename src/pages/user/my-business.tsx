@@ -3,7 +3,7 @@ import ProposalCard from "@/components/proposal-card";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 
-export default function MyProposals() {
+export default function MyBusiness() {
   return (
     <>
       <Layout loggedin={true}>

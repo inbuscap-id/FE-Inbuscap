@@ -1,11 +1,11 @@
 import Layout from "@/components/layout";
 import ProposalCard from "@/components/proposal-card";
 
-export default function ArchiveProposals() {
+export default function ArchiveBusiness() {
   return (
     <Layout loggedin={true}>
       <div className="mb-5 mt-2 flex justify-between">
-        <p className="text-2xl font-semibold">Archive Proposals</p>
+        <p className="text-2xl font-semibold">Archive Business</p>
       </div>
       <ProposalCard
         title="Nasi Goreng Pak Syukur"

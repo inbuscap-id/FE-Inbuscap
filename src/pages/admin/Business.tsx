@@ -3,7 +3,7 @@ import Layout from "@/components/layout-admin";
 import { Edit, Ellipsis, Trash2 } from "lucide-react";
 import { useMemo, useState } from "react";
 
-export default function ListOfProposals() {
+export default function Business() {
   
     const [datas, setDatas] = useState<TUser[]>([
       {
@@ -101,7 +101,7 @@ export default function ListOfProposals() {
     return (
       <Layout>
         <div className="w-full text-xl font-semibold mb-4">
-          <p>List of Proposals</p>
+          <p>Businesses</p>
         </div>
         <div className="w-full">
           <DataTable columns={columns} datas={datas} />

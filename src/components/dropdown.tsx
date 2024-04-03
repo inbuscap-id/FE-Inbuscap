@@ -8,7 +8,8 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Archive, DollarSignIcon, LogOut, User } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { Button } from "./ui/button";
 
 interface Props {
   loggedin?: boolean;
@@ -16,6 +17,12 @@ interface Props {
 
 export default function Dropdown(props: Props) {
   const { loggedin } = props;
+
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    navigate("/login");
+  };
 
   return (
     <DropdownMenu>
@@ -50,8 +57,7 @@ export default function Dropdown(props: Props) {
           </Link>
           <DropdownMenuSeparator />
           <DropdownMenuItem className="cursor-pointer flex gap-2">
-            <LogOut className="w-5" />
-            Logout
+            <Button variant="ghost" className="hover:bg-transparent" onClick={handleLogout}><LogOut className="w-5" />Logout</Button>
           </DropdownMenuItem>
         </DropdownMenuContent>
       ) : (

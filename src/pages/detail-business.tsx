@@ -4,7 +4,7 @@ import { Progress } from "@/components/ui/progress";
 import { Button } from "@/components/ui/button";
 import { formatRupiah } from "@/utils/format-money";
 
-export default function DetailProposal() {
+export default function DetailBusiness() {
   // const param = useParams();
 
   return (

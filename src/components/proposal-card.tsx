@@ -71,7 +71,7 @@ export default function ProposalCard(props: Props) {
                   )}
 
                   <DropdownMenuItem className="flex gap-2">
-                    <EditIcon className="w-5" /><Link to="/update-proposal">Edit</Link> 
+                    <EditIcon className="w-5" /><Link to="/update-business">Edit</Link> 
                   </DropdownMenuItem>
                   <DropdownMenuItem
                     className="text-red-600 flex gap-2"

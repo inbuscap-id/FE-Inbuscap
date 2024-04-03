@@ -35,10 +35,10 @@ export default function Navbar(props: Props) {
                 <li
                   className={cn(
                     "hover:text-white text-green-100",
-                    location.pathname === "/my-proposals" ? "text-white " : ""
+                    location.pathname === "/my-business" ? "text-white " : ""
                   )}
                 >
-                  <Link to="/my-proposals">My Proposals</Link>
+                  <Link to="/my-business">My Business</Link>
                 </li>
                 <li
                   className={cn(

@@ -10,7 +10,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Loader2 } from "lucide-react";
 import { useForm } from "react-hook-form";
 
-export default function UpdateProposal() {
+export default function UpdateBusiness() {
   const form = useForm<TProposal>({
     resolver: zodResolver(ProposalValidation),
     defaultValues: {

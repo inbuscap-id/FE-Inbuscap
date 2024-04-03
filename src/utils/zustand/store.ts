@@ -1,11 +1,5 @@
-import create from "zustand";
+import { create } from "zustand";
 
-interface AuthStore {
-  isLoggedIn: boolean;
-  setIsLoggedIn: (isLoggedIn: boolean) => void;
-}
+import { type AuthStore, authStoreCreator } from "./auth";
 
-export const useAuthStore = create<AuthStore>((set) => ({
-  isLoggedIn: true,
-  setIsLoggedIn: (isLoggedIn) => set({ isLoggedIn }),
-}));
+export const useAuthStore = create<AuthStore>()(authStoreCreator);

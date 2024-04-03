@@ -18,11 +18,3 @@ export interface TVerification {
   phone: string;
   is_active: boolean;
 }
-
-export interface TProposal {
-  image: string;
-  title: string;
-  description: string;
-  capital: string;
-  proposal: string;
-}

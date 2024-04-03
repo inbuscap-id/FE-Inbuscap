@@ -3,7 +3,7 @@ import Layout from "@/components/layout-admin";
 import { TUser } from "@/utils/apis/users/type";
 import { ColumnDef } from "@tanstack/react-table";
 import { useMemo, useState } from "react";
-import { Edit, Ellipsis, Trash2, UserCheck, UserX } from "lucide-react";
+import { Edit, Trash2, UserCheck, UserX } from "lucide-react";
 
 export default function Users() {
   const [datas, setDatas] = useState<TUser[]>([

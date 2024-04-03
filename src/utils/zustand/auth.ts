@@ -1,4 +1,3 @@
-import Cookies from "js-cookie";
 import { type StateCreator } from "zustand";
 
 import { IResponseData, LoginPayload } from "../types/api";
@@ -13,7 +12,7 @@ export interface AuthStore {
 }
 
 export const authStoreCreator: StateCreator<AuthStore> = (set) => ({
-  token: Cookies.get("token") ?? sessionStorage.getItem("token") ?? "",
+  token: localStorage.getItem("token") ?? "",
   user: null,
   setUser: (user) => set({ user }),
   addAuth: (data) =>

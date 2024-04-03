@@ -2,21 +2,21 @@ import Layout from "@/components/layout";
 import ProposalCard from "@/components/proposal-card";
 import landingImg from "@/assets/img.png";
 import { Separator } from "@/components/ui/separator";
-import { getProposals } from "@/utils/apis/proposals/api";
+import { getBusinesses } from "@/utils/apis/business/api";
 import { useEffect, useState } from "react";
-import { IProposals } from "@/utils/apis/proposals/type";
+import { IBusiness } from "@/utils/apis/business/type";
 import { toast } from "sonner";
 
 function Homepage() {
-  const [datas, setDatas] = useState<IProposals[]>([]);
+  const [datas, setDatas] = useState<IBusiness[]>([]);
 
   useEffect(() => {
-    handleGetProposals();
+    handleGetBusiness();
   }, []);
 
-  const handleGetProposals = async () => {
+  const handleGetBusiness = async () => {
     try {
-      const result = await getProposals();
+      const result = await getBusinesses();
       setDatas(result.data);
     } catch (error) {
       toast((error as Error).message.toString());

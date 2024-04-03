@@ -4,15 +4,15 @@ import { Button } from "@/components/ui/button";
 import { Form } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { ProposalValidation } from "@/utils/apis/auth/types";
-import { TProposal } from "@/utils/apis/users/type";
+import { BusinessSchema } from "@/utils/apis/business/type";
+import { TBusiness } from "@/utils/apis/users/type";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Loader2 } from "lucide-react";
 import { useForm } from "react-hook-form";
 
 export default function UpdateBusiness() {
-  const form = useForm<TProposal>({
-    resolver: zodResolver(ProposalValidation),
+  const form = useForm<TBusiness>({
+    resolver: zodResolver(BusinessSchema),
     defaultValues: {
       title: "",
       capital: "",
@@ -22,7 +22,7 @@ export default function UpdateBusiness() {
   });
 
 return (
-<Layout loggedin={true}>
+<Layout>
   <div className="mb-8 mt-2 flex">
     <p className="text-2xl font-semibold">Update Business</p>
   </div>

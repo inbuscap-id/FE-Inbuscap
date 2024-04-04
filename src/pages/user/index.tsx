@@ -8,20 +8,23 @@ import { Form } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/components/ui/use-toast";
 import { cn } from "@/lib/utils";
-import { updateUser } from "@/utils/apis/users/api";
+import { deleteProfile, updateUser } from "@/utils/apis/users/api";
 import { ProfileSchema, ProfileType } from "@/utils/apis/users/type";
 import { useAuthStore } from "@/utils/zustand/store";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { Loader2 } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 export default function Profile() {
   const [isDisable, setIsDisable] = useState<boolean>(true);
   const [showDeleteDialog, setShowDeleteDialog] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
   const { toast } = useToast();
   const user = useAuthStore((state) => state.user);
+  const resetToken = useAuthStore((state) => state.resetAuth);
 
   const form = useForm<ProfileType>({
     resolver: zodResolver(ProfileSchema),
@@ -43,8 +46,6 @@ export default function Profile() {
   }, [user]);
 
   const handleUpdate = async (data: ProfileType) => {
-    console.log("ggg", data);
-
     try {
       const result = await updateUser(data);
 
@@ -52,6 +53,24 @@ export default function Profile() {
       toast({
         description: result.message,
       });
+    } catch (error) {
+      toast({
+        title: "Oops! Something went wrong.",
+        description: (error as Error).message,
+        variant: "destructive",
+      });
+    }
+  };
+
+  const handleDelete = async () => {
+    try {
+      const result = await deleteProfile();
+
+      toast({
+        description: result.message,
+      });
+      resetToken();
+      navigate("/");
     } catch (error) {
       toast({
         title: "Oops! Something went wrong.",
@@ -203,7 +222,14 @@ export default function Profile() {
                       aria-disabled={form.formState.isSubmitting}
                       className="rounded-2xl px-6 mx-6"
                     >
-                      Save
+                      {form.formState.isSubmitting ? (
+                        <>
+                          <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                          Please wait
+                        </>
+                      ) : (
+                        "Save"
+                      )}
                     </Button>
                     <Button
                       type="button"
@@ -220,6 +246,9 @@ export default function Profile() {
                       description="Semua hal yang terkait akun ini akan terhapus."
                       onCancel={() => {
                         setShowDeleteDialog(false);
+                      }}
+                      onAction={() => {
+                        handleDelete();
                       }}
                     />
                   </div>

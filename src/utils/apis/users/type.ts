@@ -13,6 +13,48 @@ export const ProfileSchema = z.object({
 
 export type ProfileType = z.infer<typeof ProfileSchema>;
 
+const MAX_MB = 2;
+const MAX_UPLOAD_SIZE = 1024 * 1024 * MAX_MB;
+const ACCEPTED_IMAGE_TYPES = ["image/jpeg", "image/jpg", "image/png"];
+
+export const verificationSchema = z.object({
+  photo_ktp: z
+    .instanceof(File)
+    .refine((file) => file?.name !== "", "Upload your KTP picture here")
+    .refine(
+      (file) => file?.size <= MAX_UPLOAD_SIZE,
+      `Max image size is ${MAX_MB}MB`
+    )
+    .refine(
+      (file) => file?.type && ACCEPTED_IMAGE_TYPES.includes(file.type),
+      "Only .jpg, .jpeg, and .png formats are supported"
+    ),
+  photo_npwp: z
+    .instanceof(File)
+    .refine((file) => file?.name !== "", "Upload your NPWP picture here")
+    .refine(
+      (file) => file?.size <= MAX_UPLOAD_SIZE,
+      `Max image size is ${MAX_MB}MB`
+    )
+    .refine(
+      (file) => file?.type && ACCEPTED_IMAGE_TYPES.includes(file.type),
+      "Only .jpg, .jpeg, and .png formats are supported"
+    ),
+  photo_selfie: z
+    .instanceof(File)
+    .refine((file) => file?.name !== "", "Upload your Selfie with KTP here")
+    .refine(
+      (file) => file?.size <= MAX_UPLOAD_SIZE,
+      `Max image size is ${MAX_MB}MB`
+    )
+    .refine(
+      (file) => file?.type && ACCEPTED_IMAGE_TYPES.includes(file.type),
+      "Only .jpg, .jpeg, and .png formats are supported"
+    ),
+});
+
+export type VerificationType = z.infer<typeof verificationSchema>;
+
 export interface TUser {
   fullname: string;
   email: string;
@@ -20,21 +62,4 @@ export interface TUser {
   password: string;
   ktp: string;
   npwp: string;
-}
-
-export interface userToLocalstorage {
-  fullname: string;
-  email: string;
-}
-
-export interface TVerification {
-  id: number;
-  fullname: string;
-  photo_ktp: string;
-  photo_npwp: string;
-  photo_selfie: string;
-  ktp: string;
-  npwp: string;
-  phone: string;
-  is_active: boolean;
 }

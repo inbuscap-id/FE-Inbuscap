@@ -77,11 +77,11 @@ export default function Register() {
                 >
                   {(field) => (
                     <Input
+                      {...field}
                       placeholder="John Doe"
                       data-testid="input-full-name"
                       disabled={form.formState.isSubmitting}
                       aria-disabled={form.formState.isSubmitting}
-                      {...field}
                       className="rounded-full"
                     />
                   )}
@@ -93,12 +93,12 @@ export default function Register() {
                 >
                   {(field) => (
                     <Input
+                      {...field}
                       placeholder="name@mail.com"
                       type="email"
                       data-testid="input-email"
                       disabled={form.formState.isSubmitting}
                       aria-disabled={form.formState.isSubmitting}
-                      {...field}
                       className="rounded-full"
                     />
                   )}
@@ -110,12 +110,11 @@ export default function Register() {
                 >
                   {(field) => (
                     <Input
+                      {...field}
                       placeholder="Phone Number"
-                      type="phone number"
                       data-testid="input-phone-number"
                       disabled={form.formState.isSubmitting}
                       aria-disabled={form.formState.isSubmitting}
-                      {...field}
                       className="rounded-full"
                     />
                   )}
@@ -140,12 +139,11 @@ export default function Register() {
                 <CustomFormField control={form.control} name="ktp" label="KTP">
                   {(field) => (
                     <Input
+                      {...field}
                       placeholder="ktp"
-                      type="tel"
                       data-testid="input-ktp"
                       disabled={form.formState.isSubmitting}
                       aria-disabled={form.formState.isSubmitting}
-                      {...field}
                       className="rounded-full"
                     />
                   )}
@@ -157,12 +155,11 @@ export default function Register() {
                 >
                   {(field) => (
                     <Input
+                      {...field}
                       placeholder="npwp"
-                      type="tel"
                       data-testid="input-npwp"
                       disabled={form.formState.isSubmitting}
                       aria-disabled={form.formState.isSubmitting}
-                      {...field}
                       className="rounded-full"
                     />
                   )}

@@ -1,6 +1,6 @@
 import { IResponse, IResponseData } from "@/utils/types/api";
 import axiosWithConfig from "../axiosWithConfig";
-import { ProfileType, TUser } from "./type";
+import { ProfileType, TUser, VerificationType } from "./type";
 import { checkProperty, valueFormatData } from "@/utils/formatter";
 
 export const getUser = async () => {
@@ -40,6 +40,16 @@ export const updateUser = async (body: ProfileType) => {
 export const deleteProfile = async () => {
   try {
     const response = await axiosWithConfig.delete(`/user`);
+
+    return response.data as IResponse;
+  } catch (error: any) {
+    throw Error(error.response.data.message);
+  }
+};
+
+export const addVerification = async (body: VerificationType) => {
+  try {
+    const response = await axiosWithConfig.post(`/verifications`, body);
 
     return response.data as IResponse;
   } catch (error: any) {

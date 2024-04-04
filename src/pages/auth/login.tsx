@@ -90,12 +90,12 @@ export default function Login() {
                 >
                   {(field) => (
                     <Input
+                      {...field}
                       data-testid="input-email"
                       placeholder="name@mail.com"
                       type="email"
                       disabled={form.formState.isSubmitting}
                       aria-disabled={form.formState.isSubmitting}
-                      {...field}
                       className="rounded-full"
                     />
                   )}
@@ -107,12 +107,12 @@ export default function Login() {
                 >
                   {(field) => (
                     <Input
+                      {...field}
                       data-testid="input-password"
                       placeholder="Password"
                       type="password"
                       disabled={form.formState.isSubmitting}
                       aria-disabled={form.formState.isSubmitting}
-                      {...field}
                       className="rounded-full"
                     />
                   )}

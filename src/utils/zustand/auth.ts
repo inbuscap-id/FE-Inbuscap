@@ -5,7 +5,7 @@ import { TUser } from "../apis/users/type";
 
 export interface AuthStore {
   token: string;
-  user: { email: string; fullname: string } | null;
+  user: TUser | null;
   setUser: (dataUser: TUser) => void;
   addAuth: (data: LoginPayload) => void;
   resetAuth: () => void;
@@ -14,11 +14,7 @@ export interface AuthStore {
 export const authStoreCreator: StateCreator<AuthStore> = (set) => ({
   token: localStorage.getItem("token") ?? "",
   user: null,
-  setUser: (dataUser) => {
-    const { email, fullname } = dataUser;
-    set({ user: { email, fullname } });
-    localStorage.setItem("user", JSON.stringify({ email, fullname }));
-  },
+  setUser: (user) => set({ user }),
   addAuth: (data) =>
     set(() => {
       localStorage.setItem("token", data.token);

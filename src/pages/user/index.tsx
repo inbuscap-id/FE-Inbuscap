@@ -1,3 +1,4 @@
+import CustomAlert from "@/components/custom-alert";
 import { CustomFormField } from "@/components/custom-formfield";
 import Layout from "@/components/layout";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -5,14 +6,25 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Form } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { RegisterType, registerSchema } from "@/utils/apis/auth/types";
+import { useToast } from "@/components/ui/use-toast";
+import { cn } from "@/lib/utils";
+import { updateUser } from "@/utils/apis/users/api";
+import { ProfileSchema, ProfileType } from "@/utils/apis/users/type";
+import { useAuthStore } from "@/utils/zustand/store";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 export default function Profile() {
-  const form = useForm<RegisterType>({
-    resolver: zodResolver(registerSchema),
+  const [isDisable, setIsDisable] = useState<boolean>(true);
+  const [showDeleteDialog, setShowDeleteDialog] = useState(false);
+  const location = useLocation();
+  const { toast } = useToast();
+  const user = useAuthStore((state) => state.user);
+
+  const form = useForm<ProfileType>({
+    resolver: zodResolver(ProfileSchema),
     defaultValues: {
       fullname: "",
       email: "",
@@ -22,33 +34,58 @@ export default function Profile() {
     },
   });
 
+  useEffect(() => {
+    form.setValue("fullname", user?.fullname!);
+    form.setValue("email", user?.email!);
+    form.setValue("ktp", user?.ktp!);
+    form.setValue("handphone", user?.handphone!);
+    form.setValue("npwp", user?.npwp!);
+  }, [user]);
+
+  const handleUpdate = async (data: ProfileType) => {
+    console.log("ggg", data);
+
+    try {
+      const result = await updateUser(data);
+
+      setIsDisable(!isDisable);
+      toast({
+        description: result.message,
+      });
+    } catch (error) {
+      toast({
+        title: "Oops! Something went wrong.",
+        description: (error as Error).message,
+        variant: "destructive",
+      });
+    }
+  };
+
   return (
     <>
       <Layout>
         <div className="mb-6 mt-2 flex gap-10">
           <Link to={"/profile"}>
-            <Button
-              variant="ghost"
-              className="hover:bg-transparent text-2xl font-semibold hover:font-bold"
+            <p
+              className={cn(
+                "text-xl text-slate-600 hover:text-black",
+                location.pathname === "/profile"
+                  ? "text-black font-semibold"
+                  : ""
+              )}
             >
               My Profile
-            </Button>
+            </p>
           </Link>
           <Link to={"/invested-business"}>
-            <Button
-              variant="ghost"
-              className="hover:bg-transparent text-2xl font-semibold hover:font-bold"
-            >
+            <p className="text-xl text-slate-600 hover:text-black">
               Invested Business
-            </Button>
+            </p>
           </Link>
           <Link to={"/verification"}>
-            <Button
-              variant="ghost"
-              className="hover:bg-transparent text-2xl font-semibold hover:font-bold"
-            >
+            <p className="text-xl text-slate-600 hover:text-black">
               Verification
-            </Button>
+            </p>
           </Link>
         </div>
         <div className="grid grid-cols-3 justify-center">
@@ -59,7 +96,11 @@ export default function Profile() {
           <Card className="w-full sm:block mt-5">
             <CardContent>
               <Form {...form}>
-                <form data-testid="form-register" className="space-y-6">
+                <form
+                  onSubmit={form.handleSubmit(handleUpdate)}
+                  data-testid="form-register"
+                  className="space-y-6"
+                >
                   <CustomFormField
                     control={form.control}
                     name="fullname"
@@ -67,12 +108,13 @@ export default function Profile() {
                   >
                     {(field) => (
                       <Input
-                        placeholder="John Doe"
-                        data-testid="input-full-name"
-                        disabled={form.formState.isSubmitting}
-                        aria-disabled={form.formState.isSubmitting}
                         {...field}
+                        placeholder="Your Name"
+                        data-testid="input-full-name"
+                        disabled={form.formState.isSubmitting || isDisable}
+                        aria-disabled={form.formState.isSubmitting}
                         className="rounded-full"
+                        value={field.value as string}
                       />
                     )}
                   </CustomFormField>
@@ -83,13 +125,14 @@ export default function Profile() {
                   >
                     {(field) => (
                       <Input
+                        {...field}
                         placeholder="name@mail.com"
                         type="email"
                         data-testid="input-email"
-                        disabled={form.formState.isSubmitting}
+                        disabled={form.formState.isSubmitting || isDisable}
                         aria-disabled={form.formState.isSubmitting}
-                        {...field}
                         className="rounded-full"
+                        value={field.value as string}
                       />
                     )}
                   </CustomFormField>
@@ -100,13 +143,13 @@ export default function Profile() {
                   >
                     {(field) => (
                       <Input
-                        placeholder="ktp"
-                        type="tel"
-                        data-testid="input-ktp"
-                        disabled={form.formState.isSubmitting}
-                        aria-disabled={form.formState.isSubmitting}
                         {...field}
+                        placeholder="Your KTP"
+                        data-testid="input-ktp"
+                        disabled={form.formState.isSubmitting || isDisable}
+                        aria-disabled={form.formState.isSubmitting}
                         className="rounded-full"
+                        value={field.value as string}
                       />
                     )}
                   </CustomFormField>
@@ -117,13 +160,13 @@ export default function Profile() {
                   >
                     {(field) => (
                       <Input
-                        placeholder="Phone Number"
-                        type="phone number"
-                        data-testid="input-phone-number"
-                        disabled={form.formState.isSubmitting}
-                        aria-disabled={form.formState.isSubmitting}
                         {...field}
+                        placeholder="Phone Number"
+                        data-testid="input-phone-number"
+                        disabled={form.formState.isSubmitting || isDisable}
+                        aria-disabled={form.formState.isSubmitting}
                         className="rounded-full"
+                        value={field.value as string}
                       />
                     )}
                   </CustomFormField>
@@ -134,43 +177,52 @@ export default function Profile() {
                   >
                     {(field) => (
                       <Input
-                        placeholder="npwp"
-                        type="tel"
-                        data-testid="input-npwp"
-                        disabled={form.formState.isSubmitting}
-                        aria-disabled={form.formState.isSubmitting}
                         {...field}
+                        placeholder="npwp"
+                        data-testid="input-npwp"
+                        disabled={form.formState.isSubmitting || isDisable}
+                        aria-disabled={form.formState.isSubmitting}
                         className="rounded-full"
+                        value={field.value as string}
                       />
                     )}
                   </CustomFormField>
-                  <Button
-                    type="submit"
-                    data-testid="btn-submit"
-                    disabled={form.formState.isSubmitting}
-                    aria-disabled={form.formState.isSubmitting}
-                    className="rounded-2xl px-6"
-                  >
-                    Edit
-                  </Button>
-                  <Button
-                    type="submit"
-                    data-testid="btn-submit"
-                    disabled={form.formState.isSubmitting}
-                    aria-disabled={form.formState.isSubmitting}
-                    className="rounded-2xl px-6 mx-6"
-                  >
-                    Save
-                  </Button>
-                  <Button
-                    type="submit"
-                    data-testid="btn-submit"
-                    disabled={form.formState.isSubmitting}
-                    aria-disabled={form.formState.isSubmitting}
-                    className="rounded-2xl px-6 bg-white text-primary border-2 border-primary hover:bg-primary hover:text-white"
-                  >
-                    Delete
-                  </Button>
+                  <div>
+                    <Button
+                      type="button"
+                      disabled={form.formState.isSubmitting}
+                      aria-disabled={form.formState.isSubmitting}
+                      className="w-20 rounded-2xl px-6 border-2 border-primary bg-white text-primary hover:text-white"
+                      onClick={() => setIsDisable(!isDisable)}
+                    >
+                      {isDisable ? "Edit" : "Cancel"}
+                    </Button>
+                    <Button
+                      type="submit"
+                      disabled={form.formState.isSubmitting}
+                      aria-disabled={form.formState.isSubmitting}
+                      className="rounded-2xl px-6 mx-6"
+                    >
+                      Save
+                    </Button>
+                    <Button
+                      type="button"
+                      disabled={form.formState.isSubmitting}
+                      aria-disabled={form.formState.isSubmitting}
+                      className="rounded-2xl px-6 bg-white text-red-600 hover:bg-red-600 hover:text-white"
+                      onClick={() => setShowDeleteDialog(true)}
+                    >
+                      Delete
+                    </Button>
+                    <CustomAlert
+                      open={showDeleteDialog}
+                      title="Kamu Yakin Untuk Menghapus Akun Ini?"
+                      description="Semua hal yang terkait akun ini akan terhapus."
+                      onCancel={() => {
+                        setShowDeleteDialog(false);
+                      }}
+                    />
+                  </div>
                 </form>
               </Form>
             </CardContent>

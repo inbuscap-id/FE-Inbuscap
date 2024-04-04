@@ -18,7 +18,7 @@ import {
 import { RegisterType, registerSchema } from "@/utils/apis/auth/types";
 import { userRegister } from "@/utils/apis/auth/api";
 
-const Register = () => {
+export default function Register() {
   const navigate = useNavigate();
   const { toast } = useToast();
 
@@ -34,7 +34,7 @@ const Register = () => {
     },
   });
 
-  async function onSubmit(data: RegisterType) {
+  const onSubmit = async (data: RegisterType) => {
     try {
       const result = await userRegister(data);
       toast({
@@ -48,7 +48,7 @@ const Register = () => {
         variant: "destructive",
       });
     }
-  }
+  };
 
   return (
     <div className="flex w-full justify-between h-screen">
@@ -195,6 +195,4 @@ const Register = () => {
       </div>
     </div>
   );
-};
-
-export default Register;
+}

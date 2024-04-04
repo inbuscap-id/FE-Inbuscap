@@ -34,7 +34,7 @@ const Login = () => {
 
   const handleGetUser = async () => {
     const result = await getUser();
-    useAuthStore.getState().setUser(result);
+    useAuthStore.getState().setUser(result.data);
   };
 
   async function handleLogin(data: LoginType) {

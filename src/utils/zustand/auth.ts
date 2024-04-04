@@ -1,12 +1,12 @@
 import { type StateCreator } from "zustand";
 
-import { IResponseData, LoginPayload } from "../types/api";
+import { LoginPayload } from "../types/api";
 import { TUser } from "../apis/users/type";
 
 export interface AuthStore {
   token: string;
-  user: IResponseData<TUser> | null;
-  setUser: (user: IResponseData<TUser>) => void;
+  user: { email: string; fullname: string } | null;
+  setUser: (dataUser: TUser) => void;
   addAuth: (data: LoginPayload) => void;
   resetAuth: () => void;
 }
@@ -14,7 +14,11 @@ export interface AuthStore {
 export const authStoreCreator: StateCreator<AuthStore> = (set) => ({
   token: localStorage.getItem("token") ?? "",
   user: null,
-  setUser: (user) => set({ user }),
+  setUser: (dataUser) => {
+    const { email, fullname } = dataUser;
+    set({ user: { email, fullname } });
+    localStorage.setItem("user", JSON.stringify({ email, fullname }));
+  },
   addAuth: (data) =>
     set(() => {
       localStorage.setItem("token", data.token);

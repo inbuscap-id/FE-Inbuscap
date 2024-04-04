@@ -7,6 +7,11 @@ export interface TUser {
   npwp: string;
 }
 
+export interface userToLocalstorage {
+  fullname: string;
+  email: string;
+}
+
 export interface TVerification {
   id: number;
   fullname: string;

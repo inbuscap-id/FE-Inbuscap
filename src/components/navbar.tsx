@@ -22,9 +22,7 @@ export default function Navbar() {
                 <li
                   className={cn(
                     "hover:text-white text-green-200",
-                    location.pathname === "/create-business"
-                      ? "text-white"
-                      : ""
+                    location.pathname === "/create-business" ? "text-white" : ""
                   )}
                 >
                   <Link to="/create-business">Create Bussiness</Link>
@@ -51,9 +49,7 @@ export default function Navbar() {
                 <li
                   className={cn(
                     "hover:text-white text-green-200",
-                    location.pathname === "/create-business"
-                      ? "text-white"
-                      : ""
+                    location.pathname === "/create-business" ? "text-white" : ""
                   )}
                 >
                   <Link to="/create-business">Create Bussiness</Link>

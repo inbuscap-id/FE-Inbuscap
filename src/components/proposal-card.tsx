@@ -72,7 +72,7 @@ export default function ProposalCard(props: Props) {
 
                   <DropdownMenuItem className="flex gap-2">
                     <EditIcon className="w-5" />
-                    <Link to="/update-business">Edit</Link>
+                    <Link to={`/business/${id}/update`}>Edit</Link>
                   </DropdownMenuItem>
                   <DropdownMenuItem
                     className="text-red-600 flex gap-2"
@@ -98,7 +98,7 @@ export default function ProposalCard(props: Props) {
               value={persentase}
               className="mb-4 border border-[#006516] bg-slate-200"
             />
-            <Link to={`/detail-business/${id}`}>
+            <Link to={`/business/${id}`}>
               <Button className="w-1/4 bg-[#00ad26] hover:bg-[#006516]">
                 See Details
               </Button>

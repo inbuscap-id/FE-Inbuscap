@@ -25,7 +25,7 @@ export default function DetailBusiness() {
     }
   };
 
-  let persentase = (data?.collected! / data?.capital!) * 100;
+  let persentase = Math.round((data?.collected! / data?.capital!) * 100);
 
   return (
     <>
@@ -57,8 +57,8 @@ export default function DetailBusiness() {
             <p className="text-2xl font-semibold">Share Profit</p>
             <p className="text-xl">Investor : {data?.profit}%</p>
             <p className="text-sm">
-              Example : your investment is 2.000.000, so your profit is {data?.profit}% x 2.000.000 =
-              200.000
+              Example : your investment is 2.000.000, so your profit is{" "}
+              {data?.profit}% x 2.000.000 = 200.000
             </p>
           </div>
           <div className="mb-5">

@@ -15,7 +15,7 @@ export const getBusinesses = async () => {
 
 export const getDetailBusiness = async (proposal_id: string) => {
   try {
-    const response = await axiosWithConfig.get(`https://virtserver.swaggerhub.com/BAGIR3008/Inbuscap/1.0.0/proposals${proposal_id}`);
+    const response = await axiosWithConfig.get(`https://virtserver.swaggerhub.com/BAGIR3008/Inbuscap/1.0.0/proposals/${proposal_id}`);
 
     return response.data as IResponseData<IBusiness>;
   } catch (error: any) {

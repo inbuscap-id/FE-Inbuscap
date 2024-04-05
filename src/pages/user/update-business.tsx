@@ -4,20 +4,19 @@ import { Button } from "@/components/ui/button";
 import { Form } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { BusinessSchema, INewBusiness, businessSchema } from "@/utils/apis/business/type";
+import { BusinessSchema, businessSchema } from "@/utils/apis/business/type";
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Loader2 } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { useEffect } from "react";
+import { toast } from "@/components/ui/use-toast"
+import { getDetailBusiness, updateBusiness } from "@/utils/apis/business/api";
+import { useNavigate, useParams } from "react-router-dom";
 
-interface Props {
-  editData?: INewBusiness;
-  onSubmit: (data: BusinessSchema) => void;
-}
-
-const UpdateBusiness = (props: Props) => {
-  const { editData, onSubmit } = props;
+const UpdateBusiness = () => {
+  const param = useParams();
+  const navigate = useNavigate();
 
   const form = useForm<BusinessSchema>({
     resolver: zodResolver(businessSchema),
@@ -27,23 +26,46 @@ const UpdateBusiness = (props: Props) => {
       capital: "",
       description: "",
       proposal: new File([], ""),
+      mode: "edit",
     },
   });
 
   useEffect(() => {
-    setEditData();
-  }, [editData, form.formState.isSubmitSuccessful]);
+    handleGetDetail();
+  }, []);
 
-  function setEditData() {
-    let modeType: "add" | "edit" = "add";
-    if (editData) {
-      modeType = "edit";
-      form.setValue("title", editData.title);
-      form.setValue("capital", editData.capital);
-      form.setValue("description", editData.description);
+  const handleGetDetail = async () => {
+    try {
+      const result = await getDetailBusiness(param.id_business!);
+      form.setValue("title", result.data.title);
+      form.setValue("capital", result.data.capital.toString());
+      form.setValue("description", result.data.description);
+  
+    } catch (error) {
+      toast({
+        title: "Oops! Something went wrong.",
+        description: (error as Error).message,
+        variant: "destructive",
+      });
     }
-    form.setValue("mode", modeType);
+  };
+
+  async function onSubmit(data: BusinessSchema) {
+try {
+    const result = await updateBusiness(param.id_business!, data);
+    toast({
+      description: result.message,
+    });
+
+    navigate("/my-business");
+  } catch (error: any) {
+    toast({
+      title: "Oops! Something went wrong.",
+      description: (error as Error).message,
+      variant: "destructive",
+    });
   }
+}
 
   return (
     <Layout>

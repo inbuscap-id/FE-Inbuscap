@@ -55,7 +55,8 @@ export const base = z.object({
     (file) =>
       !file || file.type === "" || ACCEPTED_PDF_TYPES.includes(file.type),
     "Only .pdf formats are supported"
-  ),
+  )
+  .optional(),  
 });
 
 export const addBusinessSchema = z.object({

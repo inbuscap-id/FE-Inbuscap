@@ -15,7 +15,6 @@ import { useNavigate } from "react-router-dom";
 
 interface Props {
   addData?: INewBusiness;
-  onSubmit: (data: BusinessSchema) => void;
 }
 
 const CreateBusiness = (props: Props) => {

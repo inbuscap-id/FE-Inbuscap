@@ -40,7 +40,7 @@ export default function MyBusiness() {
         </div>
         {business.map(
         (data) =>
-          data.fullname === user?.data.fullname && (
+          data.fullname === user?.fullname && (
             <ProposalCard
               key={data.id}
               title={data.title}

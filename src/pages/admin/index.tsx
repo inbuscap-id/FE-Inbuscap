@@ -6,9 +6,12 @@ import { Form } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { adminSchema } from "@/utils/apis/auth/types";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 
 export default function MyProfile() {
+  const [isDisable, setIsDisable] = useState<boolean>(true);
+
   const form = useForm({
     resolver: zodResolver(adminSchema),
     defaultValues: {
@@ -34,11 +37,11 @@ export default function MyProfile() {
             >
               {(field) => (
                 <Input
+                  {...field}
                   placeholder="John Doe"
                   data-testid="input-full-name"
-                  disabled={form.formState.isSubmitting}
+                  disabled={form.formState.isSubmitting || isDisable}
                   aria-disabled={form.formState.isSubmitting}
-                  {...field}
                   className="rounded-full"
                 />
               )}
@@ -46,12 +49,12 @@ export default function MyProfile() {
             <CustomFormField control={form.control} name="email" label="Email">
               {(field) => (
                 <Input
+                  {...field}
                   placeholder="name@mail.com"
                   type="email"
                   data-testid="input-email"
-                  disabled={form.formState.isSubmitting}
+                  disabled={form.formState.isSubmitting || isDisable}
                   aria-disabled={form.formState.isSubmitting}
-                  {...field}
                   className="rounded-full"
                 />
               )}
@@ -65,8 +68,8 @@ export default function MyProfile() {
                 <Input
                   placeholder="password..."
                   type="password"
-                  data-testid="password"
-                  disabled={form.formState.isSubmitting}
+                  data-testid="input-password"
+                  disabled={form.formState.isSubmitting || isDisable}
                   aria-disabled={form.formState.isSubmitting}
                   {...field}
                   className="rounded-full"
@@ -74,13 +77,14 @@ export default function MyProfile() {
               )}
             </CustomFormField>
             <Button
-              type="submit"
-              data-testid="btn-submit"
+              type="button"
+              data-testid="btn-edit"
               disabled={form.formState.isSubmitting}
               aria-disabled={form.formState.isSubmitting}
-              className="rounded-2xl px-6 text-primary bg-white hover:text-white border-2 border-primary"
+              className="w-20 rounded-2xl px-6 text-primary bg-white hover:text-white border-2 border-primary"
+              onClick={() => setIsDisable(!isDisable)}
             >
-              Edit
+              {isDisable ? "Edit" : "Cancel"}
             </Button>
             <Button
               type="submit"

@@ -25,6 +25,7 @@ export default function ProtectedRoutes() {
   const protectedByToken = [
     "/profile",
     "/invested-business",
+    "/invested-business/:id_business",
     "/verification",
     "/my-business",
     "/create-business",

@@ -21,6 +21,7 @@ interface Props {
   id: number;
   withOption?: boolean;
   archive?: boolean;
+  invested?: boolean;
 }
 
 export default function ProposalCard(props: Props) {
@@ -28,8 +29,17 @@ export default function ProposalCard(props: Props) {
   const [showArchiveDialog, setShowArchiveDialog] = useState(false);
   const [showDeleteDialog, setShowDeleteDialog] = useState(false);
 
-  const { title, desc, image, target, collected, id, withOption, archive } =
-    props;
+  const {
+    title,
+    desc,
+    image,
+    target,
+    collected,
+    id,
+    withOption,
+    archive,
+    invested,
+  } = props;
 
   let persentase = Math.round((collected / target) * 100);
 
@@ -98,11 +108,16 @@ export default function ProposalCard(props: Props) {
               value={persentase}
               className="mb-4 border border-[#006516] bg-slate-200"
             />
-            <Link to={`/business/${id}`}>
-              <Button className="w-1/4 bg-[#00ad26] hover:bg-[#006516]">
-                See Details
-              </Button>
-            </Link>
+
+            <>
+              <Link
+                to={invested ? `/invested-business/${id}` : `/business/${id}`}
+              >
+                <Button className="w-1/4 bg-[#00ad26] hover:bg-[#006516]">
+                  See Details
+                </Button>
+              </Link>
+            </>
           </div>
         </div>
       </div>

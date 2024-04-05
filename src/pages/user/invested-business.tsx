@@ -61,6 +61,7 @@ export default function InvestedBusiness() {
               target={data.capital}
               collected={data.collected}
               id={data.id}
+              invested
               withOption
             />
           )

@@ -1,43 +1,71 @@
 import Layout from "@/components/layout";
 import ProposalCard from "@/components/proposal-card";
-import { Button } from "@/components/ui/button";
-import { Link } from "react-router-dom";
-import Gambar from "@/assets/nasigoreng.jpg"
+import { Link, useLocation } from "react-router-dom";
+import { cn } from "@/lib/utils";
+import { useEffect, useState } from "react";
+import { IInvestments } from "@/utils/apis/investments/type";
+import { getInvestments } from "@/utils/apis/investments/api";
+import { toast } from "sonner";
+import { useAuthStore } from "@/utils/zustand/store";
 
 export default function InvestedBusiness() {
+  const location = useLocation();
+  const [datas, setDatas] = useState<IInvestments[]>([]);
+  const user = useAuthStore((state) => state.user);
+
+  useEffect(() => {
+    handleGetInvestments();
+  }, []);
+
+  const handleGetInvestments = async () => {
+    try {
+      const result = await getInvestments();
+      setDatas(result.data);
+    } catch (error) {
+      toast((error as Error).message.toString());
+    }
+  };
+
   return (
     <Layout>
-      <div className="mb-10 mt-2 flex gap-20">
-          <Link to={"/profile"}>
-            <Button variant="ghost" className="hover:bg-transparent text-2xl font-semibold hover:font-bold">My Profile</Button>
-            </Link>
-            <Link to={"/invested-business"}>
-            <Button variant="ghost" className="hover:bg-transparent text-2xl font-semibold hover:font-bold">Invested Business</Button>
-            </Link>
-            <Link to={"/verification"}>
-            <Button variant="ghost" className="hover:bg-transparent text-2xl font-semibold hover:font-bold">Verification</Button>
-            </Link>
-            </div>
-      <ProposalCard
-        title="Nasi Goreng Pak Syukur"
-        desc="Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid odit impedit commodi iusto veniam sapiente fugiat? Minus expedita deserunt cupiditate?"
-        target={10000000}
-        collected={5000000}
-        id={1}
-        image={Gambar}
-        withOption
-        archive
-      />
-      <ProposalCard
-        title="Butik Islami Bu Syukur"
-        desc=" Lorem ipsum dolor, sit amet consectetur adipisicing elit. Blanditiis maxime non error facere sint ullam delectus repellendus quod quis obcaecati?"
-        target={20000000}
-        collected={4000000}
-        id={2}
-        image={Gambar}
-        withOption
-        archive
-      />
+      <div className="mb-10 mt-2 flex gap-10">
+        <Link to={"/profile"}>
+          <p className="text-xl text-slate-600 hover:text-black">My Profile</p>
+        </Link>
+        <Link to={"/invested-business"}>
+          <p
+            className={cn(
+              "text-xl text-slate-600 hover:text-black",
+              location.pathname === "/invested-business"
+                ? "text-black font-semibold"
+                : ""
+            )}
+          >
+            Invested Business
+          </p>
+        </Link>
+        <Link to={"/verification"}>
+          <p className="text-xl text-slate-600 hover:text-black">
+            Verification
+          </p>
+        </Link>
+      </div>
+      {datas.map(
+        (data) =>
+          data.fullname === user?.fullname && (
+            <ProposalCard
+              key={data.id}
+              title={data.title}
+              desc={data.description}
+              image={data.image}
+              target={data.capital}
+              collected={data.collected}
+              id={data.id}
+              invested
+              withOption
+            />
+          )
+      )}
     </Layout>
   );
 }

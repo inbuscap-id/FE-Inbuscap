@@ -1,12 +1,12 @@
 import { type StateCreator } from "zustand";
 
-import { IResponseData, LoginPayload } from "../types/api";
+import { LoginPayload } from "../types/api";
 import { TUser } from "../apis/users/type";
 
 export interface AuthStore {
   token: string;
-  user: IResponseData<TUser> | null;
-  setUser: (user: IResponseData<TUser>) => void;
+  user: TUser | null;
+  setUser: (dataUser: TUser) => void;
   addAuth: (data: LoginPayload) => void;
   resetAuth: () => void;
 }

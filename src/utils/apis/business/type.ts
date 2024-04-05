@@ -36,7 +36,6 @@ export const BusinessSchema = z.object({
       (file) => ACCEPTED_PDF_TYPES.includes(file.type),
       "Only PDF format is supported"
     ),
-  // proposal: z.custom<File[]>(),
 });
 
 export type BusinessType = z.infer<typeof BusinessSchema>;
@@ -48,9 +47,9 @@ export interface IBusiness {
   image: string;
   description: string;
   capital: number;
-  proposal: string;
   collected: number;
   profit: number;
+  proposal: string;
 }
 
 export interface AdmBusiness {

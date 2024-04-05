@@ -69,7 +69,9 @@ export default function Layout(props: Props) {
       </div>
       <div className="grow h-full">
         <div className="flex justify-end gap-20 items-center px-20 h-24 border-b-2 border-green-100">
-          <p className="text-[#00ad26] text-base">See All Bussiness</p>
+          <Link to={"/"}>
+            <p className="text-[#00ad26] text-base">See All Bussiness</p>
+          </Link>
           <Avatar className="bg-black">
             <AvatarImage src="https://github.com/shadcn.png" />
             <AvatarFallback>CN</AvatarFallback>

@@ -19,7 +19,7 @@ import { Loader2 } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 
-const Login = () => {
+export default function Login() {
   const navigate = useNavigate();
   const { toast } = useToast();
   const addToken = useAuthStore((state) => state.addAuth);
@@ -33,11 +33,19 @@ const Login = () => {
   });
 
   const handleGetUser = async () => {
-    const result = await getUser();
-    useAuthStore.getState().setUser(result);
+    try {
+      const result = await getUser();
+      useAuthStore.getState().setUser(result.data);
+    } catch (error) {
+      toast({
+        title: "Oops! Something went wrong.",
+        description: (error as Error).message,
+        variant: "destructive",
+      });
+    }
   };
 
-  async function handleLogin(data: LoginType) {
+  const handleLogin = async (data: LoginType) => {
     try {
       const result = await userLogin(data);
       addToken(result.data);
@@ -53,7 +61,7 @@ const Login = () => {
         variant: "destructive",
       });
     }
-  }
+  };
 
   return (
     <div className="flex w-full justify-between h-screen">
@@ -82,12 +90,12 @@ const Login = () => {
                 >
                   {(field) => (
                     <Input
+                      {...field}
                       data-testid="input-email"
                       placeholder="name@mail.com"
                       type="email"
                       disabled={form.formState.isSubmitting}
                       aria-disabled={form.formState.isSubmitting}
-                      {...field}
                       className="rounded-full"
                     />
                   )}
@@ -99,12 +107,12 @@ const Login = () => {
                 >
                   {(field) => (
                     <Input
+                      {...field}
                       data-testid="input-password"
                       placeholder="Password"
                       type="password"
                       disabled={form.formState.isSubmitting}
                       aria-disabled={form.formState.isSubmitting}
-                      {...field}
                       className="rounded-full"
                     />
                   )}
@@ -138,6 +146,4 @@ const Login = () => {
       </div>
     </div>
   );
-};
-
-export default Login;
+}

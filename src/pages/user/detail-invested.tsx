@@ -3,22 +3,22 @@ import { Progress } from "@/components/ui/progress";
 import { Button } from "@/components/ui/button";
 import { formatRupiah } from "@/utils/format-money";
 import { useEffect, useState } from "react";
-import { IBusiness } from "@/utils/apis/business/type";
 import { useParams } from "react-router-dom";
-import { getDetailBusiness } from "@/utils/apis/business/api";
 import { toast } from "sonner";
+import { getDetailInvesment } from "@/utils/apis/investments/api";
+import { IDetailInvestment } from "@/utils/apis/investments/type";
 
-export default function DetailBusiness() {
+export default function DetailInvested() {
   const param = useParams();
-  const [data, setData] = useState<IBusiness>();
+  const [data, setData] = useState<IDetailInvestment>();
 
   useEffect(() => {
-    handleGetDetail();
+    handleGetDetailInvested();
   }, []);
 
-  const handleGetDetail = async () => {
+  const handleGetDetailInvested = async () => {
     try {
-      const result = await getDetailBusiness(param.id_business!);
+      const result = await getDetailInvesment(param.id_business!);
       setData(result.data);
     } catch (error) {
       toast((error as Error).message.toString());
@@ -49,6 +49,9 @@ export default function DetailBusiness() {
               value={persentase}
               className="mb-4 border border-[#006516] bg-slate-200"
             />
+            <p className="font-semibold">
+              Your Investment : {formatRupiah.format(data?.investment!)}
+            </p>
           </div>
           <div className="mb-5">
             <p className="text-lg">{data?.description}</p>

@@ -15,6 +15,7 @@ import { Link } from "react-router-dom";
 export default function Dropdown() {
   const isLoggedIn = useAuthStore((state) => state.token);
   const resetToken = useAuthStore((state) => state.resetAuth);
+  const user = useAuthStore((state) => state.user);
 
   function handleLogout() {
     resetToken();
@@ -34,7 +35,7 @@ export default function Dropdown() {
 
       {isLoggedIn ? (
         <DropdownMenuContent align="end" forceMount>
-          <DropdownMenuLabel>My Account</DropdownMenuLabel>
+          <DropdownMenuLabel>{user?.fullname}</DropdownMenuLabel>
           <DropdownMenuSeparator />
           <Link to="/profile">
             <DropdownMenuItem className="cursor-pointer flex gap-2">

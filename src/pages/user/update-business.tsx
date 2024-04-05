@@ -1,18 +1,26 @@
-import nasigoreng from "@/assets/nasigoreng.jpg";
 import { CustomFormField } from "@/components/custom-formfield";
 import Layout from "@/components/layout";
 import { Button } from "@/components/ui/button";
 import { Form } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { BusinessSchema, BusinessType } from "@/utils/apis/business/type";
+import { BusinessSchema, INewBusiness, businessSchema } from "@/utils/apis/business/type";
+
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Loader2 } from "lucide-react";
 import { useForm } from "react-hook-form";
+import { useEffect } from "react";
 
-export default function UpdateBusiness() {
-  const form = useForm<BusinessType>({
-    resolver: zodResolver(BusinessSchema),
+interface Props {
+  editData?: INewBusiness;
+  onSubmit: (data: BusinessSchema) => void;
+}
+
+const UpdateBusiness = (props: Props) => {
+  const { editData, onSubmit } = props;
+
+  const form = useForm<BusinessSchema>({
+    resolver: zodResolver(businessSchema),
     defaultValues: {
       image: new File([], ""),
       title: "",
@@ -22,22 +30,34 @@ export default function UpdateBusiness() {
     },
   });
 
+  useEffect(() => {
+    setEditData();
+  }, [editData, form.formState.isSubmitSuccessful]);
+
+  function setEditData() {
+    let modeType: "add" | "edit" = "add";
+    if (editData) {
+      modeType = "edit";
+      form.setValue("title", editData.title);
+      form.setValue("capital", editData.capital);
+      form.setValue("description", editData.description);
+    }
+    form.setValue("mode", modeType);
+  }
+
   return (
     <Layout>
       <div className="mb-8 mt-2 flex">
-        <p className="text-2xl font-semibold">Update Business</p>
+        <p className="text-2xl font-semibold">Update New Business</p>
       </div>
       <div>
         <Form {...form}>
           <form
             data-testid="form-create-business"
-            // onSubmit={form.handleSubmit(onSubmit)}
+            onSubmit={form.handleSubmit(onSubmit)}
             className="flex gap-3"
           >
             <div className="w-1/2">
-              <div className="w-11/12 mb-2 my-2">
-                <img src={nasigoreng} alt="" className="w-full" />
-              </div>
               <CustomFormField
                 control={form.control}
                 name="image"
@@ -70,8 +90,8 @@ export default function UpdateBusiness() {
                     disabled={form.formState.isSubmitting}
                     aria-disabled={form.formState.isSubmitting}
                     {...field}
-                    className="rounded-full"
                     value={field.value as string}
+                    className="rounded-full"
                   />
                 )}
               </CustomFormField>
@@ -140,7 +160,7 @@ export default function UpdateBusiness() {
                     Please wait
                   </>
                 ) : (
-                  "Create"
+                  "Save"
                 )}
               </Button>
             </div>
@@ -150,3 +170,5 @@ export default function UpdateBusiness() {
     </Layout>
   );
 }
+
+export default UpdateBusiness;

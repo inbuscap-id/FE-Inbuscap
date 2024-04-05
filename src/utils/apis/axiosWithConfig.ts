@@ -8,14 +8,10 @@ export const setAxiosConfig = (token: string) => {
 };
 
 axiosWithConfig.interceptors.request.use((axiosConfig) => {
-  // axiosConfig.baseURL =
-  //   "https://virtserver.swaggerhub.com/BAGIR3008/Inbuscap/1.0.0";
-  axiosConfig.baseURL = "https://inbuscap-server.my.id";
-
-  if (bearerToken) {
+    axiosConfig.baseURL =
+    "https://inbuscap-server.my.id";
     axiosConfig.headers.Authorization = `Bearer ${bearerToken}`;
-  }
-
+    
   return axiosConfig;
 });
 

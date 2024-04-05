@@ -1,10 +1,32 @@
-import nasigoreng from "@/assets/nasigoreng.jpg";
 import Layout from "@/components/layout";
 import ProposalCard from "@/components/proposal-card";
 import { Button } from "@/components/ui/button";
+import { getBusinesses } from "@/utils/apis/business/api";
+import { IBusiness } from "@/utils/apis/business/type";
+import { useAuthStore } from "@/utils/zustand/store";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { toast } from "sonner";
 
 export default function MyBusiness() {
+  const [business, setBusiness] = useState<IBusiness[]>([]);
+  const user = useAuthStore((state) => state.user);
+
+  useEffect (() => {
+    fetchData();
+  }, []);
+
+  const fetchData =  async () => {
+    try {
+      const result = await getBusinesses();
+      setBusiness(result.data)
+    } catch (error: any) {
+      toast(
+        (error as Error).message.toString());
+      };
+  }
+
+
   return (
     <>
       <Layout>
@@ -16,24 +38,21 @@ export default function MyBusiness() {
             </Button>
           </Link>
         </div>
-        <ProposalCard
-          title="Nasi Goreng Pak Syukur"
-          desc="Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid odit impedit commodi iusto veniam sapiente fugiat? Minus expedita deserunt cupiditate?"
-          target={10000000}
-          collected={5000000}
-          image={nasigoreng}
-          id={1}
-          withOption
-        />
-        <ProposalCard
-          title="Butik Islami Bu Syukur"
-          desc=" Lorem ipsum dolor, sit amet consectetur adipisicing elit. Blanditiis maxime non error facere sint ullam delectus repellendus quod quis obcaecati?"
-          target={20000000}
-          collected={4000000}
-          image={nasigoreng}
-          id={2}
-          withOption
-        />
+        {business.map(
+        (data) =>
+          data.fullname === user?.data.fullname && (
+            <ProposalCard
+              key={data.id}
+              title={data.title}
+              desc={data.description}
+              image={data.image}
+              target={data.capital}
+              collected={data.collected}
+              id={data.id}
+              withOption
+            />
+          )
+      )}
       </Layout>
     </>
   );

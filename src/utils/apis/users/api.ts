@@ -49,7 +49,9 @@ export const updateUser = async (body: ProfileType) => {
 
 export const deleteProfile = async () => {
   try {
-    const response = await axiosWithConfig.delete(`/users`);
+    const response = await axiosWithConfig.delete(
+      `https://virtserver.swaggerhub.com/BAGIR3008/Inbuscap/1.0.0/users`
+    );
 
     return response.data as IResponse;
   } catch (error: any) {
@@ -69,7 +71,7 @@ export const addVerification = async (body: VerificationType) => {
     }
 
     const response = await axiosWithConfig.put(
-      `/verifications/users`,
+      `https://virtserver.swaggerhub.com/BAGIR3008/Inbuscap/1.0.0/verifications/users`,
       formData
     );
 

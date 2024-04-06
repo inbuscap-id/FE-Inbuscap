@@ -1,6 +1,6 @@
 export interface IInvestments {
   id: number;
-  fullname: string;
+  // fullname: string;
   title: string;
   image: string;
   description: string;

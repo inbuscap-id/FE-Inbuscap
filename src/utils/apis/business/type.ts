@@ -45,10 +45,11 @@ export interface IBusiness {
   fullname: string;
   title: string;
   image: string;
+  email: string;
   description: string;
   capital: number;
   collected: number;
-  profit: number;
+  share: number;
   proposal: string;
 }
 

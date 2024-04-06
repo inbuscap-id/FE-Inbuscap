@@ -17,5 +17,9 @@ export interface IResponsePagination<TDatas> {
   code: number;
   message: string;
   data: TDatas;
-  total_pages: number;
+  pagination: {
+    page: number;
+    page_size: number;
+    total_pages: number;
+  };
 }

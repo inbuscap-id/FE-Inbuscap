@@ -79,3 +79,26 @@ export const ProfileAdminSchema = z.object({
 });
 
 export type ProfileAdminType = z.infer<typeof ProfileAdminSchema>;
+
+export const adminSchema = z.object({
+  fullname: z.string().min(1, { message: "Full name is required" }),
+  email: z
+    .string()
+    .min(1, { message: "Email is required" })
+    .email("Not a valid email"),
+  password: z
+    .string()
+    .min(6, { message: "Password must be at least 6 characters" }),
+});
+
+export interface IVerif {
+  id: number;
+  fullname: string;
+  photo_ktp: string;
+  photo_npwp: string;
+  photo_selfie: string;
+  ktp: string;
+  npwp: string;
+  phone: string;
+  is_active: boolean;
+}

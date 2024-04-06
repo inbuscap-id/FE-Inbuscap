@@ -1,12 +1,22 @@
-import { IResponse, IResponseData } from "@/utils/types/api";
+import {
+  IResponse,
+  IResponseData,
+  IResponsePagination,
+} from "@/utils/types/api";
 import axiosWithConfig from "../axiosWithConfig";
-import { ProfileAdminType, ProfileType, TUser, VerificationType } from "./type";
+import {
+  IVerif,
+  ProfileAdminType,
+  ProfileType,
+  TUser,
+  VerificationType,
+} from "./type";
 import { checkProperty, valueFormatData } from "@/utils/formatter";
 
 export const getUser = async () => {
   try {
     const response = await axiosWithConfig.get(
-      "https://virtserver.swaggerhub.com/BAGIR3008/Inbuscap/1.0.0/user"
+      "https://virtserver.swaggerhub.com/BAGIR3008/Inbuscap/1.0.0/users"
     );
 
     return response.data as IResponseData<TUser>;
@@ -27,7 +37,7 @@ export const updateUser = async (body: ProfileType) => {
     }
 
     const response = await axiosWithConfig.put(
-      `https://virtserver.swaggerhub.com/BAGIR3008/Inbuscap/1.0.0/user`,
+      `https://virtserver.swaggerhub.com/BAGIR3008/Inbuscap/1.0.0/users`,
       formData
     );
 
@@ -39,7 +49,7 @@ export const updateUser = async (body: ProfileType) => {
 
 export const deleteProfile = async () => {
   try {
-    const response = await axiosWithConfig.delete(`/user`);
+    const response = await axiosWithConfig.delete(`/users`);
 
     return response.data as IResponse;
   } catch (error: any) {
@@ -49,7 +59,19 @@ export const deleteProfile = async () => {
 
 export const addVerification = async (body: VerificationType) => {
   try {
-    const response = await axiosWithConfig.post(`/verifications`, body);
+    const formData = new FormData();
+    let key: keyof typeof body;
+
+    for (key in body) {
+      if (checkProperty(body[key])) {
+        formData.append(key, valueFormatData(body[key]));
+      }
+    }
+
+    const response = await axiosWithConfig.put(
+      `/verifications/users`,
+      formData
+    );
 
     return response.data as IResponse;
   } catch (error: any) {
@@ -69,11 +91,35 @@ export const updateAdmin = async (body: ProfileAdminType) => {
     }
 
     const response = await axiosWithConfig.put(
-      `https://virtserver.swaggerhub.com/BAGIR3008/Inbuscap/1.0.0/user`,
+      `https://virtserver.swaggerhub.com/BAGIR3008/Inbuscap/1.0.0/users`,
       formData
     );
 
     return response.data as IResponse;
+  } catch (error: any) {
+    throw Error(error.response.data.message);
+  }
+};
+
+export const getVerifications = async () => {
+  try {
+    const response = await axiosWithConfig.get(
+      "https://virtserver.swaggerhub.com/BAGIR3008/Inbuscap/1.0.0/verifications"
+    );
+
+    return response.data as IResponsePagination<IVerif[]>;
+  } catch (error: any) {
+    throw Error(error.response.data.message);
+  }
+};
+
+export const getVerificationsById = async (user_id: number) => {
+  try {
+    const response = await axiosWithConfig.get(
+      `https://virtserver.swaggerhub.com/BAGIR3008/Inbuscap/1.0.0/verifications/${user_id}`
+    );
+
+    return response.data as IResponsePagination<IVerif>;
   } catch (error: any) {
     throw Error(error.response.data.message);
   }

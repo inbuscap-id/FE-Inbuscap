@@ -4,7 +4,10 @@ import { LoginType, RegisterType } from "./types";
 
 export const userLogin = async (body: LoginType) => {
   try {
-    const response = await axiosWithConfig.post(`/login`, body);
+    const response = await axiosWithConfig.post(
+      `https://virtserver.swaggerhub.com/BAGIR3008/Inbuscap/1.0.0/login`,
+      body
+    );
 
     return response.data as IResponseData<LoginPayload>;
   } catch (error: any) {
@@ -14,7 +17,10 @@ export const userLogin = async (body: LoginType) => {
 
 export const userRegister = async (body: RegisterType) => {
   try {
-    const response = await axiosWithConfig.post(`/users`, body);
+    const response = await axiosWithConfig.post(
+      `https://virtserver.swaggerhub.com/BAGIR3008/Inbuscap/1.0.0/users`,
+      body
+    );
 
     return response.data as IResponse;
   } catch (error: any) {

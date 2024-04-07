@@ -33,8 +33,8 @@ export default function ProtectedRoutes() {
     "/archive-business",
     "/withdraw",
     "/admin",
-    // "/admin/users",
-    // "/admin/business",
+    "/admin/users",
+    "/admin/business",
   ];
 
   //   const adminProtected = ["/dashboard"];

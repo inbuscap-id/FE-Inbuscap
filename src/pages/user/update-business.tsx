@@ -1,43 +1,85 @@
-import nasigoreng from "@/assets/nasigoreng.jpg";
 import { CustomFormField } from "@/components/custom-formfield";
 import Layout from "@/components/layout";
 import { Button } from "@/components/ui/button";
 import { Form } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { BusinessSchema, BusinessType } from "@/utils/apis/business/type";
+import { BusinessSchema, businessSchema } from "@/utils/apis/business/type";
+
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Loader2 } from "lucide-react";
 import { useForm } from "react-hook-form";
+import { useEffect } from "react";
+import { toast } from "@/components/ui/use-toast"
+import { getDetailBusiness, updateBusiness } from "@/utils/apis/business/api";
+import { useNavigate, useParams } from "react-router-dom";
 
-export default function UpdateBusiness() {
-  const form = useForm<BusinessType>({
-    resolver: zodResolver(BusinessSchema),
+const UpdateBusiness = () => {
+  const param = useParams();
+  const navigate = useNavigate();
+
+  const form = useForm<BusinessSchema>({
+    resolver: zodResolver(businessSchema),
     defaultValues: {
       image: new File([], ""),
       title: "",
       capital: "",
       description: "",
       proposal: new File([], ""),
+      mode: "edit",
     },
   });
+
+  useEffect(() => {
+    handleGetDetail();
+  }, []);
+
+  const handleGetDetail = async () => {
+    try {
+      const result = await getDetailBusiness(param.id_business!);
+      form.setValue("title", result.data.title);
+      form.setValue("capital", result.data.capital.toString());
+      form.setValue("description", result.data.description);
+  
+    } catch (error) {
+      toast({
+        title: "Oops! Something went wrong.",
+        description: (error as Error).message,
+        variant: "destructive",
+      });
+    }
+  };
+
+  async function onSubmit(data: BusinessSchema) {
+try {
+    const result = await updateBusiness(param.id_business!, data);
+    toast({
+      description: result.message,
+    });
+
+    navigate("/my-business");
+  } catch (error: any) {
+    toast({
+      title: "Oops! Something went wrong.",
+      description: (error as Error).message,
+      variant: "destructive",
+    });
+  }
+}
 
   return (
     <Layout>
       <div className="mb-8 mt-2 flex">
-        <p className="text-2xl font-semibold">Update Business</p>
+        <p className="text-2xl font-semibold">Update New Business</p>
       </div>
       <div>
         <Form {...form}>
           <form
             data-testid="form-create-business"
-            // onSubmit={form.handleSubmit(onSubmit)}
+            onSubmit={form.handleSubmit(onSubmit)}
             className="flex gap-3"
           >
             <div className="w-1/2">
-              <div className="w-11/12 mb-2 my-2">
-                <img src={nasigoreng} alt="" className="w-full" />
-              </div>
               <CustomFormField
                 control={form.control}
                 name="image"
@@ -70,8 +112,8 @@ export default function UpdateBusiness() {
                     disabled={form.formState.isSubmitting}
                     aria-disabled={form.formState.isSubmitting}
                     {...field}
-                    className="rounded-full"
                     value={field.value as string}
+                    className="rounded-full"
                   />
                 )}
               </CustomFormField>
@@ -140,7 +182,7 @@ export default function UpdateBusiness() {
                     Please wait
                   </>
                 ) : (
-                  "Create"
+                  "Save"
                 )}
               </Button>
             </div>
@@ -150,3 +192,5 @@ export default function UpdateBusiness() {
     </Layout>
   );
 }
+
+export default UpdateBusiness;

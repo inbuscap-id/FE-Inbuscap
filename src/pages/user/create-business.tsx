@@ -4,15 +4,26 @@ import { Button } from "@/components/ui/button";
 import { Form } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { BusinessSchema, BusinessType } from "@/utils/apis/business/type";
-
+import { useToast } from "@/components/ui/use-toast";
+import { createBusiness } from "@/utils/apis/business/api";
+import { BusinessSchema, INewBusiness, businessSchema } from "@/utils/apis/business/type";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Loader2 } from "lucide-react";
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 
-export default function CreateBusiness() {
-  const form = useForm<BusinessType>({
-    resolver: zodResolver(BusinessSchema),
+interface Props {
+  addData?: INewBusiness;
+}
+
+const CreateBusiness = (props: Props) => {
+  const navigate = useNavigate();
+  const { toast } = useToast();
+  const { addData } = props;
+
+  const form = useForm<BusinessSchema>({
+    resolver: zodResolver(businessSchema),
     defaultValues: {
       image: new File([], ""),
       title: "",
@@ -21,6 +32,38 @@ export default function CreateBusiness() {
       proposal: new File([], ""),
     },
   });
+
+  useEffect(() => {
+    setAddData();
+  }, [addData, form.formState.isSubmitSuccessful]);
+
+  function setAddData() {
+    let modeType: "add" | "edit" = "add";
+    if (addData) {
+      modeType = "add";
+      form.setValue("title", addData.title);
+      form.setValue("capital", addData.capital);
+      form.setValue("description", addData.description);
+    }
+    form.setValue("mode", modeType);
+  }
+
+
+  async function onSubmit(data: BusinessSchema) {
+    try {
+      const result = await createBusiness(data);
+      toast({
+        description: result.message,
+      });
+      navigate("/my-business");
+    } catch (error) {
+      toast({
+        title: "Oops! Something went wrong.",
+        description: (error as Error).message,
+        variant: "destructive",
+      });
+    }
+  }
 
   return (
     <Layout>
@@ -31,13 +74,10 @@ export default function CreateBusiness() {
         <Form {...form}>
           <form
             data-testid="form-create-business"
-            // onSubmit={form.handleSubmit(onSubmit)}
+            onSubmit={form.handleSubmit(onSubmit)}
             className="flex gap-3"
           >
             <div className="w-1/2">
-              {/* <div className="w-11/12 mb-2">
-                <img src={nasigoreng} alt="" className="w-full" />
-              </div> */}
               <CustomFormField
                 control={form.control}
                 name="image"
@@ -150,3 +190,5 @@ export default function CreateBusiness() {
     </Layout>
   );
 }
+
+export default CreateBusiness;

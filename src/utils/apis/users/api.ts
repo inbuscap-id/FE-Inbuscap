@@ -6,9 +6,11 @@ import {
 import axiosWithConfig from "../axiosWithConfig";
 import {
   IVerif,
+  IVerifBusiness,
   ProfileAdminType,
   ProfileType,
   TUser,
+  VerifBusiness,
   VerifUser,
   VerificationType,
 } from "./type";
@@ -132,6 +134,31 @@ export const approveUser = async (user_id: number, body: VerifUser) => {
   try {
     const response = await axiosWithConfig.put(
       `https://virtserver.swaggerhub.com/BAGIR3008/Inbuscap/1.0.0/verifications/users/${user_id}`,
+      body
+    );
+
+    return response.data as IResponse;
+  } catch (error: any) {
+    throw Error(error.response.data.message);
+  }
+};
+
+export const getBusinessVerifications = async () => {
+  try {
+    const response = await axiosWithConfig.get(
+      "https://virtserver.swaggerhub.com/BAGIR3008/Inbuscap/1.0.0/verifications/proposals"
+    );
+
+    return response.data as IResponsePagination<IVerifBusiness[]>;
+  } catch (error: any) {
+    throw Error(error.response.data.message);
+  }
+};
+
+export const approveBusiness = async (proposal_id: number, body: VerifBusiness) => {
+  try {
+    const response = await axiosWithConfig.put(
+      `https://virtserver.swaggerhub.com/BAGIR3008/Inbuscap/1.0.0/verifications/proposals/${proposal_id}`,
       body
     );
 

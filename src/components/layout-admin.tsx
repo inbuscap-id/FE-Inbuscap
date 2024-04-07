@@ -21,7 +21,7 @@ export default function Layout(props: Props) {
 
   return (
     <div className="w-full min-h-dvh flex">
-      <div className="min-h-dvh w-72 bg-[#00ad26] rounded-r-2xl text-white flex flex-col">
+      <div className="min-h-dvh w-2/12 bg-[#00ad26] rounded-r-2xl text-white flex flex-col">
         <div className="w-full h-1/6 flex justify-center items-center tracking-wide">
           <p className="font-lora font-bold text-2xl">Inbuscap.id</p>
         </div>
@@ -31,7 +31,7 @@ export default function Layout(props: Props) {
               to="/admin"
               className={cn(
                 "hover:text-white",
-                location.pathname === "/admin" ? "text-white " : ""
+                location.pathname === "/admin" ? "text-white font-semibold" : ""
               )}
             >
               <p>My Profile</p>
@@ -40,7 +40,9 @@ export default function Layout(props: Props) {
               to="/admin/users"
               className={cn(
                 "hover:text-white",
-                location.pathname === "/admin/users" ? "text-white " : ""
+                location.pathname === "/admin/users"
+                  ? "text-white font-semibold"
+                  : ""
               )}
             >
               <p>Users</p>
@@ -49,7 +51,9 @@ export default function Layout(props: Props) {
               to="/admin/businesses"
               className={cn(
                 "hover:text-white",
-                location.pathname === "/admin/businesses" ? "text-white " : ""
+                location.pathname === "/admin/businesses"
+                  ? "text-white font-semibold"
+                  : ""
               )}
             >
               <p>Businesses</p>
@@ -67,8 +71,8 @@ export default function Layout(props: Props) {
           </div>
         </div>
       </div>
-      <div className="grow h-full">
-        <div className="flex justify-end gap-20 items-center px-20 h-24 border-b-2 border-green-100">
+      <div className="w-10/12 h-full">
+        <div className="w-full flex justify-end gap-20 items-center px-20 h-24 border-b-2 border-green-100">
           <Link to={"/"}>
             <p className="text-[#00ad26] text-base">See All Bussiness</p>
           </Link>
@@ -77,7 +81,7 @@ export default function Layout(props: Props) {
             <AvatarFallback>CN</AvatarFallback>
           </Avatar>
         </div>
-        <div className="px-20 py-5 h-full">{children}</div>
+        <div className="w-full px-20 py-5 h-full">{children}</div>
       </div>
     </div>
   );

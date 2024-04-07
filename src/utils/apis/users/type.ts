@@ -100,5 +100,9 @@ export interface IVerif {
   ktp: string;
   npwp: string;
   phone: string;
-  is_active: boolean;
+  is_active: number;
+}
+
+export interface VerifUser {
+  is_active: number;
 }

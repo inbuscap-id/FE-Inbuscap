@@ -17,6 +17,7 @@ export default function Users() {
   const fetchDataReqVerification = async () => {
     try {
       const result = await getVerifications();
+
       setDatas(result.data);
     } catch (error) {
       toast((error as Error).message.toString());
@@ -32,6 +33,7 @@ export default function Users() {
         footer: (props) => props.column.id,
         size: 50,
       },
+
       {
         header: "Fullname",
         accessorKey: "fullname",
@@ -40,58 +42,77 @@ export default function Users() {
         size: 200,
       },
       {
-        header: "Email",
-        accessorKey: "email",
-        cell: (info) => info.getValue(),
-        footer: (props) => props.column.id,
-      },
-      {
         header: "Foto KTP",
         accessorKey: "photo_ktp",
         cell: (info) => info.getValue(),
         footer: (props) => props.column.id,
+        size: 200,
       },
+
       {
         header: "Foto NPWP",
         accessorKey: "photo_npwp",
         cell: (info) => String(info.getValue()),
         footer: (props) => props.column.id,
-        size: 80,
+        size: 200,
       },
       {
         header: "Foto Selfie",
         accessorKey: "photo_selfie",
         cell: (info) => info.getValue(),
         footer: (props) => props.column.id,
+        size: 200,
       },
       {
         header: "KTP",
         accessorKey: "ktp",
         cell: (info) => info.getValue(),
         footer: (props) => props.column.id,
+        size: 200,
       },
       {
         header: "NPWP",
         accessorKey: "npwp",
         cell: (info) => info.getValue(),
         footer: (props) => props.column.id,
+        size: 200,
       },
       {
         header: "No HP",
         accessorKey: "phone",
         cell: (info) => info.getValue(),
         footer: (props) => props.column.id,
+        size: 200,
       },
       {
         header: "Status",
         id: "is_active",
-        cell: () => (
-          <div className="flex gap-3">
-            <p className="">Pending</p>
-          </div>
-        ),
+        cell: (info) => {
+          const value = info.row.original.is_active;
+          if (value === 0) {
+            return (
+              <p className="text-yellow-600 font-semibold bg-yellow-100 rounded-full text-center px-3 py-1">
+                Pending
+              </p>
+            );
+          }
+          if (value === 1) {
+            return (
+              <p className="text-primary font-semibold bg-green-100 rounded-full text-center px-3 py-1">
+                Approved
+              </p>
+            );
+          }
+          if (value === 2) {
+            return (
+              <p className="text-red-500 font-semibold bg-red-100 rounded-full text-center px-3 py-1">
+                Rejected
+              </p>
+            );
+          }
+        },
         footer: (props) => props.column.id,
-        size: 50,
+        size: 200,
       },
       {
         header: "Approval",
@@ -103,7 +124,7 @@ export default function Users() {
           </div>
         ),
         footer: (props) => props.column.id,
-        size: 50,
+        size: 200,
       },
       {
         header: "Action",
@@ -115,7 +136,7 @@ export default function Users() {
           </div>
         ),
         footer: (props) => props.column.id,
-        size: 50,
+        size: 200,
       },
     ],
     []

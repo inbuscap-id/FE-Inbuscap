@@ -2,7 +2,7 @@ import DataTable from "@/components/data-table";
 import Layout from "@/components/layout-admin";
 import { AdmBusiness } from "@/utils/apis/business/type";
 import { ColumnDef } from "@tanstack/react-table";
-import { Edit, Ellipsis, Trash2 } from "lucide-react";
+import { Edit, Trash2, UserCheck, UserX } from "lucide-react";
 import { useMemo, useState } from "react";
 
 export default function Business() {
@@ -87,7 +87,8 @@ export default function Business() {
         id: "approval",
         cell: () => (
           <div className="flex gap-3">
-            <Ellipsis className="text-green-700" />
+            <UserCheck className="text-green-700" />
+            <UserX className="text-red-700" />
           </div>
         ),
         footer: (props) => props.column.id,

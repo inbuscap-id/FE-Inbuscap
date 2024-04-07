@@ -106,7 +106,7 @@ export const updateAdmin = async (body: ProfileAdminType) => {
 export const getVerifications = async () => {
   try {
     const response = await axiosWithConfig.get(
-      "https://virtserver.swaggerhub.com/BAGIR3008/Inbuscap/1.0.0/verifications"
+      "https://virtserver.swaggerhub.com/BAGIR3008/Inbuscap/1.0.0/verifications/users"
     );
 
     return response.data as IResponsePagination<IVerif[]>;

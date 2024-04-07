@@ -31,7 +31,7 @@ export default function Layout(props: Props) {
               to="/admin"
               className={cn(
                 "hover:text-white",
-                location.pathname === "/admin" ? "text-white " : ""
+                location.pathname === "/admin" ? "text-white font-semibold" : ""
               )}
             >
               <p>My Profile</p>
@@ -40,7 +40,9 @@ export default function Layout(props: Props) {
               to="/admin/users"
               className={cn(
                 "hover:text-white",
-                location.pathname === "/admin/users" ? "text-white " : ""
+                location.pathname === "/admin/users"
+                  ? "text-white font-semibold"
+                  : ""
               )}
             >
               <p>Users</p>
@@ -49,7 +51,9 @@ export default function Layout(props: Props) {
               to="/admin/businesses"
               className={cn(
                 "hover:text-white",
-                location.pathname === "/admin/businesses" ? "text-white " : ""
+                location.pathname === "/admin/businesses"
+                  ? "text-white font-semibold"
+                  : ""
               )}
             >
               <p>Businesses</p>

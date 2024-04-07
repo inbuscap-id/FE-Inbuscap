@@ -102,3 +102,7 @@ export interface IVerif {
   phone: string;
   is_active: number;
 }
+
+export interface VerifUser {
+  is_active: number;
+}

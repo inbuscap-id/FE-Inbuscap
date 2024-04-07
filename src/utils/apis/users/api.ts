@@ -9,6 +9,7 @@ import {
   ProfileAdminType,
   ProfileType,
   TUser,
+  VerifUser,
   VerificationType,
 } from "./type";
 import { checkProperty, valueFormatData } from "@/utils/formatter";
@@ -122,6 +123,19 @@ export const getVerificationsById = async (user_id: number) => {
     );
 
     return response.data as IResponsePagination<IVerif>;
+  } catch (error: any) {
+    throw Error(error.response.data.message);
+  }
+};
+
+export const approveUser = async (user_id: number, body: VerifUser) => {
+  try {
+    const response = await axiosWithConfig.put(
+      `https://virtserver.swaggerhub.com/BAGIR3008/Inbuscap/1.0.0/verifications/users/${user_id}`,
+      body
+    );
+
+    return response.data as IResponse;
   } catch (error: any) {
     throw Error(error.response.data.message);
   }

@@ -23,3 +23,11 @@ export interface IResponsePagination<TDatas> {
     total_pages: number;
   };
 }
+
+export interface ITokenData {
+  exp: number;
+  iat: number;
+  id: string;
+  is_active: boolean;
+  is_admin: boolean;
+}

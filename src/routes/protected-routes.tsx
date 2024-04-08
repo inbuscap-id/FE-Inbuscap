@@ -67,21 +67,21 @@ export default function ProtectedRoutes() {
   if (protectedByToken.includes(pathname)) {
     if (!token) return <Navigate to="/login" />;
 
-    if (adminProtected.includes(pathname)) {
-      if (tokenValue && tokenValue.is_admin === true) {
-        return <Navigate to="/admin" />;
-      } else {
-        return <Navigate to="/" />;
-      }
-    }
+    // if (adminProtected.includes(pathname)) {
+    //   if (tokenValue && tokenValue.is_admin === true) {
+    //     return <Navigate to="/admin" />;
+    //   } else {
+    //     return <Navigate to="/" />;
+    //   }
+    // }
 
-    if (userProtected.includes(pathname)) {
-      if (tokenValue && tokenValue.is_admin === false) {
-        return <Navigate to="/" />;
-      } else {
-        return <Navigate to="/admin" />;
-      }
-    }
+    // if (userProtected.includes(pathname)) {
+    //   if (tokenValue && tokenValue.is_admin === false) {
+    //     return <Navigate to="/" />;
+    //   } else {
+    //     return <Navigate to="/admin" />;
+    //   }
+    // }
   }
 
   return <Outlet />;

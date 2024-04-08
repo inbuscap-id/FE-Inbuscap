@@ -34,14 +34,21 @@ export default function Users() {
     }
   };
 
-  const handleApprove = async (user_id: number, body: VerifUser) => {
+  const handleApproval = async (user_id: number, body: VerifUser) => {
     try {
       const result = await approveUser(user_id, body);
 
       toast({
         description: result.message,
       });
-      setShowApproveDialog(!showApproveDialog);
+
+      if (body.is_active === 1) {
+        setShowApproveDialog(!showApproveDialog);
+      }
+
+      if (body.is_active === 2) {
+        setShowRejectDialog(!showRejectDialog);
+      }
     } catch (error) {
       toast({
         title: "Oops! Something went wrong.",
@@ -161,6 +168,7 @@ export default function Users() {
                   className="text-red-700"
                   onClick={() => {
                     setFullname(info.row.original.fullname);
+                    setUserId(info.row.original.id);
                     setShowRejectDialog(!showRejectDialog);
                   }}
                 />
@@ -175,6 +183,7 @@ export default function Users() {
                   className="text-red-700 mx-auto"
                   onClick={() => {
                     setFullname(info.row.original.fullname);
+                    setUserId(info.row.original.id);
                     setShowRejectDialog(!showRejectDialog);
                   }}
                 />
@@ -230,7 +239,7 @@ export default function Users() {
         onCancel={() => {
           setShowApproveDialog(!showApproveDialog);
         }}
-        onAction={() => handleApprove(userId!, { is_active: 1 })}
+        onAction={() => handleApproval(userId!, { is_active: 1 })}
       />
 
       <CustomAlert
@@ -240,6 +249,7 @@ export default function Users() {
         onCancel={() => {
           setShowRejectDialog(!showRejectDialog);
         }}
+        onAction={() => handleApproval(userId!, { is_active: 2 })}
       />
     </Layout>
   );

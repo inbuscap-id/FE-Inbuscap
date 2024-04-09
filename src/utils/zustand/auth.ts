@@ -1,22 +1,28 @@
+import { jwtDecode } from "jwt-decode";
 import { type StateCreator } from "zustand";
 
-import { LoginPayload } from "../types/api";
+import { ITokenData, LoginPayload } from "../types/api";
 import { TUser } from "../apis/users/type";
+
+interface IsAdmin {
+  is_admin: boolean;
+}
 
 export interface AuthStore {
   token: string;
   user: TUser | null;
-  isAdmin: boolean | null;
+  decodedToken: ITokenData | IsAdmin;
   setUser: (dataUser: TUser) => void;
   addAuth: (data: LoginPayload) => void;
   resetAuth: () => void;
-  setIsAdmin: (data: boolean) => void;
 }
 
 export const authStoreCreator: StateCreator<AuthStore> = (set) => ({
   token: localStorage.getItem("token") ?? "",
   user: null,
-  isAdmin: null,
+  decodedToken: jwtDecode<ITokenData>(localStorage.getItem("token")!) ?? {
+    is_admin: false,
+  },
   setUser: (user) => set({ user }),
   addAuth: (data) =>
     set(() => {
@@ -28,5 +34,4 @@ export const authStoreCreator: StateCreator<AuthStore> = (set) => ({
       localStorage.clear();
       return { token: "" };
     }),
-  setIsAdmin: (isAdmin) => set({ isAdmin }),
 });

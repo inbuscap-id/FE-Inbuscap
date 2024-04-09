@@ -28,7 +28,10 @@ export default function Dropdown() {
     <DropdownMenu>
       <DropdownMenuTrigger>
         <Avatar>
-          <AvatarImage src="https://github.com/shadcn.png" />
+          <AvatarImage
+            className="object-cover"
+            src={user?.avatar ? user.avatar : "https://github.com/shadcn.png"}
+          />
           <AvatarFallback>CN</AvatarFallback>
         </Avatar>
       </DropdownMenuTrigger>

@@ -6,14 +6,17 @@ import { TUser } from "../apis/users/type";
 export interface AuthStore {
   token: string;
   user: TUser | null;
+  isAdmin: boolean | null;
   setUser: (dataUser: TUser) => void;
   addAuth: (data: LoginPayload) => void;
   resetAuth: () => void;
+  setIsAdmin: (data: boolean) => void;
 }
 
 export const authStoreCreator: StateCreator<AuthStore> = (set) => ({
   token: localStorage.getItem("token") ?? "",
   user: null,
+  isAdmin: null,
   setUser: (user) => set({ user }),
   addAuth: (data) =>
     set(() => {
@@ -25,4 +28,5 @@ export const authStoreCreator: StateCreator<AuthStore> = (set) => ({
       localStorage.clear();
       return { token: "" };
     }),
+  setIsAdmin: (isAdmin) => set({ isAdmin }),
 });

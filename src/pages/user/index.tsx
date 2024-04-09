@@ -32,18 +32,21 @@ export default function Profile() {
       fullname: "",
       email: "",
       handphone: "",
+      // password: "",
       ktp: "",
       npwp: "",
+      avatar: new File([], ""),
     },
   });
 
   useEffect(() => {
     form.setValue("fullname", user?.fullname!);
     form.setValue("email", user?.email!);
+    // form.setValue("password", user?.password!);
     form.setValue("ktp", user?.ktp!);
     form.setValue("handphone", user?.handphone!);
     form.setValue("npwp", user?.npwp!);
-  }, [user]);
+  }, [user, isDisable]);
 
   const handleUpdate = async (data: ProfileType) => {
     try {
@@ -107,19 +110,49 @@ export default function Profile() {
             </p>
           </Link>
         </div>
-        <div className="grid grid-cols-3 justify-center">
-          <Avatar className="w-[250px] h-[250px] m-5">
-            <AvatarImage src="https://github.com/shadcn.png" />
-            <AvatarFallback>CN</AvatarFallback>
-          </Avatar>
-          <Card className="w-full sm:block mt-5">
-            <CardContent>
-              <Form {...form}>
-                <form
-                  onSubmit={form.handleSubmit(handleUpdate)}
-                  data-testid="form-register"
-                  className="space-y-6"
+        <Form {...form}>
+          <form
+            onSubmit={form.handleSubmit(handleUpdate)}
+            data-testid="form-register"
+            className="space-y-6"
+          >
+            <div className="flex justify-start gap-4">
+              <div>
+                <Avatar className="w-[250px] h-[250px] m-5">
+                  <AvatarImage
+                    className="object-cover"
+                    src={
+                      user?.avatar
+                        ? user.avatar
+                        : "https://github.com/shadcn.png"
+                    }
+                  />
+                  <AvatarFallback>CN</AvatarFallback>
+                </Avatar>
+                <CustomFormField
+                  control={form.control}
+                  name="avatar"
+                  label="Avatar"
                 >
+                  {(field) => (
+                    <Input
+                      type="file"
+                      accept="image/png, image/jpeg, image/jpg"
+                      multiple={false}
+                      disabled={form.formState.isSubmitting || isDisable}
+                      aria-disabled={form.formState.isSubmitting}
+                      onChange={(e) =>
+                        field.onChange(
+                          e.target.files ? e.target.files[0] : null
+                        )
+                      }
+                      className="w-11/12"
+                    />
+                  )}
+                </CustomFormField>
+              </div>
+              <Card className="w-full lg:w-1/3 mt-5">
+                <CardContent>
                   <CustomFormField
                     control={form.control}
                     name="fullname"
@@ -155,6 +188,24 @@ export default function Profile() {
                       />
                     )}
                   </CustomFormField>
+                  {/* <CustomFormField
+                    control={form.control}
+                    name="password"
+                    label="Password"
+                  >
+                    {(field) => (
+                      <Input
+                        {...field}
+                        data-testid="input-password"
+                        placeholder="Password"
+                        type="password"
+                        disabled={form.formState.isSubmitting || isDisable}
+                        aria-disabled={form.formState.isSubmitting}
+                        className="rounded-full"
+                        value={field.value as string}
+                      />
+                    )}
+                  </CustomFormField> */}
                   <CustomFormField
                     control={form.control}
                     name="ktp"
@@ -206,7 +257,7 @@ export default function Profile() {
                       />
                     )}
                   </CustomFormField>
-                  <div>
+                  <div className="w-full flex mt-5">
                     <Button
                       type="button"
                       disabled={form.formState.isSubmitting}
@@ -252,11 +303,11 @@ export default function Profile() {
                       }}
                     />
                   </div>
-                </form>
-              </Form>
-            </CardContent>
-          </Card>
-        </div>
+                </CardContent>
+              </Card>
+            </div>
+          </form>
+        </Form>
       </Layout>
     </>
   );

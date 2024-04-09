@@ -1,11 +1,15 @@
 export interface IInvestments {
   id: number;
-  // fullname: string;
+  createdAt: string;
+  updatedAt: string;
   title: string;
   image: string;
   description: string;
   capital: number;
+  share: number;
+  status: number;
   collected: number;
+  amount: number;
 }
 
 export interface IDetailInvestment {

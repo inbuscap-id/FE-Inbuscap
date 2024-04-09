@@ -7,6 +7,7 @@ import { Edit, Trash2, UserCheck, UserX } from "lucide-react";
 import { approveUser, getVerifications } from "@/utils/apis/users/api";
 import CustomAlert from "@/components/custom-alert";
 import { useToast } from "@/components/ui/use-toast";
+import { useNavigate } from "react-router-dom";
 
 export default function Users() {
   const [datas, setDatas] = useState<IVerif[]>([]);
@@ -14,6 +15,7 @@ export default function Users() {
   const [fullname, setFullname] = useState("");
   const [showApproveDialog, setShowApproveDialog] = useState(false);
   const [showRejectDialog, setShowRejectDialog] = useState(false);
+  const navigate = useNavigate();
   const { toast } = useToast();
 
   useEffect(() => {
@@ -49,6 +51,7 @@ export default function Users() {
       if (body.is_active === 2) {
         setShowRejectDialog(!showRejectDialog);
       }
+      navigate("/admin/users");
     } catch (error) {
       toast({
         title: "Oops! Something went wrong.",
@@ -114,7 +117,7 @@ export default function Users() {
       {
         header: "No HP",
         accessorKey: "phone",
-        cell: (info) => info.getValue(),
+        cell: (info) => info.row.original.handphone,
         footer: (props) => props.column.id,
         size: 200,
       },

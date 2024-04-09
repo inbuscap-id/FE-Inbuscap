@@ -14,12 +14,14 @@ export const registerSchema = z.object({
     .string()
     .min(1, { message: "Email is required" })
     .email("Not a valid email"),
-  handphone: z.string().min(8, { message: "Phone Number minimum length is 8" }),
+  handphone: z
+    .string()
+    .min(11, { message: "Phone Number minimum length is 8" }),
   password: z
     .string()
     .min(8, { message: "Password must be at least 8 characters" }),
   ktp: z.string().min(16, { message: "Ktp Number minimum length is 16" }),
-  npwp: z.string().min(8, { message: "Phone Number minimum length is 16" }),
+  npwp: z.string().min(16, { message: "Phone Number minimum length is 16" }),
 });
 
 export type LoginType = z.infer<typeof loginSchema>;

@@ -1,9 +1,11 @@
 import { LogOut } from "lucide-react";
 import { ReactNode } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { cn } from "@/lib/utils";
 import { Button } from "./ui/button";
+import { useAuthStore } from "@/utils/zustand/store";
+import { toast } from "./ui/use-toast";
 
 interface Props {
   children: ReactNode;
@@ -11,12 +13,16 @@ interface Props {
 
 export default function Layout(props: Props) {
   const location = useLocation();
-  const navigate = useNavigate();
+  const resetToken = useAuthStore((state) => state.resetAuth);
+  const user = useAuthStore((state) => state.user);
 
   const { children } = props;
 
   const handleLogout = () => {
-    navigate("/login");
+    resetToken();
+    toast({
+      description: "Logout Successfully",
+    });
   };
 
   return (
@@ -77,7 +83,10 @@ export default function Layout(props: Props) {
             <p className="text-[#00ad26] text-base">See All Bussiness</p>
           </Link>
           <Avatar className="bg-black">
-            <AvatarImage src="https://github.com/shadcn.png" />
+            <AvatarImage
+              className="object-cover"
+              src={user?.avatar ? user.avatar : "https://github.com/shadcn.png"}
+            />
             <AvatarFallback>CN</AvatarFallback>
           </Avatar>
         </div>

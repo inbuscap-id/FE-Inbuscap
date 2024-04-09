@@ -155,6 +155,18 @@ export const getBusinessVerifications = async () => {
   }
 };
 
+export const getVerificationsBusinessById = async (proposal_id: number) => {
+  try {
+    const response = await axiosWithConfig.get(
+      `https://virtserver.swaggerhub.com/BAGIR3008/Inbuscap/1.0.0/verifications/proposals/${proposal_id}`
+    );
+
+    return response.data as IResponsePagination<IVerifBusiness>;
+  } catch (error: any) {
+    throw Error(error.response.data.message);
+  }
+};
+
 export const approveBusiness = async (proposal_id: number, body: VerifBusiness) => {
   try {
     const response = await axiosWithConfig.put(

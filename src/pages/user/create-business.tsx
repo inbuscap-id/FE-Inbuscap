@@ -28,6 +28,7 @@ const CreateBusiness = (props: Props) => {
       image: new File([], ""),
       title: "",
       capital: "",
+      share: "",
       description: "",
       proposal: new File([], ""),
     },
@@ -43,6 +44,7 @@ const CreateBusiness = (props: Props) => {
       modeType = "add";
       form.setValue("title", addData.title);
       form.setValue("capital", addData.capital);
+      form.setValue("share", addData.share);
       form.setValue("description", addData.description);
     }
     form.setValue("mode", modeType);
@@ -138,9 +140,25 @@ const CreateBusiness = (props: Props) => {
               >
                 {(field) => (
                   <Input
-                    placeholder="Your amount of capital"
-                    type="amount"
-                    data-testid="amount"
+                    placeholder="Your amount of amount"
+                    id="capital"
+                    disabled={form.formState.isSubmitting}
+                    aria-disabled={form.formState.isSubmitting}
+                    {...field}
+                    className="rounded-full"
+                    value={field.value as string}
+                  />
+                )}
+              </CustomFormField>
+              <CustomFormField
+                control={form.control}
+                name="share"
+                label="Share Profit"
+              >
+                {(field) => (
+                  <Input
+                    placeholder="Enter your share profit"
+                    id="input-share"
                     disabled={form.formState.isSubmitting}
                     aria-disabled={form.formState.isSubmitting}
                     {...field}

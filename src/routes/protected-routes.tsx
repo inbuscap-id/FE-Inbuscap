@@ -1,3 +1,4 @@
+import { setAxiosConfig } from "@/utils/apis/axiosWithConfig";
 import { getUser } from "@/utils/apis/users/api";
 import { useAuthStore } from "@/utils/zustand/store";
 import { useEffect } from "react";
@@ -9,7 +10,10 @@ export default function ProtectedRoutes() {
   const token = useAuthStore((state) => state.token);
 
   useEffect(() => {
-    token !== "" && handleGetUser();
+    if (token !== "") {
+      setAxiosConfig(token);
+      handleGetUser();
+    }
   }, [token]);
 
   const handleGetUser = async () => {

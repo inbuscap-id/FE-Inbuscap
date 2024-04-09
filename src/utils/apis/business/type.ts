@@ -42,10 +42,10 @@ export const base = z.object({
     (file) =>
       !file || file.type === "" || ACCEPTED_IMAGE_TYPES.includes(file.type),
     "Only .jpg, .jpeg, and .png formats are supported"
-  )
-  .optional(),
+  ),
   description: z.string().min(6, { message: "Description is required" }),
   capital: z.string().min(8, { message: "Capital is required" }),
+  share: z.string().min(2, { message: "share profit is required" }),
   proposal: z
   .instanceof(File)
   .refine(
@@ -56,8 +56,7 @@ export const base = z.object({
     (file) =>
       !file || file.type === "" || ACCEPTED_PDF_TYPES.includes(file.type),
     "Only .pdf formats are supported"
-  )
-  .optional(),  
+  ),  
 });
 
 export const addBusinessSchema = z.object({
@@ -84,5 +83,6 @@ export interface INewBusiness {
   image: string;
   description: string;
   capital: string;
+  share: string;
   proposal: string;
 }

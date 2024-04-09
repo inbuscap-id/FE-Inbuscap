@@ -5,7 +5,7 @@ import { checkProperty, valueFormatData } from "@/utils/formatter";
 
 export const getBusinesses = async () => {
   try {
-    const response = await axiosWithConfig.get("https://virtserver.swaggerhub.com/BAGIR3008/Inbuscap/1.0.0/proposals");
+    const response = await axiosWithConfig.get("/proposals");
 
     return response.data as IResponsePagination<IBusiness[]>;
   } catch (error: any) {
@@ -15,7 +15,7 @@ export const getBusinesses = async () => {
 
 export const getDetailBusiness = async (proposal_id: string) => {
   try {
-    const response = await axiosWithConfig.get(`https://virtserver.swaggerhub.com/BAGIR3008/Inbuscap/1.0.0/proposals/${proposal_id}`);
+    const response = await axiosWithConfig.get(`/proposals/${proposal_id}`);
 
     return response.data as IResponseData<IBusiness>;
   } catch (error: any) {
@@ -25,7 +25,7 @@ export const getDetailBusiness = async (proposal_id: string) => {
 
 export const createBusiness = async (body: BusinessSchema) => {
  try {
-  const response = await axiosWithConfig.post(`https://virtserver.swaggerhub.com/BAGIR3008/Inbuscap/1.0.0/proposals`, body);
+  const response = await axiosWithConfig.post(`/proposals`, body);
 
   return response.data as IResponse;
  } catch (error:any) {
@@ -43,7 +43,7 @@ export const updateBusiness = async (proposal_id: string, body: BusinessSchema) 
       }
     }
 
-const response = await axiosWithConfig.put(`https://virtserver.swaggerhub.com/BAGIR3008/Inbuscap/1.0.0/proposals/${proposal_id}`, formData, {
+const response = await axiosWithConfig.put(`/proposals/${proposal_id}`, formData, {
   headers: {
     "Content-Type": "multipart/form-data"
   },
@@ -57,7 +57,7 @@ const response = await axiosWithConfig.put(`https://virtserver.swaggerhub.com/BA
 
 export const deleteBusiness = async (proposal_id: string) => {
   try {
-    const response = await axiosWithConfig.delete(`https://virtserver.swaggerhub.com/BAGIR3008/Inbuscap/1.0.0/proposals/${proposal_id}`);
+    const response = await axiosWithConfig.delete(`/proposals/${proposal_id}`);
 
     return response.data as IResponse;
   } catch (error: any) {

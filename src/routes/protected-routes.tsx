@@ -1,3 +1,4 @@
+import { setAxiosConfig } from "@/utils/apis/axiosWithConfig";
 import { getUser } from "@/utils/apis/users/api";
 import { useAuthStore } from "@/utils/zustand/store";
 import { useEffect } from "react";

@@ -13,7 +13,7 @@ function Homepage() {
   const user = useAuthStore((state) => state.user);
 
   useEffect(() => {
-    handleGetBusiness();
+    // handleGetBusiness();
   }, []);
 
   const handleGetBusiness = async () => {

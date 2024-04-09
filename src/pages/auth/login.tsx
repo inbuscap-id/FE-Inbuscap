@@ -12,6 +12,7 @@ import { Input } from "@/components/ui/input";
 import { useToast } from "@/components/ui/use-toast";
 import { userLogin } from "@/utils/apis/auth/api";
 import { LoginType, loginSchema } from "@/utils/apis/auth/types";
+import { setAxiosConfig } from "@/utils/apis/axiosWithConfig";
 import { getUser } from "@/utils/apis/users/api";
 import { useAuthStore } from "@/utils/zustand/store";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -49,6 +50,7 @@ export default function Login() {
     try {
       const result = await userLogin(data);
       addToken(result.data);
+      setAxiosConfig(result.data.token);
       handleGetUser();
       toast({
         description: "Hello, Welcome to Inbuscap.id",

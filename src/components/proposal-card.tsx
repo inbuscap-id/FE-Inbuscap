@@ -9,8 +9,10 @@ import {
 } from "./ui/dropdown-menu";
 import { useState } from "react";
 import CustomAlert from "./custom-alert";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { formatRupiah } from "@/utils/format-money";
+import { deleteBusiness } from "@/utils/apis/business/api";
+import { toast } from "./ui/use-toast";
 
 interface Props {
   title: string;
@@ -28,6 +30,7 @@ export default function ProposalCard(props: Props) {
   const [showPublicDialog, setShowPublicDialog] = useState(false);
   const [showArchiveDialog, setShowArchiveDialog] = useState(false);
   const [showDeleteDialog, setShowDeleteDialog] = useState(false);
+  const navigate = useNavigate();
 
   const {
     title,
@@ -40,6 +43,21 @@ export default function ProposalCard(props: Props) {
     archive,
     invested,
   } = props;
+
+  async function handleDeleteBusiness(proposals_id: string) {
+    try {
+      const result = await deleteBusiness(proposals_id);
+      toast({ description: result.message });
+
+      navigate("/my-business");
+    } catch (error: any) {
+      toast({
+        title: "Oops! Something went wrong.",
+        description: error.toString(),
+        variant: "destructive",
+      });
+    }
+  }
 
   let persentase = Math.round((collected / target) * 100);
 
@@ -141,12 +159,7 @@ export default function ProposalCard(props: Props) {
         open={showDeleteDialog}
         title="Kamu Yakin Menghapus Proposal Ini?"
         description="Ini akan menghapus Proposal dan tidak dapat dikembalikan."
-        // onAction={async () => {
-        //   try {
-        //     await onDelete(postID);
-        //     setShowDeleteDialog(false);
-        //   } catch (error) {}
-        // }}
+        onAction={() => handleDeleteBusiness(props.id.toString())}
         onCancel={() => {
           setShowDeleteDialog(false);
         }}

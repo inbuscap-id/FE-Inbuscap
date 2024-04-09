@@ -78,6 +78,7 @@ export default function Business() {
         accessorKey: "description",
         cell: (info) => info.getValue(),
         footer: (props) => props.column.id,
+        size: 200,
       },
       {
         header: "Amount",
@@ -101,7 +102,7 @@ export default function Business() {
       },
       {
         header: "Status",
-        id: "is_active",
+        id: "is_active1",
         cell: (info) => {
           const value = info.row.original.is_active;
           if (value === 0) {

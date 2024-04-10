@@ -17,7 +17,9 @@ import { IVerifBusiness, VerifBusiness } from "../business/type";
 
 export const getUser = async () => {
   try {
-    const response = await axiosWithConfig.get("/users");
+    const response = await axiosWithConfig.get(
+      "/users"
+    );
 
     return response.data as IResponseData<TUser>;
   } catch (error: any) {
@@ -36,7 +38,10 @@ export const updateUser = async (body: ProfileType) => {
       }
     }
 
-    const response = await axiosWithConfig.put(`/users`, formData);
+    const response = await axiosWithConfig.put(
+      `/users`,
+      formData
+    );
 
     return response.data as IResponse;
   } catch (error: any) {
@@ -46,7 +51,9 @@ export const updateUser = async (body: ProfileType) => {
 
 export const deleteProfile = async () => {
   try {
-    const response = await axiosWithConfig.delete(`/users`);
+    const response = await axiosWithConfig.delete(
+      `/users`
+    );
 
     return response.data as IResponse;
   } catch (error: any) {

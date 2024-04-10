@@ -112,6 +112,7 @@ const CreateBusiness = (props: Props) => {
                 {(field) => (
                   <Input
                     placeholder="name of your business"
+                    id="input-title"
                     disabled={form.formState.isSubmitting}
                     aria-disabled={form.formState.isSubmitting}
                     {...field}
@@ -128,6 +129,7 @@ const CreateBusiness = (props: Props) => {
                 {(field) => (
                   <Textarea
                     placeholder="Your business description..."
+                    id="input-description"
                     disabled={form.formState.isSubmitting}
                     aria-disabled={form.formState.isSubmitting}
                     {...field}
@@ -144,7 +146,7 @@ const CreateBusiness = (props: Props) => {
                 {(field) => (
                   <Input
                     placeholder="Your amount of amount"
-                    id="capital"
+                    id="input-capital"
                     disabled={form.formState.isSubmitting}
                     aria-disabled={form.formState.isSubmitting}
                     {...field}
@@ -190,7 +192,7 @@ const CreateBusiness = (props: Props) => {
               </CustomFormField>
               <Button
                 type="submit"
-                data-testid="btn-submit"
+                id="btn-submit"
                 disabled={form.formState.isSubmitting}
                 aria-disabled={form.formState.isSubmitting}
                 className="rounded-full px-8 mt-7"

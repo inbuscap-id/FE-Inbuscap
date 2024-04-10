@@ -1,11 +1,17 @@
+import { jwtDecode } from "jwt-decode";
 import { type StateCreator } from "zustand";
 
-import { LoginPayload } from "../types/api";
+import { ITokenData, LoginPayload } from "../types/api";
 import { TUser } from "../apis/users/type";
+
+interface IsAdmin {
+  is_admin: boolean;
+}
 
 export interface AuthStore {
   token: string;
   user: TUser | null;
+  decodedToken: ITokenData | IsAdmin;
   setUser: (dataUser: TUser) => void;
   addAuth: (data: LoginPayload) => void;
   resetAuth: () => void;
@@ -14,6 +20,9 @@ export interface AuthStore {
 export const authStoreCreator: StateCreator<AuthStore> = (set) => ({
   token: localStorage.getItem("token") ?? "",
   user: null,
+  decodedToken: jwtDecode<ITokenData>(localStorage.getItem("token")!) ?? {
+    is_admin: false,
+  },
   setUser: (user) => set({ user }),
   addAuth: (data) =>
     set(() => {

@@ -7,6 +7,7 @@ import { Edit, Trash2, UserCheck, UserX } from "lucide-react";
 import { approveUser, getVerifications } from "@/utils/apis/users/api";
 import CustomAlert from "@/components/custom-alert";
 import { useToast } from "@/components/ui/use-toast";
+import { useNavigate } from "react-router-dom";
 
 export default function Users() {
   const [datas, setDatas] = useState<IVerif[]>([]);
@@ -14,6 +15,7 @@ export default function Users() {
   const [fullname, setFullname] = useState("");
   const [showApproveDialog, setShowApproveDialog] = useState(false);
   const [showRejectDialog, setShowRejectDialog] = useState(false);
+  const navigate = useNavigate();
   const { toast } = useToast();
 
   useEffect(() => {
@@ -34,14 +36,22 @@ export default function Users() {
     }
   };
 
-  const handleApprove = async (user_id: number, body: VerifUser) => {
+  const handleApproval = async (user_id: number, body: VerifUser) => {
     try {
       const result = await approveUser(user_id, body);
 
       toast({
         description: result.message,
       });
-      setShowApproveDialog(!showApproveDialog);
+
+      if (body.is_active === 1) {
+        setShowApproveDialog(!showApproveDialog);
+      }
+
+      if (body.is_active === 2) {
+        setShowRejectDialog(!showRejectDialog);
+      }
+      navigate("/admin/users");
     } catch (error) {
       toast({
         title: "Oops! Something went wrong.",
@@ -107,7 +117,7 @@ export default function Users() {
       {
         header: "No HP",
         accessorKey: "phone",
-        cell: (info) => info.getValue(),
+        cell: (info) => info.row.original.handphone,
         footer: (props) => props.column.id,
         size: 200,
       },
@@ -161,6 +171,7 @@ export default function Users() {
                   className="text-red-700"
                   onClick={() => {
                     setFullname(info.row.original.fullname);
+                    setUserId(info.row.original.id);
                     setShowRejectDialog(!showRejectDialog);
                   }}
                 />
@@ -175,6 +186,7 @@ export default function Users() {
                   className="text-red-700 mx-auto"
                   onClick={() => {
                     setFullname(info.row.original.fullname);
+                    setUserId(info.row.original.id);
                     setShowRejectDialog(!showRejectDialog);
                   }}
                 />
@@ -230,7 +242,7 @@ export default function Users() {
         onCancel={() => {
           setShowApproveDialog(!showApproveDialog);
         }}
-        onAction={() => handleApprove(userId!, { is_active: 1 })}
+        onAction={() => handleApproval(userId!, { is_active: 1 })}
       />
 
       <CustomAlert
@@ -240,6 +252,7 @@ export default function Users() {
         onCancel={() => {
           setShowRejectDialog(!showRejectDialog);
         }}
+        onAction={() => handleApproval(userId!, { is_active: 2 })}
       />
     </Layout>
   );

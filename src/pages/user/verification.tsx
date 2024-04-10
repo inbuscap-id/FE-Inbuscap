@@ -66,7 +66,7 @@ export default function Verification() {
             </p>
           </Link>
         </div>
-        <div className="m-5 mx-20 p-3 px-10 w-2/5">
+        <div className="w-2/3 lg:w-1/2 self-center">
           <Form {...form}>
             <form
               data-testid="form-register"

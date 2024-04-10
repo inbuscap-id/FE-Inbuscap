@@ -50,12 +50,18 @@ export default function Login() {
     try {
       const result = await userLogin(data);
       addToken(result.data);
-      setAxiosConfig(result.data.token)
-      handleGetUser();
+      setAxiosConfig(result.data.token);
+      await handleGetUser();
+
+      if (useAuthStore.getState().decodedToken?.is_admin) {
+        navigate("/admin");
+      } else {
+        navigate("/");
+      }
+
       toast({
         description: "Hello, Welcome to Inbuscap.id",
       });
-      navigate("/");
     } catch (error) {
       toast({
         title: "Oops! Something went wrong.",
@@ -67,7 +73,7 @@ export default function Login() {
 
   return (
     <div className="flex w-full justify-between h-screen">
-      <div className="w-full flex items-center justify-center md:w-2/3">
+      <div className="w-full md:w-2/3 flex mx-auto items-center justify-center ">
         <Card className="w-3/4 md:w-3/4 lg:w-1/2">
           <CardHeader>
             <CardTitle className="text-center">Login</CardTitle>
@@ -141,7 +147,7 @@ export default function Login() {
           </CardContent>
         </Card>
       </div>
-      <div className="img-bg hidden lg:flex h-full w-1/3 items-center justify-end rounded-l-[50px] px-12">
+      <div className="img-bg lg:w-1/3 h-full hidden lg:flex items-center justify-end rounded-l-[50px] px-12">
         <p className="z-50 text-5xl text-white text-right font-lora font-semibold tracking-wide leading-snug subpixel-antialiased">
           Investing Business Capital (Inbuscap.id)
         </p>

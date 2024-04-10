@@ -72,7 +72,7 @@ export const addVerification = async (body: VerificationType) => {
     }
 
     const response = await axiosWithConfig.put(
-      `https://virtserver.swaggerhub.com/BAGIR3008/Inbuscap/1.0.0/verifications/users`,
+      `/verifications/users`,
       formData
     );
 
@@ -93,10 +93,7 @@ export const updateAdmin = async (body: ProfileAdminType) => {
       }
     }
 
-    const response = await axiosWithConfig.put(
-      `https://virtserver.swaggerhub.com/BAGIR3008/Inbuscap/1.0.0/users`,
-      formData
-    );
+    const response = await axiosWithConfig.put(`/users`, formData);
 
     return response.data as IResponse;
   } catch (error: any) {
@@ -106,9 +103,7 @@ export const updateAdmin = async (body: ProfileAdminType) => {
 
 export const getVerifications = async () => {
   try {
-    const response = await axiosWithConfig.get(
-      "https://virtserver.swaggerhub.com/BAGIR3008/Inbuscap/1.0.0/verifications/users"
-    );
+    const response = await axiosWithConfig.get("/verifications/users");
 
     return response.data as IResponsePagination<IVerif[]>;
   } catch (error: any) {
@@ -118,9 +113,7 @@ export const getVerifications = async () => {
 
 export const getVerificationsById = async (user_id: number) => {
   try {
-    const response = await axiosWithConfig.get(
-      `https://virtserver.swaggerhub.com/BAGIR3008/Inbuscap/1.0.0/verifications/${user_id}`
-    );
+    const response = await axiosWithConfig.get(`/verifications/${user_id}`);
 
     return response.data as IResponsePagination<IVerif>;
   } catch (error: any) {
@@ -131,7 +124,7 @@ export const getVerificationsById = async (user_id: number) => {
 export const approveUser = async (user_id: number, body: VerifUser) => {
   try {
     const response = await axiosWithConfig.put(
-      `https://virtserver.swaggerhub.com/BAGIR3008/Inbuscap/1.0.0/verifications/users/${user_id}`,
+      `/verifications/users/${user_id}`,
       body
     );
 
@@ -141,3 +134,30 @@ export const approveUser = async (user_id: number, body: VerifUser) => {
   }
 };
 
+export const getBusinessVerifications = async () => {
+  try {
+    const response = await axiosWithConfig.get(
+      "https://virtserver.swaggerhub.com/BAGIR3008/Inbuscap/1.0.0/verifications/proposals"
+    );
+
+    return response.data as IResponsePagination<IVerifBusiness[]>;
+  } catch (error: any) {
+    throw Error(error.response.data.message);
+  }
+};
+
+export const approveBusiness = async (
+  proposal_id: number,
+  body: VerifBusiness
+) => {
+  try {
+    const response = await axiosWithConfig.put(
+      `https://virtserver.swaggerhub.com/BAGIR3008/Inbuscap/1.0.0/verifications/proposals/${proposal_id}`,
+      body
+    );
+
+    return response.data as IResponse;
+  } catch (error: any) {
+    throw Error(error.response.data.message);
+  }
+};

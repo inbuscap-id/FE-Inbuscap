@@ -36,7 +36,7 @@ export default function MyProfile() {
     form.setValue("password", user?.password!);
     form.setValue("ktp", user?.ktp!);
     form.setValue("npwp", user?.npwp!);
-  }, [user]);
+  }, [user, isDisable]);
 
   const handleUpdate = async (data: ProfileAdminType) => {
     try {
@@ -136,7 +136,9 @@ export default function MyProfile() {
         </Form>
         <div className="ml-48 items-end justify-end">
           <Avatar className="w-[250px] h-[250px]">
-            <AvatarImage src="https://github.com/shadcn.png" />
+            <AvatarImage
+              src={user?.avatar ? user.avatar : "https://github.com/shadcn.png"}
+            />
             <AvatarFallback>CN</AvatarFallback>
           </Avatar>
         </div>

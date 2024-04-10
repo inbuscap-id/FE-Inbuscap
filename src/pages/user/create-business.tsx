@@ -6,7 +6,11 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/components/ui/use-toast";
 import { createBusiness } from "@/utils/apis/business/api";
-import { BusinessSchema, INewBusiness, businessSchema } from "@/utils/apis/business/type";
+import {
+  BusinessSchema,
+  INewBusiness,
+  businessSchema,
+} from "@/utils/apis/business/type";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Loader2 } from "lucide-react";
 import { useEffect } from "react";
@@ -49,7 +53,6 @@ const CreateBusiness = (props: Props) => {
     }
     form.setValue("mode", modeType);
   }
-
 
   async function onSubmit(data: BusinessSchema) {
     try {
@@ -209,6 +212,6 @@ const CreateBusiness = (props: Props) => {
       </div>
     </Layout>
   );
-}
+};
 
 export default CreateBusiness;

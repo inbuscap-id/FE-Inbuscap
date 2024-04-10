@@ -23,6 +23,21 @@ export interface AdmBusiness {
   profit: number;
 }
 
+export interface IVerifBusiness {
+  id: number;
+  title: string;
+  owner: string;
+  description: string;
+  capital: string;
+  share: string;
+  proposal: string;
+  is_active: number;
+}
+
+export interface VerifBusiness {
+  is_active: number;
+}
+
 const MAX_MB = 2;
 const MAX_UPLOAD_SIZE = 1024 * 1024 * MAX_MB;
 const ACCEPTED_IMAGE_TYPES = ["image/jpeg", "image/jpg", "image/png"];

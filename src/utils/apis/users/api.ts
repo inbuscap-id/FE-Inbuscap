@@ -6,11 +6,9 @@ import {
 import axiosWithConfig from "../axiosWithConfig";
 import {
   IVerif,
-  IVerifBusiness,
   ProfileAdminType,
   ProfileType,
   TUser,
-  VerifBusiness,
   VerifUser,
   VerificationType,
 } from "./type";
@@ -19,7 +17,7 @@ import { checkProperty, valueFormatData } from "@/utils/formatter";
 export const getUser = async () => {
   try {
     const response = await axiosWithConfig.get(
-      "https://virtserver.swaggerhub.com/BAGIR3008/Inbuscap/1.0.0/users"
+      "/users"
     );
 
     return response.data as IResponseData<TUser>;
@@ -40,7 +38,7 @@ export const updateUser = async (body: ProfileType) => {
     }
 
     const response = await axiosWithConfig.put(
-      `https://virtserver.swaggerhub.com/BAGIR3008/Inbuscap/1.0.0/users`,
+      `/users`,
       formData
     );
 
@@ -53,7 +51,7 @@ export const updateUser = async (body: ProfileType) => {
 export const deleteProfile = async () => {
   try {
     const response = await axiosWithConfig.delete(
-      `https://virtserver.swaggerhub.com/BAGIR3008/Inbuscap/1.0.0/users`
+      `/users`
     );
 
     return response.data as IResponse;
@@ -143,39 +141,3 @@ export const approveUser = async (user_id: number, body: VerifUser) => {
   }
 };
 
-export const getBusinessVerifications = async () => {
-  try {
-    const response = await axiosWithConfig.get(
-      "https://virtserver.swaggerhub.com/BAGIR3008/Inbuscap/1.0.0/verifications/proposals"
-    );
-
-    return response.data as IResponsePagination<IVerifBusiness[]>;
-  } catch (error: any) {
-    throw Error(error.response.data.message);
-  }
-};
-
-export const getVerificationsBusinessById = async (proposal_id: number) => {
-  try {
-    const response = await axiosWithConfig.get(
-      `https://virtserver.swaggerhub.com/BAGIR3008/Inbuscap/1.0.0/verifications/proposals/${proposal_id}`
-    );
-
-    return response.data as IResponsePagination<IVerifBusiness>;
-  } catch (error: any) {
-    throw Error(error.response.data.message);
-  }
-};
-
-export const approveBusiness = async (proposal_id: number, body: VerifBusiness) => {
-  try {
-    const response = await axiosWithConfig.put(
-      `https://virtserver.swaggerhub.com/BAGIR3008/Inbuscap/1.0.0/verifications/proposals/${proposal_id}`,
-      body
-    );
-
-    return response.data as IResponse;
-  } catch (error: any) {
-    throw Error(error.response.data.message);
-  }
-};

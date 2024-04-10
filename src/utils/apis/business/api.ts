@@ -1,6 +1,6 @@
 import { IResponse, IResponseData, IResponsePagination } from "@/utils/types/api";
 import axiosWithConfig from "../axiosWithConfig";
-import { BusinessSchema, IBusiness } from "./type";
+import { BusinessSchema, IBusiness, IVerifBusiness, VerifBusiness } from "./type";
 import { checkProperty, valueFormatData } from "@/utils/formatter";
 
 export const getBusinesses = async () => {
@@ -58,6 +58,43 @@ const response = await axiosWithConfig.put(`/proposals/${proposal_id}`, formData
 export const deleteBusiness = async (proposal_id: string) => {
   try {
     const response = await axiosWithConfig.delete(`/proposals/${proposal_id}`);
+
+    return response.data as IResponse;
+  } catch (error: any) {
+    throw Error(error.response.data.message);
+  }
+};
+
+export const getBusinessVerifications = async () => {
+  try {
+    const response = await axiosWithConfig.get(
+      "https://virtserver.swaggerhub.com/BAGIR3008/Inbuscap/1.0.0/verifications/proposals"
+    );
+
+    return response.data as IResponsePagination<IVerifBusiness[]>;
+  } catch (error: any) {
+    throw Error(error.response.data.message);
+  }
+};
+
+export const getVerificationsBusinessById = async (proposal_id: number) => {
+  try {
+    const response = await axiosWithConfig.get(
+      `https://virtserver.swaggerhub.com/BAGIR3008/Inbuscap/1.0.0/verifications/proposals/${proposal_id}`
+    );
+
+    return response.data as IResponsePagination<IVerifBusiness>;
+  } catch (error: any) {
+    throw Error(error.response.data.message);
+  }
+};
+
+export const approveBusiness = async (proposal_id: number, body: VerifBusiness) => {
+  try {
+    const response = await axiosWithConfig.put(
+      `https://virtserver.swaggerhub.com/BAGIR3008/Inbuscap/1.0.0/verifications/proposals/${proposal_id}`,
+      body
+    );
 
     return response.data as IResponse;
   } catch (error: any) {

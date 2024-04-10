@@ -106,18 +106,3 @@ export interface IVerif {
 export interface VerifUser {
   is_active: number;
 }
-
-export interface IVerifBusiness {
-  id: number;
-  title: string;
-  owner: string;
-  description: string;
-  capital: string;
-  share: string;
-  proposal: string;
-  is_active: number;
-}
-
-export interface VerifBusiness {
-  is_active: number;
-}

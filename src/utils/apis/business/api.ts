@@ -4,7 +4,7 @@ import {
   IResponsePagination,
 } from "@/utils/types/api";
 import axiosWithConfig from "../axiosWithConfig";
-import { BusinessSchema, IBusiness, IVerifBusiness, VerifBusiness } from "./type";
+import { BusinessSchema, IBusiness, IVerifBusiness, IDetailBusiness, VerifBusiness } from "./type";
 import { checkProperty, valueFormatData } from "@/utils/formatter";
 
 export const getBusinesses = async () => {
@@ -21,7 +21,7 @@ export const getDetailBusiness = async (proposal_id: string) => {
   try {
     const response = await axiosWithConfig.get(`/proposals/${proposal_id}`);
 
-    return response.data as IResponseData<IBusiness>;
+    return response.data as IResponseData<IDetailBusiness>;
   } catch (error: any) {
     throw Error(error.response.data.message);
   }

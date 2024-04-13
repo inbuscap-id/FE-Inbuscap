@@ -13,6 +13,25 @@ export interface IBusiness {
   proposal: string;
 }
 
+export interface IDetailBusiness {
+  id: number;
+  createdAt: string;
+  updatedAt: string;
+  user: {
+    fullname: string;
+    email: string;
+    handphone: string;
+  };
+  title: string;
+  image: string;
+  document: string;
+  description: string;
+  capital: number;
+  share: number;
+  status: number;
+  collected: number;
+}
+
 export interface AdmBusiness {
   fullname: string;
   title: string;
@@ -48,16 +67,17 @@ const ACCEPTED_PDF_TYPES = ["application/pdf"];
 export const base = z.object({
   title: z.string().min(6, { message: "Title is required" }),
   image: z
-  .instanceof(File)
-  .refine(
-    (file) => file.size <= MAX_UPLOAD_SIZE,
-    `Max image size is ${MAX_MB}MB`
-  )
-  .refine(
-    (file) =>
-      !file || file.type === "" || ACCEPTED_IMAGE_TYPES.includes(file.type),
-    "Only .jpg, .jpeg, and .png formats are supported"
-  ),
+    .instanceof(File)
+    .refine(
+      (file) => file.size <= MAX_UPLOAD_SIZE,
+      `Max image size is ${MAX_MB}MB`
+    )
+    .refine(
+      (file) =>
+        !file || file.type === "" || ACCEPTED_IMAGE_TYPES.includes(file.type),
+      "Only .jpg, .jpeg, and .png formats are supported"
+    )
+    .optional(),
   description: z.string().min(6, { message: "Description is required" }),
   capital: z.string().min(8, { message: "Capital is required" }),
   share: z.string().min(2, { message: "share profit is required" }),
@@ -74,21 +94,22 @@ export const base = z.object({
   ),  
 });
 
-export const addBusinessSchema = z.object({
-  mode: z.literal("add"),
-})
-.merge(base);
+export const addBusinessSchema = z
+  .object({
+    mode: z.literal("add"),
+  })
+  .merge(base);
 
-export const editBusinessSchema = z.object({
-  mode: z.literal("edit"),
-})
-.merge(base);
+export const editBusinessSchema = z
+  .object({
+    mode: z.literal("edit"),
+  })
+  .merge(base);
 
 export const businessSchema = z.discriminatedUnion("mode", [
   addBusinessSchema,
   editBusinessSchema,
 ]);
-
 
 export type BusinessSchema = z.infer<typeof businessSchema>;
 

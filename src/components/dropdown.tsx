@@ -1,3 +1,4 @@
+import defaultAvatar from "@/assets/default-avatar.jpg";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
   DropdownMenu,
@@ -30,7 +31,7 @@ export default function Dropdown() {
         <Avatar>
           <AvatarImage
             className="object-cover"
-            src={user?.avatar ? user.avatar : "https://github.com/shadcn.png"}
+            src={user?.avatar ? user.avatar : defaultAvatar}
           />
           <AvatarFallback>CN</AvatarFallback>
         </Avatar>

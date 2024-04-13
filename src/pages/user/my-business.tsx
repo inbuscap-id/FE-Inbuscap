@@ -11,21 +11,20 @@ import { toast } from "sonner";
 export default function MyBusiness() {
   const [business, setBusiness] = useState<IBusiness[]>([]);
   const user = useAuthStore((state) => state.user);
+  console.log(business);
 
-  useEffect (() => {
+  useEffect(() => {
     fetchData();
   }, []);
 
-  const fetchData =  async () => {
+  const fetchData = async () => {
     try {
       const result = await getBusinesses();
-      setBusiness(result.data)
+      setBusiness(result.data);
     } catch (error: any) {
-      toast(
-        (error as Error).message.toString());
-      };
-  }
-
+      toast((error as Error).message.toString());
+    }
+  };
 
   return (
     <>
@@ -39,20 +38,20 @@ export default function MyBusiness() {
           </Link>
         </div>
         {business.map(
-        (data) =>
-          data.email === user?.email && (
-            <ProposalCard
-              key={data.id}
-              title={data.title}
-              desc={data.description}
-              image={data.image}
-              target={data.capital}
-              collected={data.collected}
-              id={data.id}
-              withOption
-            />
-          )
-      )}
+          (data) =>
+            data.email === user?.email && (
+              <ProposalCard
+                key={data.id}
+                title={data.title}
+                desc={data.description}
+                image={data.image}
+                target={data.capital}
+                collected={data.collected}
+                id={data.id}
+                withOption
+              />
+            )
+        )}
       </Layout>
     </>
   );

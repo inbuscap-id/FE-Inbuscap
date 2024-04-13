@@ -21,7 +21,7 @@ export default function ProtectedRoutes() {
 
   useEffect(() => {
     if (token !== "") {
-      setAxiosConfig(token);
+      setAxiosConfig(token!);
       handleGetUser();
     }
   }, [token]);

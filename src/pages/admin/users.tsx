@@ -52,6 +52,9 @@ export default function Users() {
         setShowRejectDialog(!showRejectDialog);
       }
       navigate("/admin/users");
+
+      const datas = await getVerifications();
+      setDatas(datas.data);
     } catch (error) {
       toast({
         title: "Oops! Something went wrong.",
@@ -81,7 +84,19 @@ export default function Users() {
       {
         header: "Foto KTP",
         accessorKey: "photo_ktp",
-        cell: (info) => info.getValue(),
+        cell: (info) => {
+          return info.row.original.photo_ktp ? (
+            <a
+              className="text-sky-700 font-medium underline"
+              href={info.row.original.photo_ktp}
+              target="_blank"
+            >
+              KTP Image
+            </a>
+          ) : (
+            <p className="text-red-500 font-medium">No Image</p>
+          );
+        },
         footer: (props) => props.column.id,
         size: 200,
       },
@@ -89,14 +104,38 @@ export default function Users() {
       {
         header: "Foto NPWP",
         accessorKey: "photo_npwp",
-        cell: (info) => String(info.getValue()),
+        cell: (info) => {
+          return info.row.original.photo_npwp ? (
+            <a
+              className="text-sky-700 font-medium underline"
+              href={info.row.original.photo_npwp}
+              target="_blank"
+            >
+              NPWP Image
+            </a>
+          ) : (
+            <p className="text-red-500 font-medium">No Image</p>
+          );
+        },
         footer: (props) => props.column.id,
         size: 200,
       },
       {
         header: "Foto Selfie",
         accessorKey: "photo_selfie",
-        cell: (info) => info.getValue(),
+        cell: (info) => {
+          return info.row.original.photo_selfie ? (
+            <a
+              className="text-sky-700 font-medium underline"
+              href={info.row.original.photo_selfie}
+              target="_blank"
+            >
+              Selfie Image
+            </a>
+          ) : (
+            <p className="text-red-500 font-medium">No Image</p>
+          );
+        },
         footer: (props) => props.column.id,
         size: 200,
       },

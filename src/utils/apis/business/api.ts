@@ -108,7 +108,7 @@ export const getBusinessVerifications = async () => {
 export const getVerificationsBusinessById = async (proposal_id: number) => {
   try {
     const response = await axiosWithConfig.get(
-      `https://virtserver.swaggerhub.com/BAGIR3008/Inbuscap/1.0.0/verifications/proposals/${proposal_id}`
+      `/verifications/proposals/${proposal_id}`
     );
 
     return response.data as IResponsePagination<IVerifBusiness>;

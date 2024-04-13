@@ -3,6 +3,7 @@ import ProposalCard from "@/components/proposal-card";
 import { Button } from "@/components/ui/button";
 import { getBusinesses } from "@/utils/apis/business/api";
 import { IBusiness } from "@/utils/apis/business/type";
+// import { useAuthStore } from "@/utils/zustand/store";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { toast } from "sonner";
@@ -48,10 +49,11 @@ export default function MyBusiness() {
               id={data.id}
               withOption
             />
-          )
           // )
+          )
         )}
       </Layout>
     </>
   );
 }
+

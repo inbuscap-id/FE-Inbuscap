@@ -45,16 +45,6 @@ export interface IDetailBusiness {
   collected: number;
 }
 
-export interface AdmBusiness {
-  fullname: string;
-  title: string;
-  description: string;
-  capital: number;
-  proposal: string;
-  collected: number;
-  profit: number;
-}
-
 export interface IVerifBusiness {
   id: number;
   capital: number;
@@ -133,62 +123,3 @@ export const updateBusinessSchema = z.object({
 
 export type BusinessType = z.infer<typeof businessSchema>;
 export type UpdateBusinessType = z.infer<typeof updateBusinessSchema>;
-
-// export const base = z.object({
-//   title: z.string().min(6, { message: "Title is required" }),
-//   image: z
-//     .instanceof(File)
-//     .refine(
-//       (file) => file.size <= MAX_UPLOAD_SIZE,
-//       `Max image size is ${MAX_MB}MB`
-//     )
-//     .refine(
-//       (file) =>
-//         !file || file.type === "" || ACCEPTED_IMAGE_TYPES.includes(file.type),
-//       "Only .jpg, .jpeg, and .png formats are supported"
-//     )
-//     .optional(),
-//   description: z.string().min(6, { message: "Description is required" }),
-//   capital: z.string().min(8, { message: "Capital is required" }),
-//   share: z.string().min(2, { message: "share profit is required" }),
-//   proposal: z
-//     .instanceof(File)
-//     .refine(
-//       (file) => file.size <= MAX_PDF_SIZE,
-//       `Max image size is ${MAX_MB}MB`
-//     )
-//     .refine(
-//       (file) =>
-//         !file || file.type === "" || ACCEPTED_PDF_TYPES.includes(file.type),
-//       "Only .pdf formats are supported"
-//     ),
-// });
-
-// export const addBusinessSchema = z
-//   .object({
-//     mode: z.literal("add"),
-//   })
-//   .merge(base);
-
-// export const editBusinessSchema = z
-//   .object({
-//     mode: z.literal("edit"),
-//   })
-//   .merge(base);
-
-// export const businessSchema = z.discriminatedUnion("mode", [
-//   addBusinessSchema,
-//   editBusinessSchema,
-// ]);
-
-// export type BusinessSchema = z.infer<typeof businessSchema>;
-
-// export interface INewBusiness {
-//   id: number;
-//   title: string;
-//   image: string;
-//   description: string;
-//   capital: string;
-//   share: string;
-//   proposal: string;
-// }

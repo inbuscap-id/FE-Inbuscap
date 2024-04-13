@@ -1,3 +1,4 @@
+import { setAxiosConfig } from "@/utils/apis/axiosWithConfig";
 import { getUser } from "@/utils/apis/users/api";
 import { useAuthStore } from "@/utils/zustand/store";
 import { useEffect } from "react";
@@ -5,7 +6,7 @@ import { Navigate, Outlet, useLocation } from "react-router-dom";
 import { toast } from "sonner";
 import { jwtDecode } from "jwt-decode";
 import { ITokenData } from "@/utils/types/api";
-import { setAxiosConfig } from "@/utils/apis/axiosWithConfig";
+
 
 export default function ProtectedRoutes() {
   const { pathname } = useLocation();

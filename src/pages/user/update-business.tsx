@@ -24,6 +24,7 @@ const UpdateBusiness = () => {
       image: new File([], ""),
       title: "",
       capital: "",
+      share: "",
       description: "",
       proposal: new File([], ""),
       mode: "edit",
@@ -39,6 +40,7 @@ const UpdateBusiness = () => {
       const result = await getDetailBusiness(param.id_business!);
       form.setValue("title", result.data.title);
       form.setValue("capital", result.data.capital.toString());
+      form.setValue("share", result.data.share.toString());
       form.setValue("description", result.data.description);
   
     } catch (error) {
@@ -140,9 +142,25 @@ try {
               >
                 {(field) => (
                   <Input
-                    placeholder="Your amount of capital"
-                    type="amount"
-                    data-testid="amount"
+                    placeholder="Your amount of amount"
+                    id="input-capital"
+                    disabled={form.formState.isSubmitting}
+                    aria-disabled={form.formState.isSubmitting}
+                    {...field}
+                    className="rounded-full"
+                    value={field.value as string}
+                  />
+                )}
+              </CustomFormField>
+              <CustomFormField
+                control={form.control}
+                name="share"
+                label="Share Profit"
+              >
+                {(field) => (
+                  <Input
+                    placeholder="Enter your share profit"
+                    id="input-share"
                     disabled={form.formState.isSubmitting}
                     aria-disabled={form.formState.isSubmitting}
                     {...field}
@@ -171,7 +189,7 @@ try {
               </CustomFormField>
               <Button
                 type="submit"
-                data-testid="btn-submit"
+                id="btn-submit"
                 disabled={form.formState.isSubmitting}
                 aria-disabled={form.formState.isSubmitting}
                 className="rounded-full px-8 mt-7"

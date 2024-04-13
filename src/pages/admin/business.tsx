@@ -2,8 +2,8 @@ import CustomAlert from "@/components/custom-alert";
 import DataTable from "@/components/data-table";
 import Layout from "@/components/layout-admin";
 import { useToast } from "@/components/ui/use-toast";
-import { approveBusiness, getBusinessVerifications } from "@/utils/apis/users/api";
-import { IVerifBusiness, VerifBusiness } from "@/utils/apis/users/type";
+import { approveBusiness, getBusinessVerifications } from "@/utils/apis/business/api";
+import { IVerifBusiness, VerifBusiness } from "@/utils/apis/business/type";
 import { ColumnDef } from "@tanstack/react-table";
 import { Edit, Trash2, UserCheck, UserX } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
@@ -78,6 +78,7 @@ export default function Business() {
         accessorKey: "description",
         cell: (info) => info.getValue(),
         footer: (props) => props.column.id,
+        size: 200,
       },
       {
         header: "Amount",
@@ -97,7 +98,7 @@ export default function Business() {
         accessorKey: "proposal",
         cell: (info) => info.getValue(),
         footer: (props) => props.column.id,
-        size: 0,
+        size: 50,
       },
       {
         header: "Status",
@@ -155,7 +156,6 @@ export default function Business() {
               </div>
             );
           }
-
           if (value === 1) {
             return (
               <div className="flex gap-3">

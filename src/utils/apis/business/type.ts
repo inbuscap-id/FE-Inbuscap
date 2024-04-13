@@ -42,6 +42,21 @@ export interface AdmBusiness {
   profit: number;
 }
 
+export interface IVerifBusiness {
+  id: number;
+  title: string;
+  owner: string;
+  description: string;
+  capital: string;
+  share: string;
+  proposal: string;
+  is_active: number;
+}
+
+export interface VerifBusiness {
+  is_active: number;
+}
+
 const MAX_MB = 2;
 const MAX_UPLOAD_SIZE = 1024 * 1024 * MAX_MB;
 const ACCEPTED_IMAGE_TYPES = ["image/jpeg", "image/jpg", "image/png"];
@@ -65,18 +80,18 @@ export const base = z.object({
     .optional(),
   description: z.string().min(6, { message: "Description is required" }),
   capital: z.string().min(8, { message: "Capital is required" }),
+  share: z.string().min(2, { message: "share profit is required" }),
   proposal: z
-    .instanceof(File)
-    .refine(
-      (file) => file.size <= MAX_PDF_SIZE,
-      `Max image size is ${MAX_MB}MB`
-    )
-    .refine(
-      (file) =>
-        !file || file.type === "" || ACCEPTED_PDF_TYPES.includes(file.type),
-      "Only .pdf formats are supported"
-    )
-    .optional(),
+  .instanceof(File)
+  .refine(
+    (file) => file.size <= MAX_PDF_SIZE,
+    `Max image size is ${MAX_MB}MB`
+  )
+  .refine(
+    (file) =>
+      !file || file.type === "" || ACCEPTED_PDF_TYPES.includes(file.type),
+    "Only .pdf formats are supported"
+  ),  
 });
 
 export const addBusinessSchema = z
@@ -104,5 +119,6 @@ export interface INewBusiness {
   image: string;
   description: string;
   capital: string;
+  share: string;
   proposal: string;
 }

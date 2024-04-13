@@ -267,7 +267,7 @@ export default function Profile() {
                       type="button"
                       disabled={form.formState.isSubmitting}
                       aria-disabled={form.formState.isSubmitting}
-                      className="rounded-2xl px-6 bg-white text-red-600 hover:bg-red-600 hover:text-white"
+                      className="rounded-2xl px-6 bg-white text-red-600 hover:bg-red-600 hover:text-white border-2 border-red-500"
                       onClick={() => setShowDeleteDialog(true)}
                     >
                       Delete

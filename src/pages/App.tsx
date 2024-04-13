@@ -11,9 +11,10 @@ import { useAuthStore } from "@/utils/zustand/store";
 function Homepage() {
   const [datas, setDatas] = useState<IBusiness[]>([]);
   const user = useAuthStore((state) => state.user);
+  console.log(datas);
 
   useEffect(() => {
-    // handleGetBusiness();
+    handleGetBusiness();
   }, []);
 
   const handleGetBusiness = async () => {

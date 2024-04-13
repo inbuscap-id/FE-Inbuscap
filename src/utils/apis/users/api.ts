@@ -26,7 +26,7 @@ export const getUser = async () => {
   }
 };
 
-export const updateUser = async (body: ProfileType) => {
+export const  updateUser = async (body: ProfileType) => {
   try {
     const formData = new FormData();
     let key: keyof typeof body;

@@ -48,18 +48,22 @@ export default function InvestedBusiness() {
           </p>
         </Link>
       </div>
-      {datas.map((data) => (
-        <ProposalCard
-          key={data.id}
-          title={data.title}
-          desc={data.description}
-          image={data.image}
-          target={data.capital}
-          collected={data.collected}
-          id={data.id}
-          invested
-        />
-      ))}
+      {datas.length === 0 ? (
+        <p className="text-center">No Data</p>
+      ) : (
+        datas.map((data) => (
+          <ProposalCard
+            key={data.id}
+            title={data.title}
+            desc={data.description}
+            image={data.image}
+            target={data.capital}
+            collected={data.collected}
+            id={data.id}
+            invested
+          />
+        ))
+      )}
     </Layout>
   );
 }

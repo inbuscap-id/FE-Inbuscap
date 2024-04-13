@@ -13,7 +13,6 @@ import {
   VerificationType,
 } from "./type";
 import { checkProperty, valueFormatData } from "@/utils/formatter";
-import { IVerifBusiness, VerifBusiness } from "../business/type";
 
 export const getUser = async () => {
   try {

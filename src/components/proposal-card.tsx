@@ -98,9 +98,14 @@ export default function ProposalCard(props: Props) {
                     </>
                   )}
 
-                  <DropdownMenuItem className="flex gap-2">
-                    <EditIcon className="w-5" />
-                    <Link to={`/business/${id}/update`}>Edit</Link>
+                  <DropdownMenuItem>
+                    <Link
+                      to={`/business/${id}/update`}
+                      className="flex gap-2 items-center"
+                    >
+                      <EditIcon className="w-5" />
+                      <p>Edit</p>
+                    </Link>
                   </DropdownMenuItem>
                   <DropdownMenuItem
                     className="text-red-600 flex gap-2"
@@ -120,7 +125,7 @@ export default function ProposalCard(props: Props) {
             <p className="text-xl">
               {formatRupiah.format(collected)} / {formatRupiah.format(target)}
             </p>
-            <p className="my-2 text-sm">{desc}</p>
+            <p className="my-2 text-sm">{desc.slice(0, 75)}</p>
             <p>{persentase}%</p>
             <Progress
               value={persentase}

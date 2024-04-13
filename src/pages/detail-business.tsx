@@ -63,7 +63,7 @@ export default function DetailBusiness() {
           </div>
           <div className="mb-5">
             <p className="text-2xl font-semibold">Proposal File</p>
-            <a href={data?.document}>
+            <a href={data?.document} target="_blank">
               <p className="font-bold text-xl text-blue-700">
                 business-proposal
               </p>

@@ -4,7 +4,14 @@ import {
   IResponsePagination,
 } from "@/utils/types/api";
 import axiosWithConfig from "../axiosWithConfig";
-import { BusinessSchema, IBusiness, IVerifBusiness, IDetailBusiness, VerifBusiness } from "./type";
+import {
+  IBusiness,
+  IVerifBusiness,
+  IDetailBusiness,
+  VerifBusiness,
+  BusinessType,
+  UpdateBusinessType,
+} from "./type";
 import { checkProperty, valueFormatData } from "@/utils/formatter";
 
 export const getBusinesses = async () => {
@@ -27,9 +34,21 @@ export const getDetailBusiness = async (proposal_id: string) => {
   }
 };
 
-export const createBusiness = async (body: BusinessSchema) => {
+export const createBusiness = async (body: BusinessType) => {
   try {
-    const response = await axiosWithConfig.post(`/proposals`, body);
+    const formData = new FormData();
+    let key: keyof typeof body;
+    for (key in body) {
+      if (checkProperty(body[key])) {
+        formData.append(key, valueFormatData(body[key]));
+      }
+    }
+
+    const response = await axiosWithConfig.post(`/proposals`, formData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
 
     return response.data as IResponse;
   } catch (error: any) {
@@ -39,7 +58,7 @@ export const createBusiness = async (body: BusinessSchema) => {
 
 export const updateBusiness = async (
   proposal_id: string,
-  body: BusinessSchema
+  body: UpdateBusinessType
 ) => {
   try {
     const formData = new FormData();
@@ -78,9 +97,7 @@ export const deleteBusiness = async (proposal_id: string) => {
 
 export const getBusinessVerifications = async () => {
   try {
-    const response = await axiosWithConfig.get(
-      "https://virtserver.swaggerhub.com/BAGIR3008/Inbuscap/1.0.0/verifications/proposals"
-    );
+    const response = await axiosWithConfig.get("/verifications/proposals");
 
     return response.data as IResponsePagination<IVerifBusiness[]>;
   } catch (error: any) {
@@ -100,10 +117,13 @@ export const getVerificationsBusinessById = async (proposal_id: number) => {
   }
 };
 
-export const approveBusiness = async (proposal_id: number, body: VerifBusiness) => {
+export const approveBusiness = async (
+  proposal_id: number,
+  body: VerifBusiness
+) => {
   try {
     const response = await axiosWithConfig.put(
-      `https://virtserver.swaggerhub.com/BAGIR3008/Inbuscap/1.0.0/verifications/proposals/${proposal_id}`,
+      `/verifications/proposals/${proposal_id}`,
       body
     );
 

@@ -4,22 +4,25 @@ import { Button } from "@/components/ui/button";
 import { Form } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { BusinessSchema, businessSchema } from "@/utils/apis/business/type";
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Loader2 } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { useEffect } from "react";
-import { toast } from "@/components/ui/use-toast"
+import { toast } from "@/components/ui/use-toast";
 import { getDetailBusiness, updateBusiness } from "@/utils/apis/business/api";
 import { useNavigate, useParams } from "react-router-dom";
+import {
+  UpdateBusinessType,
+  updateBusinessSchema,
+} from "@/utils/apis/business/type";
 
 const UpdateBusiness = () => {
   const param = useParams();
   const navigate = useNavigate();
 
-  const form = useForm<BusinessSchema>({
-    resolver: zodResolver(businessSchema),
+  const form = useForm<UpdateBusinessType>({
+    resolver: zodResolver(updateBusinessSchema),
     defaultValues: {
       image: new File([], ""),
       title: "",
@@ -27,7 +30,6 @@ const UpdateBusiness = () => {
       share: "",
       description: "",
       proposal: new File([], ""),
-      mode: "edit",
     },
   });
 
@@ -42,7 +44,6 @@ const UpdateBusiness = () => {
       form.setValue("capital", result.data.capital.toString());
       form.setValue("share", result.data.share.toString());
       form.setValue("description", result.data.description);
-  
     } catch (error) {
       toast({
         title: "Oops! Something went wrong.",
@@ -52,22 +53,22 @@ const UpdateBusiness = () => {
     }
   };
 
-  async function onSubmit(data: BusinessSchema) {
-try {
-    const result = await updateBusiness(param.id_business!, data);
-    toast({
-      description: result.message,
-    });
+  async function onSubmit(data: UpdateBusinessType) {
+    try {
+      const result = await updateBusiness(param.id_business!, data);
+      toast({
+        description: result.message,
+      });
 
-    navigate("/my-business");
-  } catch (error: any) {
-    toast({
-      title: "Oops! Something went wrong.",
-      description: (error as Error).message,
-      variant: "destructive",
-    });
+      navigate("/my-business");
+    } catch (error: any) {
+      toast({
+        title: "Oops! Something went wrong.",
+        description: (error as Error).message,
+        variant: "destructive",
+      });
+    }
   }
-}
 
   return (
     <Layout>
@@ -209,6 +210,6 @@ try {
       </div>
     </Layout>
   );
-}
+};
 
 export default UpdateBusiness;

@@ -3,15 +3,13 @@ import ProposalCard from "@/components/proposal-card";
 import { Button } from "@/components/ui/button";
 import { getBusinesses } from "@/utils/apis/business/api";
 import { IBusiness } from "@/utils/apis/business/type";
-import { useAuthStore } from "@/utils/zustand/store";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { toast } from "sonner";
 
 export default function MyBusiness() {
   const [business, setBusiness] = useState<IBusiness[]>([]);
-  const user = useAuthStore((state) => state.user);
-  console.log(business);
+  // const user = useAuthStore((state) => state.user);
 
   useEffect(() => {
     fetchData();
@@ -38,19 +36,20 @@ export default function MyBusiness() {
           </Link>
         </div>
         {business.map(
-          (data) =>
-            data.email === user?.email && (
-              <ProposalCard
-                key={data.id}
-                title={data.title}
-                desc={data.description}
-                image={data.image}
-                target={data.capital}
-                collected={data.collected}
-                id={data.id}
-                withOption
-              />
-            )
+          (data) => (
+            // data.email === user?.email && (
+            <ProposalCard
+              key={data.id}
+              title={data.title}
+              desc={data.description}
+              image={data.image}
+              target={data.capital}
+              collected={data.collected}
+              id={data.id}
+              withOption
+            />
+          )
+          // )
         )}
       </Layout>
     </>

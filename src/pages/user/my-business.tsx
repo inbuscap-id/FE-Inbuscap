@@ -53,10 +53,11 @@ export default function MyBusiness() {
               id={data.id}
               withOption
             />
-          )
           // )
+          )
         )}
       </Layout>
     </>
   );
 }
+

@@ -8,7 +8,7 @@ export default function Navbar() {
   const isLoggedIn = useAuthStore((state) => state.token);
 
   return (
-    <nav className="w-full bg-[#00ad26] flex justify-center items-center sticky top-0 z-10">
+    <nav className="w-full bg-[#00ad26] flex justify-center mx-auto items-center sticky top-0 z-10">
       <div className="w-10/12 flex text-white justify-between items-center py-5">
         <div className="font-lora font-bold text-3xl">
           <h1>

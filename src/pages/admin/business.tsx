@@ -2,7 +2,10 @@ import CustomAlert from "@/components/custom-alert";
 import DataTable from "@/components/data-table";
 import Layout from "@/components/layout-admin";
 import { useToast } from "@/components/ui/use-toast";
-import { approveBusiness, getBusinessVerifications } from "@/utils/apis/business/api";
+import {
+  approveBusiness,
+  getBusinessVerifications,
+} from "@/utils/apis/business/api";
 import { IVerifBusiness, VerifBusiness } from "@/utils/apis/business/type";
 import { ColumnDef } from "@tanstack/react-table";
 import { Edit, Trash2, UserCheck, UserX } from "lucide-react";
@@ -11,7 +14,8 @@ import { useEffect, useMemo, useState } from "react";
 export default function Business() {
   const [datas, setDatas] = useState<IVerifBusiness[]>([]);
   const [businessId, setBusinessId] = useState<number | null>(null);
-  const [owner, setOwner] = useState("");
+  // const [owner, setBusiness] = useState("");
+  const [business, setBusiness] = useState("");
   const [showApproveDialog, setShowApproveDialog] = useState(false);
   const [showRejectDialog, setShowRejectDialog] = useState(false);
   const { toast } = useToast();
@@ -34,7 +38,10 @@ export default function Business() {
     }
   };
 
-  const handleApproveBusiness = async (proposal_id: number, body: VerifBusiness) => {
+  const handleApproveBusiness = async (
+    proposal_id: number,
+    body: VerifBusiness
+  ) => {
     try {
       const result = await approveBusiness(proposal_id, body);
 
@@ -76,7 +83,7 @@ export default function Business() {
       {
         header: "Detail",
         accessorKey: "description",
-        cell: (info) => info.getValue(),
+        cell: (info) => info.row.original.description.slice(0, 50),
         footer: (props) => props.column.id,
         size: 200,
       },
@@ -96,15 +103,15 @@ export default function Business() {
       {
         header: "Proposal",
         accessorKey: "proposal",
-        cell: (info) => info.getValue(),
+        cell: (info) => info.row.original.proposal,
         footer: (props) => props.column.id,
         size: 50,
       },
       {
         header: "Status",
-        id: "is_active",
+        id: "status",
         cell: (info) => {
-          const value = info.row.original.is_active;
+          const value = info.row.original.status;
           if (value === 0) {
             return (
               <p className="text-yellow-600 font-semibold bg-yellow-100 rounded-full text-center px-3 py-1">
@@ -134,14 +141,14 @@ export default function Business() {
         header: "Approval",
         id: "approval",
         cell: (info) => {
-          const value = info.row.original.is_active;
+          const value = info.row.original.status;
           if (value === 0) {
             return (
               <div className="flex gap-3">
                 <UserCheck
                   className="text-green-700"
                   onClick={() => {
-                    setOwner(info.row.original.owner);
+                    setBusiness(info.row.original.title);
                     setBusinessId(info.row.original.id);
                     setShowApproveDialog(!showApproveDialog);
                   }}
@@ -149,7 +156,7 @@ export default function Business() {
                 <UserX
                   className="text-red-700"
                   onClick={() => {
-                    setOwner(info.row.original.owner);
+                    setBusiness(info.row.original.title);
                     setShowRejectDialog(!showRejectDialog);
                   }}
                 />
@@ -162,7 +169,7 @@ export default function Business() {
                 <UserX
                   className="text-red-700 mx-auto"
                   onClick={() => {
-                    setOwner(info.row.original.owner);
+                    setBusiness(info.row.original.title);
                     setShowRejectDialog(!showRejectDialog);
                   }}
                 />
@@ -176,7 +183,7 @@ export default function Business() {
                 <UserCheck
                   className="text-green-700 mx-auto"
                   onClick={() => {
-                    setOwner(info.row.original.owner);
+                    setBusiness(info.row.original.title);
                     setBusinessId(info.row.original.id);
                     setShowApproveDialog(!showApproveDialog);
                   }}
@@ -213,8 +220,8 @@ export default function Business() {
       </div>
       <CustomAlert
         open={showApproveDialog}
-        title={`Kamu Yakin Untuk Menyetujui "${owner}" ?`}
-        description="Setelah pengguna disetujui, maka pengguna dapat membuat bisnis ataupun berinvestasi di bisnis orang lain"
+        title={`Kamu Yakin Untuk Menyetujui "${business}" ?`}
+        description="Setelah bisnis disetujui, maka pengguna dapat berinvestasi di bisnis ini."
         onCancel={() => {
           setShowApproveDialog(!showApproveDialog);
         }}
@@ -223,8 +230,8 @@ export default function Business() {
 
       <CustomAlert
         open={showRejectDialog}
-        title={`Kamu Yakin Untuk Me-reject "${owner}" ?`}
-        description="Setelah pengguna di-reject, maka pengguna tidak dapat membuat bisnis ataupun berinvestasi di bisnis orang lain"
+        title={`Kamu Yakin Untuk Me-reject "${business}" ?`}
+        description="Setelah Bisnis di-reject, maka bisnis tidak akan dipublikasikan."
         onCancel={() => {
           setShowRejectDialog(!showRejectDialog);
         }}

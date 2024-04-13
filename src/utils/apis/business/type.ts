@@ -44,13 +44,13 @@ export interface AdmBusiness {
 
 export interface IVerifBusiness {
   id: number;
+  capital: number;
+  description: string;
   title: string;
   owner: string;
-  description: string;
-  capital: string;
-  share: string;
+  share: number;
   proposal: string;
-  is_active: number;
+  status: number;
 }
 
 export interface VerifBusiness {
@@ -64,8 +64,33 @@ const ACCEPTED_IMAGE_TYPES = ["image/jpeg", "image/jpg", "image/png"];
 const MAX_PDF_SIZE = 20 * 1024 * 1024;
 const ACCEPTED_PDF_TYPES = ["application/pdf"];
 
-export const base = z.object({
+export const businessSchema = z.object({
+  image: z
+    .instanceof(File)
+    .refine(
+      (file) => file.size <= MAX_UPLOAD_SIZE,
+      `Max image size is ${MAX_MB}MB`
+    )
+    .refine(
+      (file) =>
+        !file || file.type === "" || ACCEPTED_IMAGE_TYPES.includes(file.type),
+      "Only .jpg, .jpeg, and .png formats are supported"
+    ),
   title: z.string().min(6, { message: "Title is required" }),
+  description: z.string().min(6, { message: "Description is required" }),
+  capital: z.string().min(8, { message: "Capital is required" }),
+  share: z.string().min(2, { message: "share profit is required" }),
+  proposal: z
+    .instanceof(File)
+    .refine((file) => file.size <= MAX_PDF_SIZE, `Max PDF size is ${MAX_MB}MB`)
+    .refine(
+      (file) =>
+        !file || file.type === "" || ACCEPTED_PDF_TYPES.includes(file.type),
+      "Only .pdf formats are supported"
+    ),
+});
+
+export const updateBusinessSchema = z.object({
   image: z
     .instanceof(File)
     .refine(
@@ -78,47 +103,79 @@ export const base = z.object({
       "Only .jpg, .jpeg, and .png formats are supported"
     )
     .optional(),
+  title: z.string().min(6, { message: "Title is required" }),
   description: z.string().min(6, { message: "Description is required" }),
   capital: z.string().min(8, { message: "Capital is required" }),
   share: z.string().min(2, { message: "share profit is required" }),
   proposal: z
-  .instanceof(File)
-  .refine(
-    (file) => file.size <= MAX_PDF_SIZE,
-    `Max image size is ${MAX_MB}MB`
-  )
-  .refine(
-    (file) =>
-      !file || file.type === "" || ACCEPTED_PDF_TYPES.includes(file.type),
-    "Only .pdf formats are supported"
-  ),  
+    .instanceof(File)
+    .refine((file) => file.size <= MAX_PDF_SIZE, `Max PDF size is ${MAX_MB}MB`)
+    .refine(
+      (file) =>
+        !file || file.type === "" || ACCEPTED_PDF_TYPES.includes(file.type),
+      "Only .pdf formats are supported"
+    )
+    .optional(),
 });
 
-export const addBusinessSchema = z
-  .object({
-    mode: z.literal("add"),
-  })
-  .merge(base);
+export type BusinessType = z.infer<typeof businessSchema>;
+export type UpdateBusinessType = z.infer<typeof updateBusinessSchema>;
 
-export const editBusinessSchema = z
-  .object({
-    mode: z.literal("edit"),
-  })
-  .merge(base);
+// export const base = z.object({
+//   title: z.string().min(6, { message: "Title is required" }),
+//   image: z
+//     .instanceof(File)
+//     .refine(
+//       (file) => file.size <= MAX_UPLOAD_SIZE,
+//       `Max image size is ${MAX_MB}MB`
+//     )
+//     .refine(
+//       (file) =>
+//         !file || file.type === "" || ACCEPTED_IMAGE_TYPES.includes(file.type),
+//       "Only .jpg, .jpeg, and .png formats are supported"
+//     )
+//     .optional(),
+//   description: z.string().min(6, { message: "Description is required" }),
+//   capital: z.string().min(8, { message: "Capital is required" }),
+//   share: z.string().min(2, { message: "share profit is required" }),
+//   proposal: z
+//     .instanceof(File)
+//     .refine(
+//       (file) => file.size <= MAX_PDF_SIZE,
+//       `Max image size is ${MAX_MB}MB`
+//     )
+//     .refine(
+//       (file) =>
+//         !file || file.type === "" || ACCEPTED_PDF_TYPES.includes(file.type),
+//       "Only .pdf formats are supported"
+//     ),
+// });
 
-export const businessSchema = z.discriminatedUnion("mode", [
-  addBusinessSchema,
-  editBusinessSchema,
-]);
+// export const addBusinessSchema = z
+//   .object({
+//     mode: z.literal("add"),
+//   })
+//   .merge(base);
 
-export type BusinessSchema = z.infer<typeof businessSchema>;
+// export const editBusinessSchema = z
+//   .object({
+//     mode: z.literal("edit"),
+//   })
+//   .merge(base);
 
-export interface INewBusiness {
-  id: number;
-  title: string;
-  image: string;
-  description: string;
-  capital: string;
-  share: string;
-  proposal: string;
-}
+// export const businessSchema = z.discriminatedUnion("mode", [
+//   addBusinessSchema,
+//   editBusinessSchema,
+// ]);
+
+// export type BusinessSchema = z.infer<typeof businessSchema>;
+
+// export interface INewBusiness {
+//   id: number;
+//   title: string;
+//   image: string;
+//   description: string;
+//   capital: string;
+//   share: string;
+//   proposal: string;
+// }

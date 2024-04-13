@@ -89,6 +89,7 @@ export default function Users() {
             <a
               className="text-sky-700 font-medium underline"
               href={info.row.original.photo_ktp}
+              target="_blank"
             >
               KTP Image
             </a>
@@ -104,10 +105,11 @@ export default function Users() {
         header: "Foto NPWP",
         accessorKey: "photo_npwp",
         cell: (info) => {
-          return info.row.original.photo_ktp ? (
+          return info.row.original.photo_npwp ? (
             <a
               className="text-sky-700 font-medium underline"
-              href={info.row.original.photo_ktp}
+              href={info.row.original.photo_npwp}
+              target="_blank"
             >
               NPWP Image
             </a>
@@ -122,10 +124,11 @@ export default function Users() {
         header: "Foto Selfie",
         accessorKey: "photo_selfie",
         cell: (info) => {
-          return info.row.original.photo_ktp ? (
+          return info.row.original.photo_selfie ? (
             <a
               className="text-sky-700 font-medium underline"
-              href={info.row.original.photo_ktp}
+              href={info.row.original.photo_selfie}
+              target="_blank"
             >
               Selfie Image
             </a>

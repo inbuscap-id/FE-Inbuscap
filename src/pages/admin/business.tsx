@@ -10,14 +10,15 @@ import { IVerifBusiness, VerifBusiness } from "@/utils/apis/business/type";
 import { ColumnDef } from "@tanstack/react-table";
 import { Edit, Trash2, UserCheck, UserX } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function Business() {
   const [datas, setDatas] = useState<IVerifBusiness[]>([]);
   const [businessId, setBusinessId] = useState<number | null>(null);
-  // const [owner, setBusiness] = useState("");
   const [business, setBusiness] = useState("");
   const [showApproveDialog, setShowApproveDialog] = useState(false);
   const [showRejectDialog, setShowRejectDialog] = useState(false);
+  const navigate = useNavigate();
   const { toast } = useToast();
 
   useEffect(() => {
@@ -48,7 +49,18 @@ export default function Business() {
       toast({
         description: result.message,
       });
-      setShowApproveDialog(!showApproveDialog);
+
+      if (body.is_active === 1) {
+        setShowApproveDialog(!showApproveDialog);
+      }
+
+      if (body.is_active === 2) {
+        setShowRejectDialog(!showRejectDialog);
+      }
+      navigate("/admin/businesses");
+
+      const datas = await getBusinessVerifications();
+      setDatas(datas.data);
     } catch (error) {
       toast({
         title: "Oops! Something went wrong.",
@@ -235,6 +247,7 @@ export default function Business() {
         onCancel={() => {
           setShowRejectDialog(!showRejectDialog);
         }}
+        onAction={() => handleApproveBusiness(businessId!, { is_active: 2 })}
       />
     </Layout>
   );

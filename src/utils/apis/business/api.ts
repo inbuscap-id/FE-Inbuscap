@@ -2,6 +2,7 @@ import {
   IResponse,
   IResponseData,
   IResponsePagination,
+  Request,
 } from "@/utils/types/api";
 import axiosWithConfig from "../axiosWithConfig";
 import {
@@ -13,7 +14,7 @@ import {
   UpdateBusinessType,
   IMyBusiness,
 } from "./type";
-import { checkProperty, valueFormatData } from "@/utils/formatter";
+import { buildQueryString, checkProperty, valueFormatData } from "@/utils/formatter";
 
 export const getBusinesses = async () => {
   try {
@@ -106,9 +107,12 @@ export const deleteBusiness = async (proposal_id: string) => {
   }
 };
 
-export const getBusinessVerifications = async () => {
+export const getBusinessVerifications = async (params?: Request) => {
   try {
-    const response = await axiosWithConfig.get("/verifications/proposals");
+    const query = buildQueryString(params);
+    const url = query ? `/verifications/proposals${query}` : "/verifications/users";
+
+    const response = await axiosWithConfig.get(url);
 
     return response.data as IResponsePagination<IVerifBusiness[]>;
   } catch (error: any) {

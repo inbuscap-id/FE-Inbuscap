@@ -52,7 +52,7 @@ export default function Register() {
 
   return (
     <div className="flex w-full justify-between h-screen">
-      <div className="w-full flex items-center justify-center md:w-2/3">
+      <div className="w-full md:w-3/4 lg:w-2/3 mx-auto flex items-center justify-center">
         <Card className="w-3/4 md:w-3/4 lg:w-1/2">
           <CardHeader>
             <CardTitle className="text-center">Register</CardTitle>

@@ -89,19 +89,19 @@ export default function Topup() {
 
   return (
     <Layout>
-      <div className="mb-10 mt-2 flex gap-10">
+      <div className="mb-10 mt-2 flex md:gap-10 gap-5">
         <Link to={"/profile"}>
-          <p className="text-xl text-slate-600 hover:text-black">My Profile</p>
+          <p className="xl:text-xl md:text-xl text-sm text-slate-600 hover:text-black">My Profile</p>
         </Link>
         <Link to={"/invested-business"}>
-          <p className="text-xl text-slate-600 hover:text-black">
+          <p className="xl:text-xl md:text-xl text-sm text-slate-600 hover:text-black">
             Invested Business
           </p>
         </Link>
         <Link to={"/verification"}>
           <p
             className={cn(
-              "text-xl text-slate-600 hover:text-black",
+              "xl:text-xl md:text-xl text-sm text-slate-600 hover:text-black",
               location.pathname === "/verification"
                 ? "text-black font-semibold"
                 : ""
@@ -114,7 +114,7 @@ export default function Topup() {
         <Link to={"/topup"}>
           <p
             className={cn(
-              "text-xl text-slate-600 hover:text-black",
+              "xl:text-xl md:text-xl text-sm text-slate-600 hover:text-black",
               location.pathname === "/topup" ? "text-black font-semibold" : ""
             )}
           >

@@ -2,6 +2,8 @@ import Dropdown from "@/components/dropdown";
 import { cn } from "@/lib/utils";
 import { useAuthStore } from "@/utils/zustand/store";
 import { Link, useLocation } from "react-router-dom";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "./ui/dropdown-menu";
+import { Menu } from "lucide-react";
 
 export default function Navbar() {
   const location = useLocation();
@@ -21,7 +23,7 @@ export default function Navbar() {
               <>
                 <li
                   className={cn(
-                    "hover:text-white text-green-200",
+                    "hover:text-white text-green-200 hidden lg:block",
                     location.pathname === "/create-business" ? "text-white" : ""
                   )}
                 >
@@ -29,7 +31,7 @@ export default function Navbar() {
                 </li>
                 <li
                   className={cn(
-                    "hover:text-white text-green-100",
+                    "hover:text-white text-green-100 hidden lg:block",
                     location.pathname === "/my-business" ? "text-white " : ""
                   )}
                 >
@@ -37,7 +39,7 @@ export default function Navbar() {
                 </li>
                 <li
                   className={cn(
-                    "hover:text-white text-green-100",
+                    "hover:text-white text-green-100 hidden lg:block",
                     location.pathname === "/" ? "text-white " : ""
                   )}
                 >
@@ -65,7 +67,44 @@ export default function Navbar() {
               </>
             )}
 
-            <li>
+            <li className="flex items-center gap-3">
+      <DropdownMenu>
+        <DropdownMenuTrigger>
+          <Menu className="lg:hidden mx-2"/>
+        </DropdownMenuTrigger>
+        <DropdownMenuContent>
+        <DropdownMenuItem>
+        <li
+                  className={cn(
+                    "hover:text-green-300 text-green-500",
+                    location.pathname === "/create-business" ? "text-green-800" : ""
+                  )}
+                >
+                  <Link to="/create-business">Create Bussiness</Link>
+                </li>
+        </DropdownMenuItem>
+        <DropdownMenuItem>
+        <li
+                  className={cn(
+                    "hover:text-green-300 text-green-500",
+                    location.pathname === "/my-business" ? "text-green-800 " : ""
+                  )}
+                >
+                  <Link to="/my-business">My Business</Link>
+                </li>
+        </DropdownMenuItem>
+        <DropdownMenuItem>
+        <li
+                  className={cn(
+                    "hover:text-green-300 text-green-500",
+                    location.pathname === "/" ? "text-green-800 " : ""
+                  )}
+                >
+                  <Link to="/">See All Bussiness</Link>
+                </li>
+        </DropdownMenuItem>
+        </DropdownMenuContent>
+      </DropdownMenu>
               <Dropdown />
             </li>
           </ul>

@@ -90,11 +90,11 @@ export default function Profile() {
   return (
     <>
       <Layout>
-        <div className="mb-6 mt-2 flex gap-10">
+        <div className="mb-6 mt-2 flex md:gap-10 gap-5">
           <Link to={"/profile"}>
             <p
               className={cn(
-                "text-xl text-slate-600 hover:text-black",
+                "xl:text-xl md:text-xl text-sm text-slate-600 hover:text-black",
                 location.pathname === "/profile"
                   ? "text-black font-semibold"
                   : ""
@@ -104,17 +104,17 @@ export default function Profile() {
             </p>
           </Link>
           <Link to={"/invested-business"}>
-            <p className="text-xl text-slate-600 hover:text-black">
+            <p className="xl:text-xl md:text-xl text-sm text-slate-600 hover:text-black">
               Invested Business
             </p>
           </Link>
           <Link to={"/verification"}>
-            <p className="text-xl text-slate-600 hover:text-black">
+            <p className="xl:text-xl md:text-xl text-sm text-slate-600 hover:text-black">
               Verification
             </p>
           </Link>
           <Link to={"/topup"}>
-            <p className="text-xl text-slate-600 hover:text-black">Top Up</p>
+            <p className="xl:text-xl md:text-xl text-sm text-slate-600 hover:text-black">Top Up</p>
           </Link>
         </div>
         <Form {...form}>
@@ -123,9 +123,9 @@ export default function Profile() {
             data-testid="form-register"
             className="space-y-6"
           >
-            <div className="flex justify-start gap-4">
+            <div className="md:flex sm:grid justify-start gap-4">
               <div>
-                <Avatar className="w-[250px] h-[250px] m-5">
+                <Avatar className="md:w-[250px] md:h-[250px] w-[200px] h-[200px] m-5">
                   <AvatarImage
                     className="object-cover"
                     src={user?.avatar ? user.avatar : defaultAvatar}
@@ -165,7 +165,8 @@ export default function Profile() {
                       <Input
                         {...field}
                         placeholder="Your Name"
-                        data-testid="input-full-name"
+                        id="input-full-name"
+                        type="text"
                         disabled={form.formState.isSubmitting || isDisable}
                         aria-disabled={form.formState.isSubmitting}
                         className="rounded-full"
@@ -183,7 +184,7 @@ export default function Profile() {
                         {...field}
                         placeholder="name@mail.com"
                         type="email"
-                        data-testid="input-email"
+                        id="input-email"
                         disabled={form.formState.isSubmitting || isDisable}
                         aria-disabled={form.formState.isSubmitting}
                         className="rounded-full"
@@ -200,7 +201,8 @@ export default function Profile() {
                       <Input
                         {...field}
                         placeholder="Your KTP"
-                        data-testid="input-ktp"
+                        id="input-ktp"
+                        type="number"
                         disabled={form.formState.isSubmitting || isDisable}
                         aria-disabled={form.formState.isSubmitting}
                         className="rounded-full"
@@ -217,7 +219,8 @@ export default function Profile() {
                       <Input
                         {...field}
                         placeholder="Phone Number"
-                        data-testid="input-phone-number"
+                        id="input-phone-number"
+                        type="tel"
                         disabled={form.formState.isSubmitting || isDisable}
                         aria-disabled={form.formState.isSubmitting}
                         className="rounded-full"
@@ -234,7 +237,8 @@ export default function Profile() {
                       <Input
                         {...field}
                         placeholder="npwp"
-                        data-testid="input-npwp"
+                        id="input-npwp"
+                        type="number"
                         disabled={form.formState.isSubmitting || isDisable}
                         aria-disabled={form.formState.isSubmitting}
                         className="rounded-full"
@@ -294,48 +298,6 @@ export default function Profile() {
                 <p className="text-xl font-semibold">
                   Saldo : {formatRupiah.format(user?.saldo!)}
                 </p>
-                {/* <Dialog>
-                  <DialogTrigger asChild>
-                    <Button className="bg-primary">Top Up</Button>
-                  </DialogTrigger>
-                  <DialogContent className="sm:max-w-[425px]">
-                    <DialogHeader>
-                      <DialogTitle>Top Up</DialogTitle>
-                    </DialogHeader>
-                    <div className="grid gap-4 py-4">
-                      <div className="grid grid-cols-4 items-center gap-4">
-                        <Label htmlFor="bank" className="text-right">
-                          Bank
-                        </Label>
-                        <Select>
-                          <SelectTrigger id="bank">
-                            <SelectValue placeholder="Select" />
-                          </SelectTrigger>
-                          <SelectContent position="popper">
-                            <SelectItem value="bca">BCA</SelectItem>
-                            <SelectItem value="mandiri">Mandiri</SelectItem>
-                            <SelectItem value="BNI">BNI</SelectItem>
-                            <SelectItem value="BRI">BRI</SelectItem>
-                          </SelectContent>
-                        </Select>
-                      </div>
-                      <div className="grid grid-cols-4 items-center gap-4">
-                        <Label htmlFor="amount" className="text-right">
-                          Amount
-                        </Label>
-                        <Input
-                          id="name"
-                          value=""
-                          className="col-span-3"
-                          placeholder="1000000"
-                        />
-                      </div>
-                    </div>
-                    <DialogFooter>
-                      <Button type="submit">Send</Button>
-                    </DialogFooter>
-                  </DialogContent>
-                </Dialog> */}
               </div>
             </div>
           </form>

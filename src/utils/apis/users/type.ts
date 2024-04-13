@@ -23,7 +23,8 @@ export const ProfileSchema = z.object({
     .refine(
       (file) => file?.type && ACCEPTED_IMAGE_TYPES.includes(file.type),
       "Only .jpg, .jpeg, and .png formats are supported"
-    ),
+    )
+    .optional(),
 });
 
 export type ProfileType = z.infer<typeof ProfileSchema>;

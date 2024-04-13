@@ -6,14 +6,18 @@ import { Form } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/components/ui/use-toast";
 import { cn } from "@/lib/utils";
-import { addVerification } from "@/utils/apis/users/api";
+import { addVerification, getUser } from "@/utils/apis/users/api";
 import { VerificationType, verificationSchema } from "@/utils/apis/users/type";
+import { useAuthStore } from "@/utils/zustand/store";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { Loader2 } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 
 export default function Verification() {
   const { toast } = useToast();
+  const user = useAuthStore((state) => state.user);
+  const setUser = useAuthStore((state) => state.setUser);
 
   const form = useForm<VerificationType>({
     resolver: zodResolver(verificationSchema),
@@ -30,6 +34,9 @@ export default function Verification() {
       toast({
         description: result.message,
       });
+
+      const dataUser = await getUser();
+      setUser(dataUser.data);
     } catch (error) {
       toast({
         title: "Oops! Something went wrong.",
@@ -67,6 +74,19 @@ export default function Verification() {
           </Link>
         </div>
         <div className="w-2/3 lg:w-1/2 self-center">
+          {user?.photo_ktp && user.photo_npwp && user.photo_selfie ? (
+            <div className="mx-auto px-4 py-2 mb-4 rounded-full bg-green-50 w-fit">
+              <p className="text-center text-green-500 font-medium">
+                You have uploaded the required documents!
+              </p>
+            </div>
+          ) : (
+            <div className="mx-auto px-4 py-2 mb-4 rounded-full bg-red-50 w-fit">
+              <p className="text-center text-red-500 font-medium">
+                You must upload the required documents!
+              </p>
+            </div>
+          )}
           <Form {...form}>
             <form
               data-testid="form-register"
@@ -86,12 +106,15 @@ export default function Verification() {
                     disabled={form.formState.isSubmitting}
                     aria-disabled={form.formState.isSubmitting}
                     className="rounded-full"
+                    // className={cn(
+                    //   "rounded-full border",
+                    //   user?.photo_ktp
+                    //     ? "border-green-500 text-green-500"
+                    //     : "border-red-500 text-red-500"
+                    // )}
                     onChange={(e) =>
                       field.onChange(e.target.files ? e.target.files[0] : null)
                     }
-                    // {...field}
-                    // placeholder="Upload your KTP"
-                    // data-testid="upload-ktp"
                   />
                 )}
               </CustomFormField>
@@ -108,12 +131,15 @@ export default function Verification() {
                     disabled={form.formState.isSubmitting}
                     aria-disabled={form.formState.isSubmitting}
                     className="rounded-full"
+                    // className={cn(
+                    //   "rounded-full border",
+                    //   user?.photo_ktp
+                    //     ? "border-green-500 text-green-500"
+                    //     : "border-red-500 text-red-500"
+                    // )}
                     onChange={(e) =>
                       field.onChange(e.target.files ? e.target.files[0] : null)
                     }
-                    // {...field}
-                    // placeholder="Upload Your NPWP"
-                    // data-testid="upload-npwp"
                   />
                 )}
               </CustomFormField>
@@ -130,12 +156,15 @@ export default function Verification() {
                     disabled={form.formState.isSubmitting}
                     aria-disabled={form.formState.isSubmitting}
                     className="rounded-full"
+                    // className={cn(
+                    //   "rounded-full border",
+                    //   user?.photo_ktp
+                    //     ? "border-green-500 text-green-500"
+                    //     : "border-red-500 text-red-500"
+                    // )}
                     onChange={(e) =>
                       field.onChange(e.target.files ? e.target.files[0] : null)
                     }
-                    // {...field}
-                    // placeholder="Upload Your Selfie"
-                    // data-testid="upload-selfie"
                   />
                 )}
               </CustomFormField>
@@ -159,7 +188,14 @@ export default function Verification() {
                   aria-disabled={form.formState.isSubmitting}
                   className="rounded-2xl mx-10 px-7"
                 >
-                  Save
+                  {form.formState.isSubmitting ? (
+                    <>
+                      <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                      Please wait
+                    </>
+                  ) : (
+                    "Save"
+                  )}
                 </Button>
               </div>
             </form>

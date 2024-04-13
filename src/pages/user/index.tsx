@@ -1,3 +1,4 @@
+import defaultAvatar from "@/assets/default-avatar.jpg";
 import CustomAlert from "@/components/custom-alert";
 import { CustomFormField } from "@/components/custom-formfield";
 import Layout from "@/components/layout";
@@ -8,7 +9,7 @@ import { Form } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/components/ui/use-toast";
 import { cn } from "@/lib/utils";
-import { deleteProfile, updateUser } from "@/utils/apis/users/api";
+import { deleteProfile, getUser, updateUser } from "@/utils/apis/users/api";
 import { ProfileSchema, ProfileType } from "@/utils/apis/users/type";
 import { useAuthStore } from "@/utils/zustand/store";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -24,6 +25,7 @@ export default function Profile() {
   const navigate = useNavigate();
   const { toast } = useToast();
   const user = useAuthStore((state) => state.user);
+  const setUser = useAuthStore((state) => state.setUser);
   const resetToken = useAuthStore((state) => state.resetAuth);
 
   const form = useForm<ProfileType>({
@@ -32,7 +34,6 @@ export default function Profile() {
       fullname: "",
       email: "",
       handphone: "",
-      // password: "",
       ktp: "",
       npwp: "",
       avatar: new File([], ""),
@@ -42,7 +43,6 @@ export default function Profile() {
   useEffect(() => {
     form.setValue("fullname", user?.fullname!);
     form.setValue("email", user?.email!);
-    // form.setValue("password", user?.password!);
     form.setValue("ktp", user?.ktp!);
     form.setValue("handphone", user?.handphone!);
     form.setValue("npwp", user?.npwp!);
@@ -56,6 +56,9 @@ export default function Profile() {
       toast({
         description: result.message,
       });
+
+      const dataUser = await getUser();
+      setUser(dataUser.data);
     } catch (error) {
       toast({
         title: "Oops! Something went wrong.",
@@ -121,11 +124,7 @@ export default function Profile() {
                 <Avatar className="w-[250px] h-[250px] m-5">
                   <AvatarImage
                     className="object-cover"
-                    src={
-                      user?.avatar
-                        ? user.avatar
-                        : "https://github.com/shadcn.png"
-                    }
+                    src={user?.avatar ? user.avatar : defaultAvatar}
                   />
                   <AvatarFallback>CN</AvatarFallback>
                 </Avatar>
@@ -188,24 +187,6 @@ export default function Profile() {
                       />
                     )}
                   </CustomFormField>
-                  {/* <CustomFormField
-                    control={form.control}
-                    name="password"
-                    label="Password"
-                  >
-                    {(field) => (
-                      <Input
-                        {...field}
-                        data-testid="input-password"
-                        placeholder="Password"
-                        type="password"
-                        disabled={form.formState.isSubmitting || isDisable}
-                        aria-disabled={form.formState.isSubmitting}
-                        className="rounded-full"
-                        value={field.value as string}
-                      />
-                    )}
-                  </CustomFormField> */}
                   <CustomFormField
                     control={form.control}
                     name="ktp"

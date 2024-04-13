@@ -3,14 +3,14 @@ import { Progress } from "@/components/ui/progress";
 import { Button } from "@/components/ui/button";
 import { formatRupiah } from "@/utils/format-money";
 import { useEffect, useState } from "react";
-import { IBusiness } from "@/utils/apis/business/type";
+import { IDetailBusiness } from "@/utils/apis/business/type";
 import { useParams } from "react-router-dom";
 import { getDetailBusiness } from "@/utils/apis/business/api";
 import { toast } from "sonner";
 
 export default function DetailBusiness() {
   const param = useParams();
-  const [data, setData] = useState<IBusiness>();
+  const [data, setData] = useState<IDetailBusiness>();
 
   useEffect(() => {
     handleGetDetail();
@@ -63,7 +63,7 @@ export default function DetailBusiness() {
           </div>
           <div className="mb-5">
             <p className="text-2xl font-semibold">Proposal File</p>
-            <a href={data?.proposal}>
+            <a href={data?.document}>
               <p className="font-bold text-xl text-blue-700">
                 business-proposal
               </p>

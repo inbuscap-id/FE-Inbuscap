@@ -13,6 +13,19 @@ export interface IBusiness {
   proposal: string;
 }
 
+export interface IMyBusiness {
+  id: number;
+  createdAt: string;
+  updatedAt: string;
+  title: string;
+  image: string;
+  description: string;
+  capital: number;
+  share: number;
+  status: number;
+  collected: number;
+}
+
 export interface IDetailBusiness {
   id: number;
   createdAt: string;

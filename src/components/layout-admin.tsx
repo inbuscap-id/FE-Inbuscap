@@ -90,7 +90,7 @@ export default function Layout(props: Props) {
             <AvatarFallback>CN</AvatarFallback>
           </Avatar>
         </div>
-        <div className="w-full px-20 py-5 h-full">{children}</div>
+        <div className="w-full px-20 py-5">{children}</div>
       </div>
     </div>
   );

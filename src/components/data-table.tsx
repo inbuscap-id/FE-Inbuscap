@@ -32,8 +32,8 @@ export default function DataTable<T>(props: Readonly<Props<T>>) {
   });
 
   return (
-    <div className="w-full flex flex-col items-end">
-      <div className="overflow-x-auto w-full">
+    <div className="w-full h-full flex flex-col items-end">
+      <div className="w-full overflow-auto">
         <Table>
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (

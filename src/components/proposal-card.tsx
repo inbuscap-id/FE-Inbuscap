@@ -63,17 +63,17 @@ export default function ProposalCard(props: Props) {
 
   return (
     <>
-      <div className="w-11/12 mx-auto flex bg-slate-50 border border-[#00ad26] rounded-xl mb-10">
-        <div className="w-full bg-red-100 rounded-xl">
+      <div className="w-11/12 h-[330px] mx-auto flex bg-slate-50 border border-[#00ad26] rounded-xl mb-10">
+        <div className="w-full bg-slate-100 rounded-xl">
           <img src={image} alt="" className="w-full h-full rounded-xl" />
         </div>
 
-        <div className="flex flex-col w-11/12 justify-center p-5">
+        <div className="flex flex-col w-11/12 justify-around p-5">
           {withOption ? (
             <div className="self-end">
               <DropdownMenu>
                 <DropdownMenuTrigger>
-                  <Ellipsis className="mb-10" />
+                  <Ellipsis />
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end" forceMount>
                   {archive ? (
@@ -125,7 +125,7 @@ export default function ProposalCard(props: Props) {
             <p className="text-xl">
               {formatRupiah.format(collected)} / {formatRupiah.format(target)}
             </p>
-            <p className="my-2 text-sm">{desc.slice(0, 75)}</p>
+            <p className="my-2 text-sm">{desc.slice(0, 90)}.....</p>
             <p>{persentase}%</p>
             <Progress
               value={persentase}

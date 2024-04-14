@@ -4,20 +4,11 @@ import { useAuthStore } from "@/utils/zustand/store";
 import { useEffect } from "react";
 import { Navigate, Outlet, useLocation } from "react-router-dom";
 import { toast } from "sonner";
-import { jwtDecode } from "jwt-decode";
-import { ITokenData } from "@/utils/types/api";
-
 
 export default function ProtectedRoutes() {
   const { pathname } = useLocation();
   const token = useAuthStore((state) => state.token);
-  // const localToken = localStorage.getItem("token");
-
-  let tokenValue: ITokenData | null = null;
-
-  if (token) {
-    tokenValue = jwtDecode<ITokenData>(token);
-  }
+  const decodedToken = useAuthStore((state) => state.decodedToken);
 
   useEffect(() => {
     if (token !== "") {
@@ -72,13 +63,13 @@ export default function ProtectedRoutes() {
     if (!token) return <Navigate to="/login" />;
 
     if (adminRoutes.includes(pathname)) {
-      if (tokenValue && !tokenValue.is_admin) {
+      if (decodedToken && !decodedToken.is_admin) {
         return <Navigate to="/" />;
       }
     }
 
     if (userRoutes.includes(pathname)) {
-      if (tokenValue && tokenValue.is_admin) {
+      if (decodedToken && decodedToken.is_admin) {
         return <Navigate to="/admin" />;
       }
     }

@@ -28,6 +28,6 @@ export interface ITokenData {
   exp: number;
   iat: number;
   id: string;
-  is_active: boolean;
+  is_active: number;
   is_admin: boolean;
 }

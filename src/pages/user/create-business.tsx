@@ -7,19 +7,23 @@ import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/components/ui/use-toast";
 import { createBusiness } from "@/utils/apis/business/api";
 import { BusinessType, businessSchema } from "@/utils/apis/business/type";
+import { useAuthStore } from "@/utils/zustand/store";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Loader2 } from "lucide-react";
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-
-// interface Props {
-//   addData?: INewBusiness;
-// }
 
 const CreateBusiness = () => {
   const navigate = useNavigate();
   const { toast } = useToast();
-  // const { addData } = props;
+  const decodedToken = useAuthStore((state) => state.decodedToken);
+
+  useEffect(() => {
+    if (decodedToken?.is_active === 0) {
+      navigate("/verification");
+    }
+  }, []);
 
   const form = useForm<BusinessType>({
     resolver: zodResolver(businessSchema),
@@ -32,22 +36,6 @@ const CreateBusiness = () => {
       proposal: new File([], ""),
     },
   });
-
-  // useEffect(() => {
-  //   setAddData();
-  // }, []);
-
-  // function setAddData() {
-  //   let modeType: "add" | "edit" = "add";
-  //   if (addData) {
-  //     modeType = "add";
-  //     form.setValue("title", addData.title);
-  //     form.setValue("capital", addData.capital);
-  //     form.setValue("share", addData.share);
-  //     form.setValue("description", addData.description);
-  //   }
-  //   form.setValue("mode", modeType);
-  // }
 
   async function onSubmit(data: BusinessType) {
     try {

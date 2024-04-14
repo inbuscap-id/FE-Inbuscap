@@ -11,6 +11,7 @@ import {
   VerifBusiness,
   BusinessType,
   UpdateBusinessType,
+  IMyBusiness,
 } from "./type";
 import { checkProperty, valueFormatData } from "@/utils/formatter";
 
@@ -29,6 +30,16 @@ export const getDetailBusiness = async (proposal_id: string) => {
     const response = await axiosWithConfig.get(`/proposals/${proposal_id}`);
 
     return response.data as IResponseData<IDetailBusiness>;
+  } catch (error: any) {
+    throw Error(error.response.data.message);
+  }
+};
+
+export const getMyBusinesses = async () => {
+  try {
+    const response = await axiosWithConfig.get("/myproposals");
+
+    return response.data as IResponsePagination<IMyBusiness[]>;
   } catch (error: any) {
     throw Error(error.response.data.message);
   }

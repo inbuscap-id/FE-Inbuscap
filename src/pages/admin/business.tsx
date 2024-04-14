@@ -14,7 +14,6 @@ import { useEffect, useMemo, useState } from "react";
 export default function Business() {
   const [datas, setDatas] = useState<IVerifBusiness[]>([]);
   const [businessId, setBusinessId] = useState<number | null>(null);
-  // const [owner, setBusiness] = useState("");
   const [business, setBusiness] = useState("");
   const [showApproveDialog, setShowApproveDialog] = useState(false);
   const [showRejectDialog, setShowRejectDialog] = useState(false);
@@ -83,7 +82,7 @@ export default function Business() {
       {
         header: "Detail",
         accessorKey: "description",
-        cell: (info) => info.row.original.description.slice(0, 50),
+        cell: (info) => <p>{info.row.original.description.slice(0, 50)}...</p>,
         footer: (props) => props.column.id,
         size: 200,
       },
@@ -96,14 +95,27 @@ export default function Business() {
       {
         header: "Share Profit",
         accessorKey: "share",
-        cell: (info) => info.getValue(),
+        cell: (info) => <p>{info.row.original.share}%</p>,
         footer: (props) => props.column.id,
         size: 90,
       },
       {
         header: "Proposal",
         accessorKey: "proposal",
-        cell: (info) => info.row.original.proposal,
+        cell: (info) => {
+          return info.row.original.proposal ? (
+            <>
+              <a
+                className="text-primary bg-green-100 font-semibold rounded-full text-center px-3 py-1 underline"
+                href={info.row.original.proposal}
+              >
+                File
+              </a>
+            </>
+          ) : (
+            <>No Proposal</>
+          );
+        },
         footer: (props) => props.column.id,
         size: 50,
       },
@@ -210,12 +222,13 @@ export default function Business() {
     ],
     []
   );
+
   return (
     <Layout>
       <div className="w-full text-xl font-semibold mb-4">
         <p>Businesses</p>
       </div>
-      <div className="w-full">
+      <div className="w-full h-[500px]">
         <DataTable columns={columns} datas={datas} />
       </div>
       <CustomAlert

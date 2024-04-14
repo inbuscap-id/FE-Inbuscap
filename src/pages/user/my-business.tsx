@@ -1,14 +1,14 @@
 import Layout from "@/components/layout";
 import ProposalCard from "@/components/proposal-card";
 import { Button } from "@/components/ui/button";
-import { getBusinesses } from "@/utils/apis/business/api";
-import { IBusiness } from "@/utils/apis/business/type";
+import { getMyBusinesses } from "@/utils/apis/business/api";
+import { IMyBusiness } from "@/utils/apis/business/type";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { toast } from "sonner";
 
 export default function MyBusiness() {
-  const [business, setBusiness] = useState<IBusiness[]>([]);
+  const [business, setBusiness] = useState<IMyBusiness[]>([]);
   // const user = useAuthStore((state) => state.user);
 
   useEffect(() => {
@@ -17,7 +17,7 @@ export default function MyBusiness() {
 
   const fetchData = async () => {
     try {
-      const result = await getBusinesses();
+      const result = await getMyBusinesses();
       setBusiness(result.data);
     } catch (error: any) {
       toast((error as Error).message.toString());

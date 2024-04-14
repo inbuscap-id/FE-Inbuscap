@@ -3,16 +3,21 @@ import ProposalCard from "@/components/proposal-card";
 import { Button } from "@/components/ui/button";
 import { getMyBusinesses } from "@/utils/apis/business/api";
 import { IMyBusiness } from "@/utils/apis/business/type";
+import { useAuthStore } from "@/utils/zustand/store";
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 
 export default function MyBusiness() {
+  const navigate = useNavigate();
   const [business, setBusiness] = useState<IMyBusiness[]>([]);
-  // const user = useAuthStore((state) => state.user);
+  const decodedToken = useAuthStore((state) => state.decodedToken);
 
   useEffect(() => {
     fetchData();
+    if (decodedToken?.is_active === 0) {
+      navigate("/verification");
+    }
   }, []);
 
   const fetchData = async () => {

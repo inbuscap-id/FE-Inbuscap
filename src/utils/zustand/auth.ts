@@ -56,10 +56,10 @@ export const authStoreCreator: StateCreator<AuthStore> = (set) => ({
   setUser: (user) => set({ user }),
   addAuth: (data) => {
     try {
-      const decodedToken = jwtDecode<ITokenData>(data.token);
+      const decoded = jwtDecode<ITokenData>(data.token);
       set(() => ({
         token: data.token,
-        decodedToken,
+        decodedToken: decoded,
       }));
       localStorage.setItem("token", data.token);
     } catch (error) {

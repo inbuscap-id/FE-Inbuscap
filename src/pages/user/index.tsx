@@ -3,20 +3,21 @@ import CustomAlert from "@/components/custom-alert";
 import { CustomFormField } from "@/components/custom-formfield";
 import Layout from "@/components/layout";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Form } from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
 import { useToast } from "@/components/ui/use-toast";
 import { cn } from "@/lib/utils";
 import { deleteProfile, getUser, updateUser } from "@/utils/apis/users/api";
 import { ProfileSchema, ProfileType } from "@/utils/apis/users/type";
+import { formatRupiah } from "@/utils/format-money";
 import { useAuthStore } from "@/utils/zustand/store";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Loader2 } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 
 export default function Profile() {
   const [isDisable, setIsDisable] = useState<boolean>(true);
@@ -111,6 +112,9 @@ export default function Profile() {
             <p className="text-xl text-slate-600 hover:text-black">
               Verification
             </p>
+          </Link>
+          <Link to={"/topup"}>
+            <p className="text-xl text-slate-600 hover:text-black">Top Up</p>
           </Link>
         </div>
         <Form {...form}>
@@ -286,6 +290,53 @@ export default function Profile() {
                   </div>
                 </CardContent>
               </Card>
+              <div className="m-5 flex flex-col gap-4">
+                <p className="text-xl font-semibold">
+                  Saldo : {formatRupiah.format(user?.saldo!)}
+                </p>
+                {/* <Dialog>
+                  <DialogTrigger asChild>
+                    <Button className="bg-primary">Top Up</Button>
+                  </DialogTrigger>
+                  <DialogContent className="sm:max-w-[425px]">
+                    <DialogHeader>
+                      <DialogTitle>Top Up</DialogTitle>
+                    </DialogHeader>
+                    <div className="grid gap-4 py-4">
+                      <div className="grid grid-cols-4 items-center gap-4">
+                        <Label htmlFor="bank" className="text-right">
+                          Bank
+                        </Label>
+                        <Select>
+                          <SelectTrigger id="bank">
+                            <SelectValue placeholder="Select" />
+                          </SelectTrigger>
+                          <SelectContent position="popper">
+                            <SelectItem value="bca">BCA</SelectItem>
+                            <SelectItem value="mandiri">Mandiri</SelectItem>
+                            <SelectItem value="BNI">BNI</SelectItem>
+                            <SelectItem value="BRI">BRI</SelectItem>
+                          </SelectContent>
+                        </Select>
+                      </div>
+                      <div className="grid grid-cols-4 items-center gap-4">
+                        <Label htmlFor="amount" className="text-right">
+                          Amount
+                        </Label>
+                        <Input
+                          id="name"
+                          value=""
+                          className="col-span-3"
+                          placeholder="1000000"
+                        />
+                      </div>
+                    </div>
+                    <DialogFooter>
+                      <Button type="submit">Send</Button>
+                    </DialogFooter>
+                  </DialogContent>
+                </Dialog> */}
+              </div>
             </div>
           </form>
         </Form>

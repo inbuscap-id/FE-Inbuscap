@@ -67,7 +67,7 @@ export interface IVerifBusiness {
 }
 
 export interface VerifBusiness {
-  is_active: number;
+  status: number;
 }
 
 const MAX_MB = 2;

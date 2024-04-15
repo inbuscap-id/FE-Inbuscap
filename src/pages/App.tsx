@@ -6,11 +6,9 @@ import { getBusinesses } from "@/utils/apis/business/api";
 import { useEffect, useState } from "react";
 import { IBusiness } from "@/utils/apis/business/type";
 import { toast } from "sonner";
-import { useAuthStore } from "@/utils/zustand/store";
 
 function Homepage() {
   const [datas, setDatas] = useState<IBusiness[]>([]);
-  const user = useAuthStore((state) => state.user);
 
   useEffect(() => {
     handleGetBusiness();
@@ -107,7 +105,6 @@ function Homepage() {
               target={data.capital}
               collected={data.collected}
               id={data.id}
-              withOption={data.email === user?.email}
             />
           ))}
         </div>

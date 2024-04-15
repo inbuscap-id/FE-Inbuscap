@@ -47,6 +47,16 @@ export default function InvestedBusiness() {
             Verification
           </p>
         </Link>
+        <Link to={"/topup"}>
+          <p
+            className={cn(
+              "text-xl text-slate-600 hover:text-black",
+              location.pathname === "/topup" ? "text-black font-semibold" : ""
+            )}
+          >
+            Top Up
+          </p>
+        </Link>
       </div>
       {datas.length === 0 ? (
         <p className="text-center">No Data</p>

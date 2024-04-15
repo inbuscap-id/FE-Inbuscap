@@ -7,7 +7,14 @@ import { Edit, Trash2, UserCheck, UserX } from "lucide-react";
 import { approveUser, getVerifications } from "@/utils/apis/users/api";
 import CustomAlert from "@/components/custom-alert";
 import { useToast } from "@/components/ui/use-toast";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 export default function Users() {
   const [datas, setDatas] = useState<IVerif[]>([]);
@@ -17,14 +24,16 @@ export default function Users() {
   const [showRejectDialog, setShowRejectDialog] = useState(false);
   const navigate = useNavigate();
   const { toast } = useToast();
+  const [searchParams, setSearchParams] = useSearchParams();
 
   useEffect(() => {
     fetchDataReqVerification();
-  }, []);
+  }, [searchParams]);
 
   const fetchDataReqVerification = async () => {
     try {
-      const result = await getVerifications();
+      const query = Object.fromEntries([...searchParams]);
+      const result = await getVerifications({ ...query });
 
       setDatas(result.data);
     } catch (error) {
@@ -266,12 +275,28 @@ export default function Users() {
     ],
     []
   );
+
   return (
     <Layout>
-      <div className="w-full text-xl font-semibold mb-4">
+      <div className="w-full flex justify-between text-xl font-semibold mb-4">
         <p>Users</p>
+        <Select
+          onValueChange={(value) => {
+            searchParams.set("status", value);
+            setSearchParams(searchParams);
+          }}
+        >
+          <SelectTrigger className="w-[180px]">
+            <SelectValue placeholder="Filter" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="0">Pending</SelectItem>
+            <SelectItem value="1">Approved</SelectItem>
+            <SelectItem value="2">Rejected</SelectItem>
+          </SelectContent>
+        </Select>
       </div>
-      <div className="w-full">
+      <div className="w-full h-[500px]">
         <DataTable columns={columns} datas={datas} />
       </div>
       <CustomAlert

@@ -15,16 +15,16 @@ export const ProfileSchema = z.object({
   npwp: z.string().min(8, { message: "Phone Number minimum length is 16" }),
   avatar: z
     .instanceof(File)
-    .refine((file) => file?.name !== "", "Upload your Avatar picture here")
+    .optional()
     .refine(
-      (file) => file?.size <= MAX_UPLOAD_SIZE,
+      (file) => !file || file.size <= MAX_UPLOAD_SIZE,
       "Max image size is ${MAX_MB}MB"
     )
     .refine(
-      (file) => file?.type && ACCEPTED_IMAGE_TYPES.includes(file.type),
+      (file) =>
+        !file || file.type === "" || ACCEPTED_IMAGE_TYPES.includes(file.type),
       "Only .jpg, .jpeg, and .png formats are supported"
-    )
-    .optional(),
+    ),
 });
 
 export type ProfileType = z.infer<typeof ProfileSchema>;

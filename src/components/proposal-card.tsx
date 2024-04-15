@@ -82,8 +82,8 @@ export default function ProposalCard(props: Props) {
                         className="flex gap-2"
                         onClick={() => setShowPublicDialog(true)}
                       >
-                        <EarthIcon className="w-5" />
-                        Go Public
+                        <EarthIcon className="w-5 cursor-pointer" />
+                        <p className="cursor-pointer">Go Public</p>
                       </DropdownMenuItem>
                     </>
                   ) : (
@@ -111,7 +111,7 @@ export default function ProposalCard(props: Props) {
                     className="text-red-600 flex gap-2"
                     onClick={() => setShowDeleteDialog(true)}
                   >
-                    <Trash className="w-5" /> Delete
+                    <Trash className="w-5 cursor-pointer" /> <p className="cursor-pointer">Delete</p>
                   </DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu>

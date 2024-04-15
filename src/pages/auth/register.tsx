@@ -52,8 +52,8 @@ export default function Register() {
 
   return (
     <div className="flex w-full justify-between h-screen">
-      <div className="w-full flex items-center justify-center md:w-2/3">
-        <Card className="w-3/4 md:w-3/4 lg:w-1/2">
+      <div className="w-full md:w-3/4 lg:w-2/3 mx-auto flex items-center justify-center">
+        <Card className="w-3/4 md:w-3/4 xl:w-1/2">
           <CardHeader>
             <CardTitle className="text-center">Register</CardTitle>
             <CardDescription className="text-center">
@@ -185,7 +185,7 @@ export default function Register() {
           </CardContent>
         </Card>
       </div>
-      <div className="img-bg hidden lg:flex h-full w-1/3 items-center justify-end rounded-l-[50px] px-12">
+      <div className="img-bg hidden xl:flex h-full w-1/3 items-center justify-end rounded-l-[50px] px-12">
         <p className="z-50 text-5xl text-white text-right font-lora font-semibold tracking-wide leading-snug subpixel-antialiased">
           Investing Business Capital (Inbuscap.id)
         </p>

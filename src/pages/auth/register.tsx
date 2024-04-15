@@ -185,7 +185,7 @@ export default function Register() {
           </CardContent>
         </Card>
       </div>
-      <div className="img-bg hidden lg:flex h-full w-1/3 items-center justify-end rounded-l-[50px] px-12">
+      <div className="img-bg hidden xl:flex h-full w-1/3 items-center justify-end rounded-l-[50px] px-12">
         <p className="z-50 text-5xl text-white text-right font-lora font-semibold tracking-wide leading-snug subpixel-antialiased">
           Investing Business Capital (Inbuscap.id)
         </p>

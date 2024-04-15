@@ -115,8 +115,8 @@ export default function ProposalCard(props: Props) {
               <Link
                 to={invested ? `/invested-business/${id}` : `/business/${id}`}
               >
-                <Button className="lg:w-1/4 w-1/3 bg-[#00ad26] hover:bg-[#006516]">
-                  See Details
+                <Button className="w-1/4 bg-[#00ad26] hover:bg-[#006516]">
+                  <p className="xl:text-base md:text-[15px] text-[10px]">See Details</p>
                 </Button>
               </Link>
             </>

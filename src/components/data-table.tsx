@@ -32,7 +32,7 @@ export default function DataTable<T>(props: Readonly<Props<T>>) {
   });
 
   return (
-    <div className="w-full h-full flex flex-col items-end">
+    <div className="w-full h-full flex flex-col items-end custom-scrollbar">
       <div className="w-full overflow-auto">
         <Table>
           <TableHeader>

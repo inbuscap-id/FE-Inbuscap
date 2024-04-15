@@ -28,12 +28,12 @@ export default function Layout(props: Props) {
 
   return (
     <div className="w-full min-h-dvh flex">
-      <div className="min-h-dvh lg:w-2/12 w-3/12 bg-[#00ad26] rounded-r-2xl text-white flex-col hidden md:block">
+      <div className="lg:min-h-dvh lg:w-2/12 w-3/12 bg-[#00ad26] rounded-r-2xl text-white flex-col hidden md:block">
         <div className="w-full h-1/6 flex justify-center items-center tracking-wide">
           <p className="font-lora font-bold text-2xl">Inbuscap.id</p>
         </div>
         <div className="grow flex flex-col justify-between">
-          <div className="w-fit mx-auto py-10 flex flex-col gap-5 text-green-100">
+          <div className="mx-auto py-10 flex flex-col gap-5 text-green-100">
             <Link
               to="/admin"
               className={cn(
@@ -69,7 +69,7 @@ export default function Layout(props: Props) {
           <div className="w-full h-1/4 flex justify-center items-center">
             <Button
               variant="ghost"
-              className="text-green-100 hover:bg-transparent hover:text-white"
+              className="text-green-100 hover:bg-transparent hover:text-white mt-[250px]"
               onClick={handleLogout}
             >
               <LogOut className="me-2 text-green-100 hover:text-white" />
@@ -143,8 +143,8 @@ export default function Layout(props: Props) {
               className="object-cover"
               src={user?.avatar ? user.avatar : "https://github.com/shadcn.png"}
             />
-            <AvatarFallback>CN</AvatarFallback>
-          </Avatar>
+          <AvatarFallback>CN</AvatarFallback>  
+          </Avatar>       
         </div>
         <div className="w-full px-20 py-5">{children}</div>
       </div>

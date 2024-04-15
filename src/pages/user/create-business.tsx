@@ -96,6 +96,7 @@ const CreateBusiness = () => {
                   <Input
                     {...field}
                     placeholder="name of your business"
+                    type="text"
                     id="input-title"
                     type="text"
                     disabled={form.formState.isSubmitting}

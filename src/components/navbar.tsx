@@ -50,7 +50,7 @@ export default function Navbar() {
               <>
                 <li
                   className={cn(
-                    "hover:text-white text-green-200 hidden md:block",
+                    "hover:text-white text-green-200 hidden lg:block",
                     location.pathname === "/create-business" ? "text-white" : ""
                   )}
                 >

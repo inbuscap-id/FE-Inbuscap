@@ -1,6 +1,6 @@
 import { IResponseData, IResponsePagination } from "@/utils/types/api";
 import axiosWithConfig from "../axiosWithConfig";
-import { IDetailInvestment, IInvestments } from "./type";
+import { IDetailInvestment, IInvestments, ITopup, TopupType } from "./type";
 
 export const getInvestments = async () => {
   try {
@@ -17,6 +17,16 @@ export const getDetailInvesment = async (proposal_id: string) => {
     const response = await axiosWithConfig.get(`/investments/${proposal_id}`);
 
     return response.data as IResponseData<IDetailInvestment>;
+  } catch (error: any) {
+    throw Error(error.response.data.message);
+  }
+};
+
+export const topUp = async (body: TopupType) => {
+  try {
+    const response = await axiosWithConfig.post("/transactions/topup", body);
+
+    return response.data as IResponseData<ITopup>;
   } catch (error: any) {
     throw Error(error.response.data.message);
   }

@@ -18,6 +18,7 @@ import UpdateBusiness from "@/pages/user/update-business";
 import Verification from "@/pages/user/verification";
 import Withdraw from "@/pages/user/withdraw";
 import DetailInvested from "@/pages/user/detail-invested";
+import Topup from "@/pages/user/topup";
 
 const router = createBrowserRouter([
   {
@@ -32,6 +33,7 @@ const router = createBrowserRouter([
       { path: "/invested-business", element: <InvestedBusiness /> },
       { path: "/invested-business/:id_business", element: <DetailInvested /> },
       { path: "/verification", element: <Verification /> },
+      { path: "/topup", element: <Topup /> },
       { path: "/my-business", element: <MyBusiness /> },
       { path: "/create-business", element: <CreateBusiness /> },
       { path: "/business/:id_business/update", element: <UpdateBusiness /> },

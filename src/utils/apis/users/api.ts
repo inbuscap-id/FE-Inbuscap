@@ -2,6 +2,7 @@ import {
   IResponse,
   IResponseData,
   IResponsePagination,
+  Request,
 } from "@/utils/types/api";
 import axiosWithConfig from "../axiosWithConfig";
 import {
@@ -12,13 +13,15 @@ import {
   VerifUser,
   VerificationType,
 } from "./type";
-import { checkProperty, valueFormatData } from "@/utils/formatter";
+import {
+  buildQueryString,
+  checkProperty,
+  valueFormatData,
+} from "@/utils/formatter";
 
 export const getUser = async () => {
   try {
-    const response = await axiosWithConfig.get(
-      "/users"
-    );
+    const response = await axiosWithConfig.get("/users");
 
     return response.data as IResponseData<TUser>;
   } catch (error: any) {
@@ -26,7 +29,7 @@ export const getUser = async () => {
   }
 };
 
-export const  updateUser = async (body: ProfileType) => {
+export const updateUser = async (body: ProfileType) => {
   try {
     const formData = new FormData();
     let key: keyof typeof body;
@@ -37,10 +40,7 @@ export const  updateUser = async (body: ProfileType) => {
       }
     }
 
-    const response = await axiosWithConfig.put(
-      `/users`,
-      formData
-    );
+    const response = await axiosWithConfig.put(`/users`, formData);
 
     return response.data as IResponse;
   } catch (error: any) {
@@ -50,9 +50,7 @@ export const  updateUser = async (body: ProfileType) => {
 
 export const deleteProfile = async () => {
   try {
-    const response = await axiosWithConfig.delete(
-      `/users`
-    );
+    const response = await axiosWithConfig.delete(`/users`);
 
     return response.data as IResponse;
   } catch (error: any) {
@@ -101,9 +99,12 @@ export const updateAdmin = async (body: ProfileAdminType) => {
   }
 };
 
-export const getVerifications = async () => {
+export const getVerifications = async (params?: Request) => {
   try {
-    const response = await axiosWithConfig.get("/verifications/users");
+    const query = buildQueryString(params);
+    const url = query ? `/verifications/users${query}` : "/verifications/users";
+
+    const response = await axiosWithConfig.get(url);
 
     return response.data as IResponsePagination<IVerif[]>;
   } catch (error: any) {
@@ -133,4 +134,3 @@ export const approveUser = async (user_id: number, body: VerifUser) => {
     throw Error(error.response.data.message);
   }
 };
-

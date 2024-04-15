@@ -238,7 +238,7 @@ export default function Business() {
         onCancel={() => {
           setShowApproveDialog(!showApproveDialog);
         }}
-        onAction={() => handleApproveBusiness(businessId!, { is_active: 1 })}
+        onAction={() => handleApproveBusiness(businessId!, { status: 1 })}
       />
 
       <CustomAlert

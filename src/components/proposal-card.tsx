@@ -9,10 +9,8 @@ import {
 } from "./ui/dropdown-menu";
 import { useState } from "react";
 import CustomAlert from "./custom-alert";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { formatRupiah } from "@/utils/format-money";
-import { deleteBusiness } from "@/utils/apis/business/api";
-import { toast } from "./ui/use-toast";
 
 interface Props {
   title: string;
@@ -24,13 +22,13 @@ interface Props {
   withOption?: boolean;
   archive?: boolean;
   invested?: boolean;
+  onDelete?: (id: string) => Promise<void>;
 }
 
 export default function ProposalCard(props: Props) {
   const [showPublicDialog, setShowPublicDialog] = useState(false);
   const [showArchiveDialog, setShowArchiveDialog] = useState(false);
   const [showDeleteDialog, setShowDeleteDialog] = useState(false);
-  const navigate = useNavigate();
 
   const {
     title,
@@ -42,22 +40,8 @@ export default function ProposalCard(props: Props) {
     withOption,
     archive,
     invested,
+    onDelete,
   } = props;
-
-  async function handleDeleteBusiness(proposals_id: string) {
-    try {
-      const result = await deleteBusiness(proposals_id);
-      toast({ description: result.message });
-
-      navigate("/my-business");
-    } catch (error: any) {
-      toast({
-        title: "Oops! Something went wrong.",
-        description: error.toString(),
-        variant: "destructive",
-      });
-    }
-  }
 
   let persentase = Math.round((collected / target) * 100);
 
@@ -80,7 +64,7 @@ export default function ProposalCard(props: Props) {
                     <>
                       <DropdownMenuItem
                         className="flex gap-2"
-                        onClick={() => setShowPublicDialog(true)}
+                        onClick={() => setShowPublicDialog(!showPublicDialog)}
                       >
                         <EarthIcon className="w-5" />
                         Go Public
@@ -90,26 +74,22 @@ export default function ProposalCard(props: Props) {
                     <>
                       <DropdownMenuItem
                         className="flex gap-2"
-                        onClick={() => setShowArchiveDialog(true)}
+                        onClick={() => setShowArchiveDialog(!showArchiveDialog)}
                       >
                         <Archive className="w-5" />
                         Archive
                       </DropdownMenuItem>
                     </>
                   )}
-
-                  <DropdownMenuItem>
-                    <Link
-                      to={`/business/${id}/update`}
-                      className="flex gap-2 items-center"
-                    >
+                  <Link to={`/business/${id}/update`}>
+                    <DropdownMenuItem className="flex gap-2 items-center">
                       <EditIcon className="w-5" />
                       <p>Edit</p>
-                    </Link>
-                  </DropdownMenuItem>
+                    </DropdownMenuItem>
+                  </Link>
                   <DropdownMenuItem
                     className="text-red-600 flex gap-2"
-                    onClick={() => setShowDeleteDialog(true)}
+                    onClick={() => setShowDeleteDialog(!showDeleteDialog)}
                   >
                     <Trash className="w-5" /> Delete
                   </DropdownMenuItem>
@@ -164,7 +144,16 @@ export default function ProposalCard(props: Props) {
         open={showDeleteDialog}
         title="Kamu Yakin Menghapus Proposal Ini?"
         description="Ini akan menghapus Proposal dan tidak dapat dikembalikan."
-        onAction={() => handleDeleteBusiness(props.id.toString())}
+        onAction={async () => {
+          if (onDelete) {
+            try {
+              await onDelete(id.toString());
+              setShowDeleteDialog(!showDeleteDialog);
+            } catch (error) {}
+          } else {
+            return null;
+          }
+        }}
         onCancel={() => {
           setShowDeleteDialog(false);
         }}

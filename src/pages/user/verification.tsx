@@ -18,6 +18,7 @@ export default function Verification() {
   const { toast } = useToast();
   const user = useAuthStore((state) => state.user);
   const setUser = useAuthStore((state) => state.setUser);
+  const decodedToken = useAuthStore((state) => state.decodedToken);
 
   const form = useForm<VerificationType>({
     resolver: zodResolver(verificationSchema),
@@ -72,12 +73,45 @@ export default function Verification() {
               Verification
             </p>
           </Link>
+          <Link to={"/topup"}>
+            <p
+              className={cn(
+                "text-xl text-slate-600 hover:text-black",
+                location.pathname === "/topup" ? "text-black font-semibold" : ""
+              )}
+            >
+              Top Up
+            </p>
+          </Link>
         </div>
         <div className="w-2/3 lg:w-1/2 self-center">
           {user?.photo_ktp && user.photo_npwp && user.photo_selfie ? (
+            decodedToken?.is_active !== 0 ? (
+              <div className="mx-auto px-4 py-2 mb-4 rounded-full bg-green-50 w-fit">
+                <p className="text-center text-green-500 font-medium">
+                  Your account was approved!
+                </p>
+              </div>
+            ) : (
+              <div className="mx-auto px-4 py-2 mb-4 rounded-full bg-green-50 w-fit">
+                <p className="text-center text-green-500 font-medium">
+                  You have uploaded the required documents! Wait until admin
+                  approve your account.
+                </p>
+              </div>
+            )
+          ) : (
+            <div className="mx-auto px-4 py-2 mb-4 rounded-full bg-red-50 w-fit">
+              <p className="text-center text-red-500 font-medium">
+                You must upload the required documents!
+              </p>
+            </div>
+          )}
+          {/* {user?.photo_ktp && user.photo_npwp && user.photo_selfie ? (
             <div className="mx-auto px-4 py-2 mb-4 rounded-full bg-green-50 w-fit">
               <p className="text-center text-green-500 font-medium">
-                You have uploaded the required documents!
+                You have uploaded the required documents! Wait until admin
+                approve your account.
               </p>
             </div>
           ) : (
@@ -86,7 +120,7 @@ export default function Verification() {
                 You must upload the required documents!
               </p>
             </div>
-          )}
+          )} */}
           <Form {...form}>
             <form
               data-testid="form-register"
@@ -106,12 +140,6 @@ export default function Verification() {
                     disabled={form.formState.isSubmitting}
                     aria-disabled={form.formState.isSubmitting}
                     className="rounded-full"
-                    // className={cn(
-                    //   "rounded-full border",
-                    //   user?.photo_ktp
-                    //     ? "border-green-500 text-green-500"
-                    //     : "border-red-500 text-red-500"
-                    // )}
                     onChange={(e) =>
                       field.onChange(e.target.files ? e.target.files[0] : null)
                     }
@@ -131,12 +159,6 @@ export default function Verification() {
                     disabled={form.formState.isSubmitting}
                     aria-disabled={form.formState.isSubmitting}
                     className="rounded-full"
-                    // className={cn(
-                    //   "rounded-full border",
-                    //   user?.photo_ktp
-                    //     ? "border-green-500 text-green-500"
-                    //     : "border-red-500 text-red-500"
-                    // )}
                     onChange={(e) =>
                       field.onChange(e.target.files ? e.target.files[0] : null)
                     }
@@ -156,12 +178,6 @@ export default function Verification() {
                     disabled={form.formState.isSubmitting}
                     aria-disabled={form.formState.isSubmitting}
                     className="rounded-full"
-                    // className={cn(
-                    //   "rounded-full border",
-                    //   user?.photo_ktp
-                    //     ? "border-green-500 text-green-500"
-                    //     : "border-red-500 text-red-500"
-                    // )}
                     onChange={(e) =>
                       field.onChange(e.target.files ? e.target.files[0] : null)
                     }

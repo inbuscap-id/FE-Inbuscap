@@ -31,3 +31,7 @@ export interface ITokenData {
   is_active: number;
   is_admin: boolean;
 }
+
+export interface Request {
+  status?: string;
+}

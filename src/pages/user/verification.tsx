@@ -50,21 +50,21 @@ export default function Verification() {
   return (
     <>
       <Layout>
-        <div className="mb-10 mt-2 flex gap-10">
+        <div className="mb-10 mt-2 flex md:gap-10 gap-5">
           <Link to={"/profile"}>
-            <p className="text-xl text-slate-600 hover:text-black">
+            <p className="xl:text-xl md:text-xl text-sm text-slate-600 hover:text-black">
               My Profile
             </p>
           </Link>
           <Link to={"/invested-business"}>
-            <p className="text-xl text-slate-600 hover:text-black">
+            <p className="xl:text-xl md:text-xl text-sm text-slate-600 hover:text-black">
               Invested Business
             </p>
           </Link>
           <Link to={"/verification"}>
             <p
               className={cn(
-                "text-xl text-slate-600 hover:text-black",
+                "xl:text-xl md:text-xl text-sm text-slate-600 hover:text-black",
                 location.pathname === "/verification"
                   ? "text-black font-semibold"
                   : ""
@@ -76,7 +76,7 @@ export default function Verification() {
           <Link to={"/topup"}>
             <p
               className={cn(
-                "text-xl text-slate-600 hover:text-black",
+                "xl:text-xl md:text-xl text-sm text-slate-600 hover:text-black",
                 location.pathname === "/topup" ? "text-black font-semibold" : ""
               )}
             >
@@ -107,20 +107,6 @@ export default function Verification() {
               </p>
             </div>
           )}
-          {/* {user?.photo_ktp && user.photo_npwp && user.photo_selfie ? (
-            <div className="mx-auto px-4 py-2 mb-4 rounded-full bg-green-50 w-fit">
-              <p className="text-center text-green-500 font-medium">
-                You have uploaded the required documents! Wait until admin
-                approve your account.
-              </p>
-            </div>
-          ) : (
-            <div className="mx-auto px-4 py-2 mb-4 rounded-full bg-red-50 w-fit">
-              <p className="text-center text-red-500 font-medium">
-                You must upload the required documents!
-              </p>
-            </div>
-          )} */}
           <Form {...form}>
             <form
               data-testid="form-register"
@@ -190,7 +176,7 @@ export default function Verification() {
               <div className="flex items-left justify-start p-5 px-1">
                 <Button
                   type="button"
-                  data-testid="btn-submit"
+                  id="btn-submit"
                   disabled={form.formState.isSubmitting}
                   aria-disabled={form.formState.isSubmitting}
                   className="rounded-2xl px-6 bg-white text-primary border-2 border-primary hover:text-white"
@@ -199,7 +185,7 @@ export default function Verification() {
                 </Button>
                 <Button
                   type="submit"
-                  data-testid="btn-submit"
+                  id="btn-submit"
                   disabled={form.formState.isSubmitting}
                   aria-disabled={form.formState.isSubmitting}
                   className="rounded-2xl mx-10 px-7"

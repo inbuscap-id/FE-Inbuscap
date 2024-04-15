@@ -56,10 +56,6 @@ export default function DetailBusiness() {
           <div>
             <p className="text-2xl font-semibold">Share Profit</p>
             <p className="text-xl">Investor : {data?.share}%</p>
-            {/* <p className="text-sm">
-              Example : your investment is 2.000.000, so your profit is{" "}
-              {data?.share}% x 2.000.000 = 200.000
-            </p> */}
           </div>
           <div className="mb-5">
             <p className="text-2xl font-semibold">Proposal File</p>

@@ -57,7 +57,7 @@ export default function MyProfile() {
 
   return (
     <Layout>
-      <div className="w-full grid grid-cols-2 justify-center p-3.5">
+      <div className="w-full grid lg:grid-cols-2 justify-center p-3.5">
         <Form {...form}>
           <form
             data-testid="form-register"
@@ -73,7 +73,8 @@ export default function MyProfile() {
                 <Input
                   {...field}
                   placeholder="Your Name"
-                  data-testid="input-full-name"
+                  id="input-full-name"
+                  type="text"
                   disabled={form.formState.isSubmitting || isDisable}
                   aria-disabled={form.formState.isSubmitting}
                   className="rounded-full"
@@ -87,7 +88,7 @@ export default function MyProfile() {
                   {...field}
                   placeholder="name@mail.com"
                   type="email"
-                  data-testid="input-email"
+                  id="input-email"
                   disabled={form.formState.isSubmitting || isDisable}
                   aria-disabled={form.formState.isSubmitting}
                   className="rounded-full"
@@ -105,7 +106,7 @@ export default function MyProfile() {
                   {...field}
                   placeholder="Your Password"
                   type="password"
-                  data-testid="input-password"
+                  id="input-password"
                   disabled={form.formState.isSubmitting || isDisable}
                   aria-disabled={form.formState.isSubmitting}
                   className="rounded-full"
@@ -115,7 +116,7 @@ export default function MyProfile() {
             </CustomFormField>
             <Button
               type="button"
-              data-testid="btn-edit"
+              id="btn-edit"
               disabled={form.formState.isSubmitting}
               aria-disabled={form.formState.isSubmitting}
               className="w-20 rounded-2xl px-6 text-primary bg-white hover:text-white border-2 border-primary"
@@ -125,7 +126,7 @@ export default function MyProfile() {
             </Button>
             <Button
               type="submit"
-              data-testid="btn-submit"
+              id="btn-submit"
               disabled={form.formState.isSubmitting}
               aria-disabled={form.formState.isSubmitting}
               className="rounded-2xl px-6 ml-6"
@@ -134,12 +135,12 @@ export default function MyProfile() {
             </Button>
           </form>
         </Form>
-        <div className="ml-48 items-end justify-end">
-          <Avatar className="w-[250px] h-[250px]">
+        <div className="lg:ml-48 mt-10 items-end justify-end">
+          <Avatar className="lg:w-[250px] lg:h-[250px] w-[300px] h-[300px]">
             <AvatarImage
               src={user?.avatar ? user.avatar : "https://github.com/shadcn.png"}
             />
-            <AvatarFallback>CN</AvatarFallback>
+            <AvatarFallback>{user?.fullname}</AvatarFallback>
           </Avatar>
         </div>
       </div>

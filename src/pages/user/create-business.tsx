@@ -96,7 +96,9 @@ const CreateBusiness = () => {
                   <Input
                     {...field}
                     placeholder="name of your business"
+                    type="text"
                     id="input-title"
+                    type="text"
                     disabled={form.formState.isSubmitting}
                     aria-disabled={form.formState.isSubmitting}
                     className="rounded-full"
@@ -131,6 +133,7 @@ const CreateBusiness = () => {
                     {...field}
                     placeholder="Your amount of amount"
                     id="input-capital"
+                    type="number"
                     disabled={form.formState.isSubmitting}
                     aria-disabled={form.formState.isSubmitting}
                     className="rounded-full"
@@ -148,6 +151,7 @@ const CreateBusiness = () => {
                     {...field}
                     placeholder="Enter your share profit"
                     id="input-share"
+                    type="number"
                     disabled={form.formState.isSubmitting}
                     aria-disabled={form.formState.isSubmitting}
                     className="rounded-full"

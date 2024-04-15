@@ -1,6 +1,4 @@
 import axios from "axios";
-// import { useAuthStore } from "../zustand/store";
-// const token = useAuthStore((state) => state.token);
 
 let bearerToken = "";
 const axiosWithConfig = axios.create();

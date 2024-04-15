@@ -1,6 +1,7 @@
 import CustomAlert from "@/components/custom-alert";
 import DataTable from "@/components/data-table";
 import Layout from "@/components/layout-admin";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useToast } from "@/components/ui/use-toast";
 import {
   approveBusiness,
@@ -10,6 +11,7 @@ import { IVerifBusiness, VerifBusiness } from "@/utils/apis/business/type";
 import { ColumnDef } from "@tanstack/react-table";
 import { Edit, Trash2, UserCheck, UserX } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
+import { useNavigate, useSearchParams } from "react-router-dom";
 
 export default function Business() {
   const [datas, setDatas] = useState<IVerifBusiness[]>([]);
@@ -17,15 +19,19 @@ export default function Business() {
   const [business, setBusiness] = useState("");
   const [showApproveDialog, setShowApproveDialog] = useState(false);
   const [showRejectDialog, setShowRejectDialog] = useState(false);
+  const navigate = useNavigate();
   const { toast } = useToast();
+  const [searchParams, setSearchParams] = useSearchParams();
 
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [searchParams]);
 
   const fetchData = async () => {
     try {
-      const result = await getBusinessVerifications();
+      
+      const query = Object.fromEntries([...searchParams]);
+      const result = await getBusinessVerifications({ ...query });
 
       setDatas(result.data);
     } catch (error) {
@@ -47,7 +53,18 @@ export default function Business() {
       toast({
         description: result.message,
       });
-      setShowApproveDialog(!showApproveDialog);
+
+      if (body.status === 1) {
+        setShowApproveDialog(!showApproveDialog);
+      }
+
+      if (body.status === 2) {
+        setShowRejectDialog(!showRejectDialog);
+      }
+      navigate("/admin/businesses");
+
+      const datas = await getBusinessVerifications();
+      setDatas(datas.data);
     } catch (error) {
       toast({
         title: "Oops! Something went wrong.",
@@ -82,7 +99,7 @@ export default function Business() {
       {
         header: "Detail",
         accessorKey: "description",
-        cell: (info) => <p>{info.row.original.description.slice(0, 50)}...</p>,
+        cell: (info) => <p>{info.row.original.description.slice(0, 20)}...</p>,
         footer: (props) => props.column.id,
         size: 200,
       },
@@ -225,8 +242,23 @@ export default function Business() {
 
   return (
     <Layout>
-      <div className="w-full text-xl font-semibold mb-4">
+      <div className="w-full flex justify-between text-xl font-semibold mb-4">
         <p>Businesses</p>
+        <Select
+          onValueChange={(value) => {
+            searchParams.set("status", value);
+            setSearchParams(searchParams);
+          }}
+        >
+          <SelectTrigger className="w-[180px]">
+            <SelectValue placeholder="Filter" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="0">Pending</SelectItem>
+            <SelectItem value="1">Approved</SelectItem>
+            <SelectItem value="2">Rejected</SelectItem>
+          </SelectContent>
+        </Select>
       </div>
       <div className="w-full h-[500px]">
         <DataTable columns={columns} datas={datas} />
@@ -248,6 +280,7 @@ export default function Business() {
         onCancel={() => {
           setShowRejectDialog(!showRejectDialog);
         }}
+        onAction={() => handleApproveBusiness(businessId!, { status: 2 })}
       />
     </Layout>
   );

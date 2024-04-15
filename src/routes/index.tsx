@@ -42,7 +42,6 @@ const router = createBrowserRouter([
       { path: "/admin", element: <MyProfile /> },
       { path: "/admin/users", element: <Users /> },
       { path: "/admin/businesses", element: <Business /> },
-      // { path: "/verifications", element: <Verifikasi /> },
     ],
   },
 ]);

@@ -47,12 +47,11 @@ export default function ProposalCard(props: Props) {
 
   return (
     <>
-      <div className="w-11/12 h-[330px] mx-auto flex bg-slate-50 border border-[#00ad26] rounded-xl mb-10">
+      <div className="lg:w-11/12 md:w-12/12 lg:h-[330px] md:w-[600px] md:h-[250px] h-[502px] mx-auto md:flex sm:grid bg-slate-50 border border-[#00ad26] rounded-xl mb-20">
         <div className="w-full bg-slate-100 rounded-xl">
-          <img src={image} alt="" className="w-full h-full rounded-xl" />
+          <img src={image} alt="" className="lg:w-full lg:h-full md:h-[249px] h-[250px] rounded-xl" />
         </div>
-
-        <div className="flex flex-col w-11/12 justify-around p-5">
+        <div className="md:flex md:flex-col sm:grid md:w-11/12 justify-around p-5">
           {withOption ? (
             <div className="self-end">
               <DropdownMenu>
@@ -63,17 +62,17 @@ export default function ProposalCard(props: Props) {
                   {archive ? (
                     <>
                       <DropdownMenuItem
-                        className="flex gap-2"
+                        className="flex gap-2 cursor-pointer"
                         onClick={() => setShowPublicDialog(!showPublicDialog)}
                       >
-                        <EarthIcon className="w-5" />
-                        Go Public
+                        <EarthIcon className="w-5 cursor-pointer" />
+                        <p className="cursor-pointer">Go Public</p>
                       </DropdownMenuItem>
                     </>
                   ) : (
                     <>
                       <DropdownMenuItem
-                        className="flex gap-2"
+                        className="flex gap-2 cursor-pointer"
                         onClick={() => setShowArchiveDialog(!showArchiveDialog)}
                       >
                         <Archive className="w-5" />
@@ -82,16 +81,16 @@ export default function ProposalCard(props: Props) {
                     </>
                   )}
                   <Link to={`/business/${id}/update`}>
-                    <DropdownMenuItem className="flex gap-2 items-center">
+                    <DropdownMenuItem className="flex gap-2 items-center cursor-pointer">
                       <EditIcon className="w-5" />
                       <p>Edit</p>
                     </DropdownMenuItem>
                   </Link>
                   <DropdownMenuItem
-                    className="text-red-600 flex gap-2"
+                    className="text-red-600 flex gap-2 cursor-pointer"
                     onClick={() => setShowDeleteDialog(!showDeleteDialog)}
                   >
-                    <Trash className="w-5" /> Delete
+                    <Trash className="w-5 cursor-pointer" /> <p className="cursor-pointer">Delete</p>
                   </DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu>
@@ -100,12 +99,12 @@ export default function ProposalCard(props: Props) {
             <></>
           )}
 
-          <div className="mb-7">
-            <p className="text-2xl font-semibold">{title}</p>
-            <p className="text-xl">
+          <div className="lg:mb-7 mb-9">
+            <p className="lg:text-2xl text-xl font-semibold">{title}</p>
+            <p className="lg:text-xl text-md">
               {formatRupiah.format(collected)} / {formatRupiah.format(target)}
             </p>
-            <p className="my-2 text-sm">{desc.slice(0, 90)}.....</p>
+            <p className="my-3 text-sm">{desc.slice(0, 20)}.....</p>
             <p>{persentase}%</p>
             <Progress
               value={persentase}
@@ -117,7 +116,7 @@ export default function ProposalCard(props: Props) {
                 to={invested ? `/invested-business/${id}` : `/business/${id}`}
               >
                 <Button className="w-1/4 bg-[#00ad26] hover:bg-[#006516]">
-                  See Details
+                  <p className="xl:text-base md:text-[15px] text-[10px]">See Details</p>
                 </Button>
               </Link>
             </>

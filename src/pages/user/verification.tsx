@@ -49,21 +49,21 @@ export default function Verification() {
   return (
     <>
       <Layout>
-        <div className="mb-10 mt-2 flex gap-10">
+        <div className="mb-6 mt-2 flex gap-10">
           <Link to={"/profile"}>
-            <p className="text-xl text-slate-600 hover:text-black">
+            <p className="xl:text-xl md:text-xl text-md text-slate-600 hover:text-black">
               My Profile
             </p>
           </Link>
           <Link to={"/invested-business"}>
-            <p className="text-xl text-slate-600 hover:text-black">
+            <p className="xl:text-xl md:text-xl text-md text-slate-600 hover:text-black">
               Invested Business
             </p>
           </Link>
           <Link to={"/verification"}>
             <p
               className={cn(
-                "text-xl text-slate-600 hover:text-black",
+                "xl:text-xl md:text-xl text-md text-slate-600 hover:text-black",
                 location.pathname === "/verification"
                   ? "text-black font-semibold"
                   : ""
@@ -106,12 +106,6 @@ export default function Verification() {
                     disabled={form.formState.isSubmitting}
                     aria-disabled={form.formState.isSubmitting}
                     className="rounded-full"
-                    // className={cn(
-                    //   "rounded-full border",
-                    //   user?.photo_ktp
-                    //     ? "border-green-500 text-green-500"
-                    //     : "border-red-500 text-red-500"
-                    // )}
                     onChange={(e) =>
                       field.onChange(e.target.files ? e.target.files[0] : null)
                     }
@@ -131,12 +125,6 @@ export default function Verification() {
                     disabled={form.formState.isSubmitting}
                     aria-disabled={form.formState.isSubmitting}
                     className="rounded-full"
-                    // className={cn(
-                    //   "rounded-full border",
-                    //   user?.photo_ktp
-                    //     ? "border-green-500 text-green-500"
-                    //     : "border-red-500 text-red-500"
-                    // )}
                     onChange={(e) =>
                       field.onChange(e.target.files ? e.target.files[0] : null)
                     }
@@ -156,12 +144,6 @@ export default function Verification() {
                     disabled={form.formState.isSubmitting}
                     aria-disabled={form.formState.isSubmitting}
                     className="rounded-full"
-                    // className={cn(
-                    //   "rounded-full border",
-                    //   user?.photo_ktp
-                    //     ? "border-green-500 text-green-500"
-                    //     : "border-red-500 text-red-500"
-                    // )}
                     onChange={(e) =>
                       field.onChange(e.target.files ? e.target.files[0] : null)
                     }

@@ -31,7 +31,7 @@ function Homepage() {
         <div className="flex justify-between items-center mb-10">
           <div className="xl:w-1/2 xs:w-full">
             <div className="mt-10">
-              <p className="font-bold xl:text-5xl sm:text-6xl mb-5">
+              <p className="font-bold xl:text-6xl md:text-5xl text-2xl mb-5">
                 What is{" "}
                 <span className="font-lora font-bold text-[#00ac26]">
                   Inbuscap.id

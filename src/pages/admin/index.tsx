@@ -57,7 +57,7 @@ export default function MyProfile() {
 
   return (
     <Layout>
-      <div className="w-full grid grid-cols-2 justify-center p-3.5">
+      <div className="w-full grid lg:grid-cols-2 justify-center p-3.5">
         <Form {...form}>
           <form
             data-testid="form-register"
@@ -134,8 +134,8 @@ export default function MyProfile() {
             </Button>
           </form>
         </Form>
-        <div className="ml-48 items-end justify-end">
-          <Avatar className="w-[250px] h-[250px]">
+        <div className="lg:ml-48 mt-10 lg:items-end lg:justify-end items-center">
+          <Avatar className="lg:w-[250px] lg:h-[250px] w-[300px] h-[300px]">
             <AvatarImage
               src={user?.avatar ? user.avatar : "https://github.com/shadcn.png"}
             />

@@ -93,7 +93,7 @@ export default function Profile() {
           <Link to={"/profile"}>
             <p
               className={cn(
-                "text-xl text-slate-600 hover:text-black",
+                "xl:text-xl md:text-xl text-md text-slate-600 hover:text-black",
                 location.pathname === "/profile"
                   ? "text-black font-semibold"
                   : ""
@@ -103,12 +103,12 @@ export default function Profile() {
             </p>
           </Link>
           <Link to={"/invested-business"}>
-            <p className="text-xl text-slate-600 hover:text-black">
+            <p className="xl:text-xl md:text-xl text-md text-slate-600 hover:text-black">
               Invested Business
             </p>
           </Link>
           <Link to={"/verification"}>
-            <p className="text-xl text-slate-600 hover:text-black">
+            <p className="xl:text-xl md:text-xl text-md text-slate-600 hover:text-black">
               Verification
             </p>
           </Link>
@@ -119,7 +119,7 @@ export default function Profile() {
             data-testid="form-register"
             className="space-y-6"
           >
-            <div className="flex justify-start gap-4">
+            <div className="md:flex sm:grid justify-start gap-4">
               <div>
                 <Avatar className="w-[250px] h-[250px] m-5">
                   <AvatarImage

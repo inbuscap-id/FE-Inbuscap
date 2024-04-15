@@ -23,7 +23,7 @@ export default function Navbar() {
               <>
                 <li
                   className={cn(
-                    "hover:text-white text-green-200 hidden md:block",
+                    "hover:text-white text-green-200 hidden lg:block",
                     location.pathname === "/create-business" ? "text-white" : ""
                   )}
                 >
@@ -31,7 +31,7 @@ export default function Navbar() {
                 </li>
                 <li
                   className={cn(
-                    "hover:text-white text-green-100 hidden md:block",
+                    "hover:text-white text-green-100 hidden lg:block",
                     location.pathname === "/my-business" ? "text-white " : ""
                   )}
                 >
@@ -39,7 +39,7 @@ export default function Navbar() {
                 </li>
                 <li
                   className={cn(
-                    "hover:text-white text-green-100 hidden md:block",
+                    "hover:text-white text-green-100 hidden lg:block",
                     location.pathname === "/" ? "text-white " : ""
                   )}
                 >
@@ -50,7 +50,7 @@ export default function Navbar() {
               <>
                 <li
                   className={cn(
-                    "hover:text-white text-green-200 hidden md:block",
+                    "hover:text-white text-green-200 hidden lg:block",
                     location.pathname === "/create-business" ? "text-white" : ""
                   )}
                 >
@@ -70,7 +70,7 @@ export default function Navbar() {
             <li className="flex items-center gap-3">
             <DropdownMenu>
   <DropdownMenuTrigger>
-    <Menu className="md:hidden"/>
+    <Menu className="xl:hidden"/>
   </DropdownMenuTrigger>
   <DropdownMenuContent>
     <DropdownMenuItem>

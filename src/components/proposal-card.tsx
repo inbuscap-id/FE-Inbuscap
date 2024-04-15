@@ -64,8 +64,8 @@ export default function ProposalCard(props: Props) {
   return (
     <>
       <div className="w-11/12 h-[330px] mx-auto flex bg-slate-50 border border-[#00ad26] rounded-xl mb-10">
-        <div className="w-full hidden md:block bg-slate-100 rounded-xl">
-          <img src={image} alt="" className="w-full h-full rounded-xl" />
+        <div className="w-full hidden xl:block bg-slate-100 rounded-xl">
+          <img src={image} alt="image" className="w-full h-full rounded-xl" />
         </div>
 
         <div className="flex flex-col w-11/12 justify-around p-5">
@@ -137,7 +137,7 @@ export default function ProposalCard(props: Props) {
                 to={invested ? `/invested-business/${id}` : `/business/${id}`}
               >
                 <Button className="w-1/4 bg-[#00ad26] hover:bg-[#006516]">
-                  See Details
+                  <p className="xl:text-base md:text-[15px] text-[10px]">See Details</p>
                 </Button>
               </Link>
             </>

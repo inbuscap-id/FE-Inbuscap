@@ -26,14 +26,16 @@ export default function InvestedBusiness() {
 
   return (
     <Layout>
-      <div className="mb-10 mt-2 flex gap-10">
+      <div className="mb-6 mt-2 flex gap-10">
         <Link to={"/profile"}>
-          <p className="text-xl text-slate-600 hover:text-black">My Profile</p>
+          <p className="xl:text-xl md:text-xl text-md text-slate-600 hover:text-black">
+            My Profile
+            </p>
         </Link>
         <Link to={"/invested-business"}>
           <p
             className={cn(
-              "text-xl text-slate-600 hover:text-black",
+              "xl:text-xl md:text-xl text-md text-slate-600 hover:text-black",
               location.pathname === "/invested-business"
                 ? "text-black font-semibold"
                 : ""
@@ -43,7 +45,7 @@ export default function InvestedBusiness() {
           </p>
         </Link>
         <Link to={"/verification"}>
-          <p className="text-xl text-slate-600 hover:text-black">
+          <p className="xl:text-xl md:text-xl text-md text-slate-600 hover:text-black">
             Verification
           </p>
         </Link>

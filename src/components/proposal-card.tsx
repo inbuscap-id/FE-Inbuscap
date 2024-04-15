@@ -64,7 +64,7 @@ export default function ProposalCard(props: Props) {
   return (
     <>
       <div className="w-11/12 h-[330px] mx-auto flex bg-slate-50 border border-[#00ad26] rounded-xl mb-10">
-        <div className="w-full bg-slate-100 rounded-xl">
+        <div className="w-full hidden md:block bg-slate-100 rounded-xl">
           <img src={image} alt="" className="w-full h-full rounded-xl" />
         </div>
 

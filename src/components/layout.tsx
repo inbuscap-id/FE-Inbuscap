@@ -10,9 +10,9 @@ export default function Layout(props: Props) {
   const { children } = props;
 
   return (
-    <div className="w-full h-screen flex flex-col overflow-auto">
+    <div className="w-full h-screen flex flex-col overflow-scroll custom-scrollbar">
       <Navbar />
-      <div className="mx-auto w-10/12 min-h-dvh grow overflow-auto py-4 flex flex-col">
+      <div className="mx-auto w-10/12 min-h-dvh grow overflow-auto py-2 flex flex-col custom-scrollbar">
         {children}
       </div>
       <Footer />

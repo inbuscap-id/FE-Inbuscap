@@ -27,11 +27,11 @@ function Homepage() {
 
   return (
     <Layout>
-      <div className=" flex flex-col items-center">
+      <div className="flex flex-col md:items-center">
         <div className="flex justify-between items-center mb-10">
-          <div className="w-1/2">
+          <div className="xl:w-1/2 xs:w-full">
             <div className="mt-10">
-              <p className="font-bold text-5xl mb-5">
+              <p className="font-bold xl:text-5xl sm:text-6xl mb-5">
                 What is{" "}
                 <span className="font-lora font-bold text-[#00ac26]">
                   Inbuscap.id
@@ -44,6 +44,7 @@ function Homepage() {
                 This platform was founded with the aim of :
               </p>
               <ul className="list-disc ms-10 text-lg tracking-wider leading-6">
+                <br />
                 <li>
                   Helping investors find potential and trusted investment
                   opportunities.
@@ -61,7 +62,7 @@ function Homepage() {
 
             <div className="text-md tracking-wider leading-6 ms-5">
               <div>
-                <p className="font-bold">1. Investment Services</p>
+                <p className="font-bold"><br />1. Investment Services</p>
                 <p>Inbuscap.id provides a platform for investors to:</p>
                 <ol className="list-disc ms-10">
                   <li>
@@ -86,7 +87,7 @@ function Homepage() {
               </ol>
             </div>
           </div>
-          <div className="w-1/2 bg-red-100">
+          <div className="w-1/2 bg-red-100 hidden xl:block">
             <img src={landingImg} alt="" className="w-full" />
           </div>
         </div>

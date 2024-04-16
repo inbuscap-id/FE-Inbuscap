@@ -47,9 +47,9 @@ export default function ProposalCard(props: Props) {
 
   return (
     <>
-      <div className="lg:w-11/12 md:w-12/12 lg:h-[330px] md:w-[600px] md:h-[250px] h-[500px] mx-auto md:flex sm:grid bg-slate-50 border border-[#00ad26] rounded-xl mb-20">
+      <div className="lg:w-11/12 md:w-12/12 lg:h-[330px] md:w-[600px] md:h-[260px] h-[500px] mx-auto md:flex sm:grid bg-slate-50 border border-[#00ad26] rounded-xl mb-20">
         <div className="w-full bg-slate-100 rounded-xl">
-          <img src={image} alt="" className="lg:w-full lg:h-full md:h-[249px] md:w-[500px] w-[250px] h-[250px] rounded-xl" />
+          <img src={image} alt="" className="lg:w-full lg:h-full md:h-[259px] md:w-[500px] w-[400px] h-[250px] rounded-xl" />
         </div>
         <div className="md:flex md:flex-col sm:grid md:w-11/12 justify-around p-5">
           {withOption ? (
@@ -105,7 +105,7 @@ export default function ProposalCard(props: Props) {
             <p className="lg:text-xl md:text-md text-sm">
               {formatRupiah.format(collected)} / {formatRupiah.format(target)}
             </p>
-            <p className="my-3 lg:text-sm text-xs">{desc.slice(0, 20)}.....</p>
+            <p className="my-3 lg:text-sm text-xs">{desc.slice(0, 90)}.....</p>
             <p>{persentase}%</p>
             <Progress
               value={persentase}

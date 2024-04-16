@@ -90,7 +90,7 @@ export default function Profile() {
   return (
     <>
       <Layout>
-        <div className="mb-6 mt-2 flex md:gap-10 gap-5">
+        <div className="mb-6 mt-2 flex md:gap-10 gap-4">
           <Link to={"/profile"}>
             <p
               className={cn(

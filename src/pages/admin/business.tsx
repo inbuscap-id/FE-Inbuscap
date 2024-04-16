@@ -1,7 +1,13 @@
 import CustomAlert from "@/components/custom-alert";
 import DataTable from "@/components/data-table";
 import Layout from "@/components/layout-admin";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { useToast } from "@/components/ui/use-toast";
 import {
   approveBusiness,
@@ -29,7 +35,6 @@ export default function Business() {
 
   const fetchData = async () => {
     try {
-      
       const query = Object.fromEntries([...searchParams]);
       const result = await getBusinessVerifications({ ...query });
 

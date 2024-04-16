@@ -34,6 +34,13 @@ export const topupSchema = z.object({
 
 export type TopupType = z.infer<typeof topupSchema>;
 
+export const investSchema = z.object({
+  proposal_id: z.number(),
+  amount: z.number().min(6, { message: "amount is required" }),
+});
+
+export type InvestType = z.infer<typeof investSchema>;
+
 export interface ITopup {
   order_id: string;
   amount: number;

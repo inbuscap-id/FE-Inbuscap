@@ -116,9 +116,22 @@ export default function DetailBusiness() {
           <div className="self-end bg-red-100">
             <Dialog>
               <DialogTrigger asChild>
-                <Button className="w-40 h-12 text-lg bg-[#00AC26] hover:bg-[#006516]">
-                  Invest
-                </Button>
+                {user?.email === data?.user.email ? (
+                  <>
+                    <Button
+                      disabled
+                      className="w-40 h-12 text-lg bg-[#00AC26] hover:bg-[#006516]"
+                    >
+                      Invest
+                    </Button>
+                  </>
+                ) : (
+                  <>
+                    <Button className="w-40 h-12 text-lg bg-[#00AC26] hover:bg-[#006516]">
+                      Invest
+                    </Button>
+                  </>
+                )}
               </DialogTrigger>
               <DialogContent className="sm:max-w-[425px]">
                 <DialogHeader>

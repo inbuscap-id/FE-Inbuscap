@@ -114,7 +114,9 @@ export default function Profile() {
             </p>
           </Link>
           <Link to={"/topup"}>
-            <p className="xl:text-xl md:text-xl text-sm text-slate-600 hover:text-black">Top Up</p>
+            <p className="xl:text-xl md:text-xl text-sm text-slate-600 hover:text-black">
+              Top Up
+            </p>
           </Link>
         </div>
         <Form {...form}>

@@ -31,6 +31,7 @@ import { Label } from "@/components/ui/label";
 import { formatRupiah } from "@/utils/format-money";
 
 export default function Topup() {
+  const [showSummary, setShowSummary] = useState(false);
   const { toast } = useToast();
   const navigate = useNavigate();
   const [responseTopup, setResponseTopup] = useState<ITopup>();
@@ -57,6 +58,7 @@ export default function Topup() {
     try {
       const result = await topUp(data);
       setResponseTopup(result.data);
+      setShowSummary(!showSummary);
       toast({
         description: result.message,
       });
@@ -158,7 +160,7 @@ export default function Topup() {
               )}
             </CustomFormField>
 
-            <Dialog>
+            <Dialog open={showSummary}>
               <DialogTrigger asChild>
                 <Button variant="outline">See Detail Top Up</Button>
               </DialogTrigger>
@@ -195,7 +197,11 @@ export default function Topup() {
                 </div>
                 <DialogFooter className="sm:justify-start">
                   <DialogClose asChild>
-                    <Button type="button" variant="secondary">
+                    <Button
+                      type="button"
+                      variant="secondary"
+                      onClick={() => setShowSummary(!showSummary)}
+                    >
                       Close
                     </Button>
                   </DialogClose>

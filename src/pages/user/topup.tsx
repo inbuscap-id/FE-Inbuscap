@@ -91,7 +91,9 @@ export default function Topup() {
     <Layout>
       <div className="mb-10 mt-2 flex md:gap-10 gap-5">
         <Link to={"/profile"}>
-          <p className="xl:text-xl md:text-xl text-sm text-slate-600 hover:text-black">My Profile</p>
+          <p className="xl:text-xl md:text-xl text-sm text-slate-600 hover:text-black">
+            My Profile
+          </p>
         </Link>
         <Link to={"/invested-business"}>
           <p className="xl:text-xl md:text-xl text-sm text-slate-600 hover:text-black">
@@ -125,7 +127,7 @@ export default function Topup() {
       <div className="w-2/3 lg:w-1/2 self-center p-2">
         <Form {...form}>
           <form
-            data-testid="form-register"
+            data-testid="form-topup"
             onSubmit={form.handleSubmit(handleSubmitTopup)}
             className="flex flex-col gap-5"
           >

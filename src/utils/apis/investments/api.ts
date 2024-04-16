@@ -1,6 +1,16 @@
-import { IResponseData, IResponsePagination } from "@/utils/types/api";
+import {
+  IResponse,
+  IResponseData,
+  IResponsePagination,
+} from "@/utils/types/api";
 import axiosWithConfig from "../axiosWithConfig";
-import { IDetailInvestment, IInvestments, ITopup, TopupType } from "./type";
+import {
+  IDetailInvestment,
+  IInvestments,
+  ITopup,
+  InvestType,
+  TopupType,
+} from "./type";
 
 export const getInvestments = async () => {
   try {
@@ -27,6 +37,16 @@ export const topUp = async (body: TopupType) => {
     const response = await axiosWithConfig.post("/transactions/topup", body);
 
     return response.data as IResponseData<ITopup>;
+  } catch (error: any) {
+    throw Error(error.response.data.message);
+  }
+};
+
+export const investBusiness = async (body: InvestType) => {
+  try {
+    const response = await axiosWithConfig.post("/investments", body);
+
+    return response.data as IResponse;
   } catch (error: any) {
     throw Error(error.response.data.message);
   }

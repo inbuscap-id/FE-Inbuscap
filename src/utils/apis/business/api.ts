@@ -14,7 +14,11 @@ import {
   UpdateBusinessType,
   IMyBusiness,
 } from "./type";
-import { buildQueryString, checkProperty, valueFormatData } from "@/utils/formatter";
+import {
+  buildQueryString,
+  checkProperty,
+  valueFormatData,
+} from "@/utils/formatter";
 
 export const getBusinesses = async () => {
   try {
@@ -110,7 +114,9 @@ export const deleteBusiness = async (proposal_id: string) => {
 export const getBusinessVerifications = async (params?: Request) => {
   try {
     const query = buildQueryString(params);
-    const url = query ? `/verifications/proposals${query}` : "/verifications/users";
+    const url = query
+      ? `/verifications/proposals${query}`
+      : "/verifications/proposals";
 
     const response = await axiosWithConfig.get(url);
 

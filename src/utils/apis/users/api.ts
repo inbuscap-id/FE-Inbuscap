@@ -105,10 +105,9 @@ export const getVerifications = async (params?: Request) => {
     const url = query ? `/verifications/users${query}` : "/verifications/users";
 
     const response = await axiosWithConfig.get(url);
-
     return response.data as IResponsePagination<IVerif[]>;
   } catch (error: any) {
-    throw Error(error.response.data.message);
+    throw Error(error.response.code);
   }
 };
 

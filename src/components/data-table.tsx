@@ -63,7 +63,31 @@ export default function DataTable<T>(props: Readonly<Props<T>>) {
             ))}
           </TableHeader>
           <TableBody>
-            {table.getRowModel().rows.map((row) => {
+            {datas.length === 0 ? (
+              <TableRow>
+                <TableCell colSpan={table.getVisibleFlatColumns().length}>
+                  <div className="text-center py-4">No Data</div>
+                </TableCell>
+              </TableRow>
+            ) : (
+              table.getRowModel().rows.map((row) => {
+                return (
+                  <TableRow aria-label="row" key={row.id}>
+                    {row.getVisibleCells().map((cell) => {
+                      return (
+                        <TableCell key={cell.id}>
+                          {flexRender(
+                            cell.column.columnDef.cell,
+                            cell.getContext()
+                          )}
+                        </TableCell>
+                      );
+                    })}
+                  </TableRow>
+                );
+              })
+            )}
+            {/* {table.getRowModel().rows.map((row) => {
               return (
                 <TableRow aria-label="row" key={row.id}>
                   {row.getVisibleCells().map((cell) => {
@@ -78,7 +102,7 @@ export default function DataTable<T>(props: Readonly<Props<T>>) {
                   })}
                 </TableRow>
               );
-            })}
+            })} */}
           </TableBody>
         </Table>
       </div>

@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { formatRupiah } from "@/utils/format-money";
 import { useEffect, useState } from "react";
 import { IDetailBusiness } from "@/utils/apis/business/type";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { getDetailBusiness } from "@/utils/apis/business/api";
 import {
   Dialog,
@@ -27,6 +27,7 @@ import { investBusiness } from "@/utils/apis/investments/api";
 import { useToast } from "@/components/ui/use-toast";
 
 export default function DetailBusiness() {
+  const navigate = useNavigate();
   const { toast } = useToast();
   const param = useParams();
   const [data, setData] = useState<IDetailBusiness>();
@@ -63,6 +64,7 @@ export default function DetailBusiness() {
   const handleInvest = async (data: InvestType) => {
     try {
       const result = await investBusiness(data);
+      navigate("/invested-business");
       toast({
         description: result.message,
       });
@@ -116,7 +118,7 @@ export default function DetailBusiness() {
           <div className="self-end bg-red-100">
             <Dialog>
               <DialogTrigger asChild>
-                {user?.email === data?.user.email ? (
+                {/* {user?.email === data?.user.email ? (
                   <>
                     <Button
                       disabled
@@ -131,7 +133,17 @@ export default function DetailBusiness() {
                       Invest
                     </Button>
                   </>
-                )}
+                )} */}
+                <Button
+                  className="w-40 h-12 text-lg bg-[#00AC26] hover:bg-[#006516]"
+                  disabled={user?.email === data?.user.email}
+                >
+                  {user?.email === data?.user.email ? (
+                    <>Your Own Business</>
+                  ) : (
+                    <>Invest</>
+                  )}
+                </Button>
               </DialogTrigger>
               <DialogContent className="sm:max-w-[425px]">
                 <DialogHeader>

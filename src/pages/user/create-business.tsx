@@ -98,7 +98,6 @@ const CreateBusiness = () => {
                     placeholder="name of your business"
                     type="text"
                     id="input-title"
-                    type="text"
                     disabled={form.formState.isSubmitting}
                     aria-disabled={form.formState.isSubmitting}
                     className="rounded-full"

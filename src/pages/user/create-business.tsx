@@ -81,7 +81,7 @@ const CreateBusiness = () => {
                     onChange={(e) =>
                       field.onChange(e.target.files ? e.target.files[0] : null)
                     }
-                    className="w-11/12"
+                    className="lg:w-11/12"
                   />
                 )}
               </CustomFormField>

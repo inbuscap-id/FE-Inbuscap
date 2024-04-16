@@ -50,7 +50,7 @@ export default function Verification() {
   return (
     <>
       <Layout>
-        <div className="mb-10 mt-2 flex md:gap-10 gap-5">
+        <div className="mb-10 mt-2 flex md:gap-10 gap-4">
           <Link to={"/profile"}>
             <p className="xl:text-xl md:text-xl text-sm text-slate-600 hover:text-black">
               My Profile

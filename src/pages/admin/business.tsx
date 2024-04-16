@@ -40,11 +40,11 @@ export default function Business() {
 
       setDatas(result.data);
     } catch (error) {
-      toast({
-        title: "Oops! Something went wrong.",
-        description: (error as Error).message,
-        variant: "destructive",
-      });
+      // toast({
+      //   title: "Oops! Something went wrong.",
+      //   description: (error as Error).message,
+      //   variant: "destructive",
+      // });
     }
   };
 
@@ -191,6 +191,7 @@ export default function Business() {
                   className="text-red-700"
                   onClick={() => {
                     setBusiness(info.row.original.title);
+                    setBusinessId(info.row.original.id);
                     setShowRejectDialog(!showRejectDialog);
                   }}
                 />
@@ -256,7 +257,7 @@ export default function Business() {
           }}
         >
           <SelectTrigger className="w-[180px]">
-            <SelectValue placeholder="Filter" />
+            <SelectValue placeholder="Pending" />
           </SelectTrigger>
           <SelectContent>
             <SelectItem value="0">Pending</SelectItem>

@@ -42,7 +42,7 @@ function Homepage() {
                 This platform was founded with the aim of :
               </p>
               <ul className="list-disc ms-10 text-lg tracking-wider leading-6">
-              <br />
+                <br />
                 <li>
                   Helping investors find potential and trusted investment
                   opportunities.
@@ -60,7 +60,10 @@ function Homepage() {
 
             <div className="text-md tracking-wider leading-6 ms-5">
               <div>
-                <p className="font-bold"><br />1. Investment Services</p>
+                <p className="font-bold">
+                  <br />
+                  1. Investment Services
+                </p>
                 <p>Inbuscap.id provides a platform for investors to:</p>
                 <ol className="list-disc ms-10">
                   <li>
@@ -97,17 +100,40 @@ function Homepage() {
 
           <Separator className="mb-10 rounded-full bg-[#006516]" />
 
-          {datas.map((data) => (
-            <ProposalCard
-              key={data.id}
-              title={data.title}
-              desc={data.description}
-              image={data.image}
-              target={data.capital}
-              collected={data.collected}
-              id={data.id}
-            />
-          ))}
+          {datas.map((data) => {
+            if (data.status === 1) {
+              return (
+                <ProposalCard
+                  key={data.id}
+                  title={data.title}
+                  desc={data.description}
+                  image={data.image}
+                  target={data.capital}
+                  collected={data.collected}
+                  id={data.id}
+                />
+              );
+            }
+            return null;
+          })}
+
+          {/* {datas.map((data) =>
+            data.status === 1 ? (
+              <>
+                <ProposalCard
+                  key={data.id}
+                  title={data.title}
+                  desc={data.description}
+                  image={data.image}
+                  target={data.capital}
+                  collected={data.collected}
+                  id={data.id}
+                />
+              </>
+            ) : (
+              <></>
+            )
+          )} */}
         </div>
       </div>
     </Layout>

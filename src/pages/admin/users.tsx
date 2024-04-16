@@ -37,11 +37,11 @@ export default function Users() {
 
       setDatas(result.data);
     } catch (error) {
-      toast({
-        title: "Oops! Something went wrong.",
-        description: (error as Error).message,
-        variant: "destructive",
-      });
+      // toast({
+      //   title: "Oops! Something went wrong.",
+      //   description: (error as Error).message,
+      //   variant: "destructive",
+      // });
     }
   };
 
@@ -287,7 +287,7 @@ export default function Users() {
           }}
         >
           <SelectTrigger className="w-[180px]">
-            <SelectValue placeholder="Filter" />
+            <SelectValue placeholder="Pending" />
           </SelectTrigger>
           <SelectContent>
             <SelectItem value="0">Pending</SelectItem>

@@ -7,10 +7,13 @@ export interface IBusiness {
   image: string;
   email: string;
   description: string;
+  status: number;
   capital: number;
   collected: number;
   share: number;
   proposal: string;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export interface IMyBusiness {

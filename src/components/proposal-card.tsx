@@ -105,7 +105,7 @@ export default function ProposalCard(props: Props) {
             <p className="lg:text-xl md:text-md text-sm">
               {formatRupiah.format(collected)} / {formatRupiah.format(target)}
             </p>
-            <p className="my-3 lg:text-sm text-xs">{desc.slice(0, 90)}.....</p>
+            <p className="my-3 lg:text-sm text-[10px]">{desc.slice(0, 90)}.....</p>
             <p>{persentase}%</p>
             <Progress
               value={persentase}

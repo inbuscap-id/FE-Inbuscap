@@ -33,3 +33,12 @@
     <li><a href="#author">Author</a></li>
   </ol>
 </details>
+
+[contributors-shield]: https://img.shields.io/github/contributors/Capstone-Group3-Mentutor/Front-End.svg?style=for-the-badge
+[contributors-url]: https://github.com/inbuscap-id/FE-Inbuscap/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/FE-Inbuscap/Front-End.svg?style=for-the-badge
+[forks-url]: https://github.com/inbuscap-id/FE-Inbuscap/network/members
+[stars-shield]: https://img.shields.io/github/stars/Capstone-Group3-Mentutor/Front-End.svg?style=for-the-badge
+[stars-url]: https://github.com/Capstone-Group3-Mentutor/Front-End/stargazers
+[issues-shield]: https://img.shields.io/github/issues/Capstone-Group3-Mentutor/Front-End.svg?style=for-the-badge
+[issues-url]: https://github.com/Capstone-Group3-Mentutor/Front-End/issues

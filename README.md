@@ -48,7 +48,7 @@
 
   [![GitHub](https://img.shields.io/badge/-Franco-black?style=for-the-badge&logo=github&logoColor=white)]([https://github.com/dotarsojat69) [![LinkedIn](https://img.shields.io/badge/-Franco-blue?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/franco-freso-dixo-36723424b/)
 
-  - Ade Prastyo :
+- Ade Prastyo :
 
   [![GitHub](https://img.shields.io/badge/-Ade-black?style=for-the-badge&logo=github&logoColor=white)]([https://github.com/adeprastyo) [![LinkedIn](https://img.shields.io/badge/-Ade-blue?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/adeprastyo/)
 

@@ -39,13 +39,7 @@ export default function Business() {
       const result = await getBusinessVerifications({ ...query });
 
       setDatas(result.data);
-    } catch (error) {
-      // toast({
-      //   title: "Oops! Something went wrong.",
-      //   description: (error as Error).message,
-      //   variant: "destructive",
-      // });
-    }
+    } catch (error) {}
   };
 
   const handleApproveBusiness = async (
@@ -130,6 +124,7 @@ export default function Business() {
               <a
                 className="text-primary bg-green-100 font-semibold rounded-full text-center px-3 py-1 underline"
                 href={info.row.original.proposal}
+                id="link-proposal-file"
               >
                 File
               </a>
@@ -186,6 +181,7 @@ export default function Business() {
                     setBusinessId(info.row.original.id);
                     setShowApproveDialog(!showApproveDialog);
                   }}
+                  id="btn-approve"
                 />
                 <UserX
                   className="text-red-700"
@@ -194,6 +190,7 @@ export default function Business() {
                     setBusinessId(info.row.original.id);
                     setShowRejectDialog(!showRejectDialog);
                   }}
+                  id="btn-reject"
                 />
               </div>
             );
@@ -205,8 +202,10 @@ export default function Business() {
                   className="text-red-700 mx-auto"
                   onClick={() => {
                     setBusiness(info.row.original.title);
+                    setBusinessId(info.row.original.id);
                     setShowRejectDialog(!showRejectDialog);
                   }}
+                  id="btn-reject"
                 />
               </div>
             );
@@ -222,6 +221,7 @@ export default function Business() {
                     setBusinessId(info.row.original.id);
                     setShowApproveDialog(!showApproveDialog);
                   }}
+                  id="btn-approve"
                 />
               </div>
             );
@@ -235,8 +235,8 @@ export default function Business() {
         id: "action",
         cell: () => (
           <div className="flex gap-3">
-            <Edit className="text-blue-700" />
-            <Trash2 className="text-red-700" />
+            <Edit className="text-blue-700" id="btn-edit-business" />
+            <Trash2 className="text-red-700" id="btn-delete-business" />
           </div>
         ),
         footer: (props) => props.column.id,
@@ -256,13 +256,19 @@ export default function Business() {
             setSearchParams(searchParams);
           }}
         >
-          <SelectTrigger className="w-[180px]">
+          <SelectTrigger className="w-[180px]" id="select-status-business">
             <SelectValue placeholder="Pending" />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="0">Pending</SelectItem>
-            <SelectItem value="1">Approved</SelectItem>
-            <SelectItem value="2">Rejected</SelectItem>
+            <SelectItem value="0" id="select-pending">
+              Pending
+            </SelectItem>
+            <SelectItem value="1" id="select-approved">
+              Approved
+            </SelectItem>
+            <SelectItem value="2" id="select-rejected">
+              Rejected
+            </SelectItem>
           </SelectContent>
         </Select>
       </div>

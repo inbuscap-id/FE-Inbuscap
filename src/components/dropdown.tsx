@@ -32,6 +32,7 @@ export default function Dropdown() {
           <AvatarImage
             className="object-cover"
             src={user?.avatar ? user.avatar : defaultAvatar}
+            id="btn-avatar"
           />
           <AvatarFallback>CN</AvatarFallback>
         </Avatar>
@@ -41,19 +42,19 @@ export default function Dropdown() {
         <DropdownMenuContent align="end" forceMount>
           <DropdownMenuLabel>{user?.fullname}</DropdownMenuLabel>
           <DropdownMenuSeparator />
-          <Link to="/profile">
+          <Link to="/profile" id="link-my-profile">
             <DropdownMenuItem className="cursor-pointer flex gap-2">
               <User className="w-5" />
               My Profile
             </DropdownMenuItem>
           </Link>
-          <Link to="/archive-business">
+          <Link to="/archive-business" id="link-archive-business">
             <DropdownMenuItem className="cursor-pointer flex gap-2">
               <Archive className="w-5" />
               Archive Business
             </DropdownMenuItem>
           </Link>
-          <Link to="/withdraw">
+          <Link to="/withdraw" id="link-withdraw">
             <DropdownMenuItem className="cursor-pointer flex gap-2">
               <DollarSignIcon className="w-5" />
               Withdraw
@@ -63,6 +64,7 @@ export default function Dropdown() {
           <DropdownMenuItem
             className="cursor-pointer flex gap-2"
             onClick={() => handleLogout()}
+            id="btn-logout"
           >
             <LogOut className="w-5" />
             Logout
@@ -70,12 +72,12 @@ export default function Dropdown() {
         </DropdownMenuContent>
       ) : (
         <DropdownMenuContent align="end" forceMount>
-          <Link to="/login">
+          <Link to="/login" id="link-login">
             <DropdownMenuItem className="cursor-pointer">
               Login
             </DropdownMenuItem>
           </Link>
-          <Link to="/register">
+          <Link to="/register" id="link-register">
             <DropdownMenuItem className="cursor-pointer">
               Register
             </DropdownMenuItem>

@@ -129,7 +129,7 @@ export default function Topup() {
       <div className="w-2/3 lg:w-1/2 self-center p-2">
         <Form {...form}>
           <form
-            data-testid="form-topup"
+            id="form-topup"
             onSubmit={form.handleSubmit(handleSubmitTopup)}
             className="flex flex-col gap-5"
           >
@@ -161,7 +161,7 @@ export default function Topup() {
             </CustomFormField>
 
             <Dialog open={showSummary}>
-              <DialogTrigger asChild>
+              <DialogTrigger asChild id="btn-detail-topup">
                 <Button variant="outline">See Detail Top Up</Button>
               </DialogTrigger>
               <DialogContent className="sm:max-w-md">
@@ -180,7 +180,6 @@ export default function Topup() {
                       Link
                     </Label>
                     <Input
-                      id="link"
                       defaultValue={responseTopup?.va_numbers[0].va_number}
                       readOnly
                     />
@@ -190,6 +189,7 @@ export default function Topup() {
                     size="sm"
                     className="px-3"
                     onClick={handleCopyToClipboard}
+                    id="btn-copy-clipboard"
                   >
                     <span className="sr-only">Copy</span>
                     <CopyIcon className="h-4 w-4" />
@@ -201,6 +201,7 @@ export default function Topup() {
                       type="button"
                       variant="secondary"
                       onClick={() => setShowSummary(!showSummary)}
+                      id="btn-show-summary"
                     >
                       Close
                     </Button>
@@ -211,6 +212,7 @@ export default function Topup() {
 
             <Button
               type="submit"
+              id="btn-submit"
               disabled={form.formState.isSubmitting}
               aria-disabled={form.formState.isSubmitting}
               className="rounded-2xl self-end"

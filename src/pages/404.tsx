@@ -12,7 +12,10 @@ export default function NotFound() {
           Sorry, we were unable to find that page
         </p>
         <Link to="/">
-          <Button className="mt-5 bg-[#00AC26] hover:bg-[#006516]">
+          <Button
+            className="mt-5 bg-[#00AC26] hover:bg-[#006516]"
+            id="btn-backtohome"
+          >
             Back to Home
           </Button>
         </Link>

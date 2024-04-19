@@ -21,7 +21,6 @@ interface Props {
   id: number;
   withOption?: boolean;
   archive?: boolean;
-  // invested?: boolean;
   onDelete?: (id: string) => Promise<void>;
 }
 
@@ -39,7 +38,6 @@ export default function ProposalCard(props: Props) {
     id,
     withOption,
     archive,
-    // invested,
     onDelete,
   } = props;
 
@@ -59,7 +57,7 @@ export default function ProposalCard(props: Props) {
           {withOption ? (
             <div className="self-end">
               <DropdownMenu>
-                <DropdownMenuTrigger>
+                <DropdownMenuTrigger id="btn-options">
                   <Ellipsis />
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end" forceMount>
@@ -68,6 +66,7 @@ export default function ProposalCard(props: Props) {
                       <DropdownMenuItem
                         className="flex gap-2 cursor-pointer"
                         onClick={() => setShowPublicDialog(!showPublicDialog)}
+                        id="btn-show-public"
                       >
                         <EarthIcon className="w-5 cursor-pointer" />
                         <p className="cursor-pointer">Go Public</p>
@@ -78,13 +77,14 @@ export default function ProposalCard(props: Props) {
                       <DropdownMenuItem
                         className="flex gap-2 cursor-pointer"
                         onClick={() => setShowArchiveDialog(!showArchiveDialog)}
+                        id="btn-show-archive"
                       >
                         <Archive className="w-5" />
                         Archive
                       </DropdownMenuItem>
                     </>
                   )}
-                  <Link to={`/business/${id}/update`}>
+                  <Link to={`/business/${id}/update`} id="link-show-edit">
                     <DropdownMenuItem className="flex gap-2 items-center cursor-pointer">
                       <EditIcon className="w-5" />
                       <p>Edit</p>
@@ -93,6 +93,7 @@ export default function ProposalCard(props: Props) {
                   <DropdownMenuItem
                     className="text-red-600 flex gap-2 cursor-pointer"
                     onClick={() => setShowDeleteDialog(!showDeleteDialog)}
+                    id="btn-show-delete"
                   >
                     <Trash className="w-5 cursor-pointer" />{" "}
                     <p className="cursor-pointer">Delete</p>
@@ -111,7 +112,9 @@ export default function ProposalCard(props: Props) {
             <p className="lg:text-xl md:text-md text-sm">
               {formatRupiah.format(collected)} / {formatRupiah.format(target)}
             </p>
-            <p className="my-3 lg:text-sm text-[10px]">{desc.slice(0, 90)}.....</p>
+            <p className="my-3 lg:text-sm text-[10px]">
+              {desc.slice(0, 90)}.....
+            </p>
             <p>{persentase}%</p>
             <Progress
               value={persentase}
@@ -119,10 +122,7 @@ export default function ProposalCard(props: Props) {
             />
 
             <>
-              <Link
-                // to={invested ? `/invested-business/${id}` : `/business/${id}`}
-                to={`/business/${id}`}
-              >
+              <Link to={`/business/${id}`} id="link-details">
                 <Button className="lg:w-1/4 bg-[#00ad26] hover:bg-[#006516]">
                   <p className="lg:text-base md:text-[15px] text-[10px]">
                     See Details

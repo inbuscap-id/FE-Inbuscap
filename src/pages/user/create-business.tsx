@@ -61,7 +61,7 @@ const CreateBusiness = () => {
       <div>
         <Form {...form}>
           <form
-            data-testid="form-create-business"
+            id="form-create-business"
             onSubmit={form.handleSubmit(onSubmit)}
             className="flex gap-3"
           >
@@ -73,6 +73,7 @@ const CreateBusiness = () => {
               >
                 {(field) => (
                   <Input
+                    id="input-image"
                     type="file"
                     accept="image/png, image/jpeg, image/jpg"
                     multiple={false}
@@ -166,6 +167,7 @@ const CreateBusiness = () => {
                 {(field) => (
                   <Input
                     type="file"
+                    id="input-proposal"
                     accept="application/pdf"
                     multiple={false}
                     disabled={form.formState.isSubmitting}

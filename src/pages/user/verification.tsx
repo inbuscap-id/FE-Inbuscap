@@ -51,17 +51,17 @@ export default function Verification() {
     <>
       <Layout>
         <div className="mb-10 mt-2 flex md:gap-10 gap-4">
-          <Link to={"/profile"}>
+          <Link to={"/profile"} id="link-my-profile">
             <p className="xl:text-xl md:text-xl text-sm text-slate-600 hover:text-black">
               My Profile
             </p>
           </Link>
-          <Link to={"/invested-business"}>
+          <Link to={"/invested-business"} id="link-invested-business">
             <p className="xl:text-xl md:text-xl text-sm text-slate-600 hover:text-black">
               Invested Business
             </p>
           </Link>
-          <Link to={"/verification"}>
+          <Link to={"/verification"} id="link-verification">
             <p
               className={cn(
                 "xl:text-xl md:text-xl text-sm text-slate-600 hover:text-black",
@@ -73,7 +73,7 @@ export default function Verification() {
               Verification
             </p>
           </Link>
-          <Link to={"/topup"}>
+          <Link to={"/topup"} id="link-topup">
             <p
               className={cn(
                 "xl:text-xl md:text-xl text-sm text-slate-600 hover:text-black",
@@ -109,7 +109,7 @@ export default function Verification() {
           )}
           <Form {...form}>
             <form
-              data-testid="form-register"
+              id="form-register"
               onSubmit={form.handleSubmit(onSubmit)}
               className="space-y-6"
             >
@@ -121,6 +121,7 @@ export default function Verification() {
                 {(field) => (
                   <Input
                     type="file"
+                    id="input-ktp"
                     accept="image/png, image/jpeg, image/jpg"
                     multiple={false}
                     disabled={form.formState.isSubmitting}
@@ -140,6 +141,7 @@ export default function Verification() {
                 {(field) => (
                   <Input
                     type="file"
+                    id="input-npwp"
                     accept="image/png, image/jpeg, image/jpg"
                     multiple={false}
                     disabled={form.formState.isSubmitting}
@@ -159,6 +161,7 @@ export default function Verification() {
                 {(field) => (
                   <Input
                     type="file"
+                    id="input-selfie"
                     accept="image/png, image/jpeg, image/jpg"
                     multiple={false}
                     disabled={form.formState.isSubmitting}

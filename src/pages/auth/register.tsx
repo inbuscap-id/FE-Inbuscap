@@ -58,7 +58,11 @@ export default function Register() {
             <CardTitle className="text-center">Register</CardTitle>
             <CardDescription className="text-center">
               Already have an account? sign{" "}
-              <Link to="/login" className="text-primary underline">
+              <Link
+                to="/login"
+                className="text-primary underline"
+                id="link-login"
+              >
                 here
               </Link>
             </CardDescription>
@@ -66,7 +70,7 @@ export default function Register() {
           <CardContent>
             <Form {...form}>
               <form
-                data-testid="form-register"
+                id="form-register"
                 onSubmit={form.handleSubmit(onSubmit)}
                 className="space-y-3"
               >
@@ -79,7 +83,7 @@ export default function Register() {
                     <Input
                       {...field}
                       placeholder="John Doe"
-                      data-testid="input-full-name"
+                      id="input-full-name"
                       disabled={form.formState.isSubmitting}
                       aria-disabled={form.formState.isSubmitting}
                       className="rounded-full"
@@ -96,7 +100,7 @@ export default function Register() {
                       {...field}
                       placeholder="name@mail.com"
                       type="email"
-                      data-testid="input-email"
+                      id="input-email"
                       disabled={form.formState.isSubmitting}
                       aria-disabled={form.formState.isSubmitting}
                       className="rounded-full"
@@ -112,7 +116,7 @@ export default function Register() {
                     <Input
                       {...field}
                       placeholder="Phone Number"
-                      data-testid="input-phone-number"
+                      id="input-phone-number"
                       disabled={form.formState.isSubmitting}
                       aria-disabled={form.formState.isSubmitting}
                       className="rounded-full"
@@ -128,7 +132,7 @@ export default function Register() {
                     <Input
                       placeholder="Password"
                       type="password"
-                      data-testid="input-password"
+                      id="input-password"
                       disabled={form.formState.isSubmitting}
                       aria-disabled={form.formState.isSubmitting}
                       {...field}
@@ -141,7 +145,7 @@ export default function Register() {
                     <Input
                       {...field}
                       placeholder="ktp"
-                      data-testid="input-ktp"
+                      id="input-ktp"
                       disabled={form.formState.isSubmitting}
                       aria-disabled={form.formState.isSubmitting}
                       className="rounded-full"
@@ -157,7 +161,7 @@ export default function Register() {
                     <Input
                       {...field}
                       placeholder="npwp"
-                      data-testid="input-npwp"
+                      id="input-npwp"
                       disabled={form.formState.isSubmitting}
                       aria-disabled={form.formState.isSubmitting}
                       className="rounded-full"
@@ -166,7 +170,7 @@ export default function Register() {
                 </CustomFormField>
                 <Button
                   type="submit"
-                  data-testid="btn-submit"
+                  id="btn-submit"
                   disabled={form.formState.isSubmitting}
                   aria-disabled={form.formState.isSubmitting}
                   className="rounded-full"

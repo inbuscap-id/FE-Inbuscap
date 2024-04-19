@@ -52,7 +52,7 @@
 
   [![GitHub](https://img.shields.io/badge/-Ade-black?style=for-the-badge&logo=github&logoColor=white)]([https://github.com/adeprastyo) [![LinkedIn](https://img.shields.io/badge/-Ade-blue?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/adeprastyo/)
 
-[contributors-shield]: https://img.shields.io/github/contributors/FE-Inbuscap/Front-End.svg?style=for-the-badge
+[contributors-shield]: https://img.shields.io/github/contributors/FE-Inbuscap.svg?style=for-the-badge
 [contributors-url]: https://github.com/inbuscap-id/FE-Inbuscap/graphs/contributors
 [forks-shield]: https://img.shields.io/github/forks/FE-Inbuscap/Front-End.svg?style=for-the-badge
 [forks-url]: https://github.com/inbuscap-id/FE-Inbuscap/network/members

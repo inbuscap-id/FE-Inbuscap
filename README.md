@@ -34,6 +34,14 @@
   </ol>
 </details>
 
+## 💫Features
+
+- Sign in
+- Logout
+- Create, Update, Delete Bisnis
+- Withdrawal
+- Investment
+
 ## 🤖Author
 
 - Franco Freso Dixo :
@@ -44,11 +52,11 @@
 
   [![GitHub](https://img.shields.io/badge/-Ade-black?style=for-the-badge&logo=github&logoColor=white)]([https://github.com/adeprastyo) [![LinkedIn](https://img.shields.io/badge/-Ade-blue?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/adeprastyo/)
 
-[contributors-shield]: https://img.shields.io/github/contributors/Capstone-Group3-Mentutor/Front-End.svg?style=for-the-badge
+[contributors-shield]: https://img.shields.io/github/contributors/FE-Inbuscap/Front-End.svg?style=for-the-badge
 [contributors-url]: https://github.com/inbuscap-id/FE-Inbuscap/graphs/contributors
 [forks-shield]: https://img.shields.io/github/forks/FE-Inbuscap/Front-End.svg?style=for-the-badge
 [forks-url]: https://github.com/inbuscap-id/FE-Inbuscap/network/members
-[stars-shield]: https://img.shields.io/github/stars/Capstone-Group3-Mentutor/Front-End.svg?style=for-the-badge
-[stars-url]: https://github.com/Capstone-Group3-Mentutor/Front-End/stargazers
-[issues-shield]: https://img.shields.io/github/issues/Capstone-Group3-Mentutor/Front-End.svg?style=for-the-badge
-[issues-url]: https://github.com/Capstone-Group3-Mentutor/Front-End/issues
+[stars-shield]: https://img.shields.io/github/stars/FE-Inbuscap/Front-End.svg?style=for-the-badge
+[stars-url]: https://github.com/inbuscap-id/FE-Inbuscap/stargazers
+[issues-shield]: https://img.shields.io/github/issues/FE-Inbuscap/Front-End.svg?style=for-the-badge
+[issues-url]: https://github.com/inbuscap-id/FE-Inbuscap/issues

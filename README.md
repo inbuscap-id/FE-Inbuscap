@@ -38,7 +38,7 @@
 
 - Franco Freso Dixo :
 
-  [![GitHub](https://img.shields.io/badge/-Franco-black?style=for-the-badge&logo=github&logoColor=white)]([https://github.com/dotarsojat69) [![LinkedIn](https://img.shields.io/badge/-Franco-blue?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/annisard/)
+  [![GitHub](https://img.shields.io/badge/-Franco-black?style=for-the-badge&logo=github&logoColor=white)]([https://github.com/dotarsojat69) [![LinkedIn](https://img.shields.io/badge/-Franco-blue?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/franco-freso-dixo-36723424b/)
 
 [contributors-shield]: https://img.shields.io/github/contributors/Capstone-Group3-Mentutor/Front-End.svg?style=for-the-badge
 [contributors-url]: https://github.com/inbuscap-id/FE-Inbuscap/graphs/contributors

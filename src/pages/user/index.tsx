@@ -91,7 +91,7 @@ export default function Profile() {
     <>
       <Layout>
         <div className="mb-6 mt-2 flex md:gap-10 gap-4">
-          <Link to={"/profile"}>
+          <Link to={"/profile"} id="link-my-profile">
             <p
               className={cn(
                 "xl:text-xl md:text-xl text-sm text-slate-600 hover:text-black",
@@ -103,17 +103,17 @@ export default function Profile() {
               My Profile
             </p>
           </Link>
-          <Link to={"/invested-business"}>
+          <Link to={"/invested-business"} id="link-invested-business">
             <p className="xl:text-xl md:text-xl text-sm text-slate-600 hover:text-black">
               Invested Business
             </p>
           </Link>
-          <Link to={"/verification"}>
+          <Link to={"/verification"} id="link-verification">
             <p className="xl:text-xl md:text-xl text-sm text-slate-600 hover:text-black">
               Verification
             </p>
           </Link>
-          <Link to={"/topup"}>
+          <Link to={"/topup"} id="link-topup">
             <p className="xl:text-xl md:text-xl text-sm text-slate-600 hover:text-black">
               Top Up
             </p>
@@ -122,7 +122,7 @@ export default function Profile() {
         <Form {...form}>
           <form
             onSubmit={form.handleSubmit(handleUpdate)}
-            data-testid="form-register"
+            id="form-register"
             className="space-y-6"
           >
             <div className="md:flex sm:grid justify-start gap-4">
@@ -142,6 +142,7 @@ export default function Profile() {
                   {(field) => (
                     <Input
                       type="file"
+                      id="input-avatar"
                       accept="image/png, image/jpeg, image/jpg"
                       multiple={false}
                       disabled={form.formState.isSubmitting || isDisable}
@@ -251,6 +252,7 @@ export default function Profile() {
                   <div className="w-full flex mt-5">
                     <Button
                       type="button"
+                      id="btn-edit"
                       disabled={form.formState.isSubmitting}
                       aria-disabled={form.formState.isSubmitting}
                       className="w-20 rounded-2xl px-6 border-2 border-primary bg-white text-primary hover:text-white"
@@ -260,6 +262,7 @@ export default function Profile() {
                     </Button>
                     <Button
                       type="submit"
+                      id="btn-submit"
                       disabled={form.formState.isSubmitting}
                       aria-disabled={form.formState.isSubmitting}
                       className="rounded-2xl px-6 mx-6"
@@ -275,6 +278,7 @@ export default function Profile() {
                     </Button>
                     <Button
                       type="button"
+                      id="btn-delete"
                       disabled={form.formState.isSubmitting}
                       aria-disabled={form.formState.isSubmitting}
                       className="rounded-2xl px-6 bg-white text-red-600 hover:bg-red-600 hover:text-white border-2 border-red-500"

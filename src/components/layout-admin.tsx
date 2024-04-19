@@ -6,7 +6,13 @@ import { cn } from "@/lib/utils";
 import { Button } from "./ui/button";
 import { useAuthStore } from "@/utils/zustand/store";
 import { toast } from "./ui/use-toast";
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from "./ui/dropdown-menu";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "./ui/dropdown-menu";
 
 interface Props {
   children: ReactNode;
@@ -40,6 +46,7 @@ export default function Layout(props: Props) {
                 "hover:text-white",
                 location.pathname === "/admin" ? "text-white font-semibold" : ""
               )}
+              id="link-admin-profile"
             >
               <p>My Profile</p>
             </Link>
@@ -51,6 +58,7 @@ export default function Layout(props: Props) {
                   ? "text-white font-semibold"
                   : ""
               )}
+              id="link-users"
             >
               <p>Users</p>
             </Link>
@@ -62,6 +70,7 @@ export default function Layout(props: Props) {
                   ? "text-white font-semibold"
                   : ""
               )}
+              id="link-businesses"
             >
               <p>Businesses</p>
             </Link>
@@ -71,6 +80,7 @@ export default function Layout(props: Props) {
               variant="ghost"
               className="text-green-100 hover:bg-transparent hover:text-white mt-[250px]"
               onClick={handleLogout}
+              id="btn-logout"
             >
               <LogOut className="me-2 text-green-100 hover:text-white" />
               Logout
@@ -80,62 +90,68 @@ export default function Layout(props: Props) {
       </div>
       <div className="lg:w-10/12 md:w-10/12 w-full">
         <div className="w-full flex justify-end lg:gap-20 gap-10 items-center md:px-20 md:h-24 h-20 px-10 border-b-2 border-green-100">
-        <DropdownMenu>
-        <DropdownMenuTrigger>
-            <Menu className="md:hidden"/>
-        </DropdownMenuTrigger>
-          <DropdownMenuContent>
-            <DropdownMenuItem>
-            <Link
-              to="/admin"
-              className={cn(
-                "hover:text-green-900",
-                location.pathname === "/admin" ? "text-green-500 font-semibold" : ""
-              )}
-            >
-              <p>My Profile</p>
-            </Link>
-            </DropdownMenuItem>
-            <DropdownMenuItem>
-            <Link
-              to="/admin/users"
-              className={cn(
-                "hover:text-green-900",
-                location.pathname === "/admin/users"
-                  ? "text-green-500 font-semibold"
-                  : ""
-              )}
-            >
-              <p>Users</p>
-            </Link>
-            </DropdownMenuItem>
-            <DropdownMenuItem>
-            <Link
-              to="/admin/businesses"
-              className={cn(
-                "hover:text-green-900",
-                location.pathname === "/admin/businesses"
-                  ? "text-green-500 font-semibold"
-                  : ""
-              )}
-            >
-              <p>Businesses</p>
-            </Link>
-            </DropdownMenuItem>
-            <DropdownMenuSeparator />
-            <DropdownMenuItem>
-            <Button
-              variant="ghost"
-              className="text-green-700 hover:bg-transparent hover:text-green-400"
-              onClick={handleLogout}
-            >
-              <LogOut className="me-2 text-green-700 hover:bg-transparent hover:text-green-400" />
-              Logout
-            </Button>
-            </DropdownMenuItem>
-        </DropdownMenuContent>
-    </DropdownMenu>
-          <Link to={"/"}>
+          <DropdownMenu>
+            <DropdownMenuTrigger>
+              <Menu className="md:hidden" />
+            </DropdownMenuTrigger>
+            <DropdownMenuContent>
+              <DropdownMenuItem>
+                <Link
+                  to="/admin"
+                  className={cn(
+                    "hover:text-green-900",
+                    location.pathname === "/admin"
+                      ? "text-green-500 font-semibold"
+                      : ""
+                  )}
+                  id="link-admin-profile"
+                >
+                  <p>My Profile</p>
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem>
+                <Link
+                  to="/admin/users"
+                  className={cn(
+                    "hover:text-green-900",
+                    location.pathname === "/admin/users"
+                      ? "text-green-500 font-semibold"
+                      : ""
+                  )}
+                  id="link-users"
+                >
+                  <p>Users</p>
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuItem>
+                <Link
+                  to="/admin/businesses"
+                  className={cn(
+                    "hover:text-green-900",
+                    location.pathname === "/admin/businesses"
+                      ? "text-green-500 font-semibold"
+                      : ""
+                  )}
+                  id="link-businesses"
+                >
+                  <p>Businesses</p>
+                </Link>
+              </DropdownMenuItem>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem>
+                <Button
+                  variant="ghost"
+                  className="text-green-700 hover:bg-transparent hover:text-green-400"
+                  onClick={handleLogout}
+                  id="btn-logout"
+                >
+                  <LogOut className="me-2 text-green-700 hover:bg-transparent hover:text-green-400" />
+                  Logout
+                </Button>
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+          <Link to={"/"} id="link-all-business">
             <p className="text-[#00ad26] text-base">See All Bussiness</p>
           </Link>
           <Avatar className="bg-black">
@@ -143,8 +159,8 @@ export default function Layout(props: Props) {
               className="object-cover"
               src={user?.avatar ? user.avatar : "https://github.com/shadcn.png"}
             />
-          <AvatarFallback>CN</AvatarFallback>  
-          </Avatar>       
+            <AvatarFallback>CN</AvatarFallback>
+          </Avatar>
         </div>
         <div className="w-full px-20 py-5">{children}</div>
       </div>

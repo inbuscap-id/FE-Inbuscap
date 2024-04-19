@@ -87,22 +87,6 @@ export default function DataTable<T>(props: Readonly<Props<T>>) {
                 );
               })
             )}
-            {/* {table.getRowModel().rows.map((row) => {
-              return (
-                <TableRow aria-label="row" key={row.id}>
-                  {row.getVisibleCells().map((cell) => {
-                    return (
-                      <TableCell key={cell.id}>
-                        {flexRender(
-                          cell.column.columnDef.cell,
-                          cell.getContext()
-                        )}
-                      </TableCell>
-                    );
-                  })}
-                </TableRow>
-              );
-            })} */}
           </TableBody>
         </Table>
       </div>

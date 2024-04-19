@@ -29,10 +29,10 @@ export default function CustomAlert(props: Props) {
           <AlertDialogDescription>{description}</AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
-          <AlertDialogCancel data-testid="alert-cancel" onClick={onCancel}>
+          <AlertDialogCancel id="btn-alert-cancel" onClick={onCancel}>
             Cancel
           </AlertDialogCancel>
-          <AlertDialogAction data-testid="alert-yes" onClick={onAction}>
+          <AlertDialogAction id="btn-alert-yes" onClick={onAction}>
             Yes
           </AlertDialogAction>
         </AlertDialogFooter>

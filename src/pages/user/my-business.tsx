@@ -53,7 +53,7 @@ export default function MyBusiness() {
       <Layout>
         <div className="mb-5 mt-2 flex justify-between">
           <p className="text-2xl font-semibold">My Business</p>
-          <Link to="/create-business">
+          <Link to="/create-business" id="link-create-business">
             <Button className="bg-[#00ad26] hover:bg-[#006516]">
               + Create A Bussiness
             </Button>
@@ -76,4 +76,3 @@ export default function MyBusiness() {
     </>
   );
 }
-

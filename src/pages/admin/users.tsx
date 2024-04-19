@@ -36,13 +36,7 @@ export default function Users() {
       const result = await getVerifications({ ...query });
 
       setDatas(result.data);
-    } catch (error) {
-      // toast({
-      //   title: "Oops! Something went wrong.",
-      //   description: (error as Error).message,
-      //   variant: "destructive",
-      // });
-    }
+    } catch (error) {}
   };
 
   const handleApproval = async (user_id: number, body: VerifUser) => {
@@ -99,6 +93,7 @@ export default function Users() {
               className="text-sky-700 font-medium underline"
               href={info.row.original.photo_ktp}
               target="_blank"
+              id="link-img-ktp"
             >
               KTP Image
             </a>
@@ -119,6 +114,7 @@ export default function Users() {
               className="text-sky-700 font-medium underline"
               href={info.row.original.photo_npwp}
               target="_blank"
+              id="link-img-npwp"
             >
               NPWP Image
             </a>
@@ -138,6 +134,7 @@ export default function Users() {
               className="text-sky-700 font-medium underline"
               href={info.row.original.photo_selfie}
               target="_blank"
+              id="link-img-selfie"
             >
               Selfie Image
             </a>
@@ -214,6 +211,7 @@ export default function Users() {
                     setUserId(info.row.original.id);
                     setShowApproveDialog(!showApproveDialog);
                   }}
+                  id="btn-approve"
                 />
                 <UserX
                   className="text-red-700"
@@ -222,6 +220,7 @@ export default function Users() {
                     setUserId(info.row.original.id);
                     setShowRejectDialog(!showRejectDialog);
                   }}
+                  id="btn-reject"
                 />
               </div>
             );
@@ -237,6 +236,7 @@ export default function Users() {
                     setUserId(info.row.original.id);
                     setShowRejectDialog(!showRejectDialog);
                   }}
+                  id="btn-reject"
                 />
               </div>
             );
@@ -252,6 +252,7 @@ export default function Users() {
                     setUserId(info.row.original.id);
                     setShowApproveDialog(!showApproveDialog);
                   }}
+                  id="btn-approve"
                 />
               </div>
             );
@@ -265,8 +266,8 @@ export default function Users() {
         id: "action",
         cell: () => (
           <div className="flex gap-3">
-            <Edit className="text-blue-700" />
-            <Trash2 className="text-red-700" />
+            <Edit className="text-blue-700" id="btn-edit-user" />
+            <Trash2 className="text-red-700" id="btn-delete-user" />
           </div>
         ),
         footer: (props) => props.column.id,
@@ -286,13 +287,19 @@ export default function Users() {
             setSearchParams(searchParams);
           }}
         >
-          <SelectTrigger className="w-[180px]">
+          <SelectTrigger className="w-[180px]" id="select-status-user">
             <SelectValue placeholder="Pending" />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="0">Pending</SelectItem>
-            <SelectItem value="1">Approved</SelectItem>
-            <SelectItem value="2">Rejected</SelectItem>
+            <SelectItem value="0" id="select-pending">
+              Pending
+            </SelectItem>
+            <SelectItem value="1" id="select-approve">
+              Approved
+            </SelectItem>
+            <SelectItem value="2" id="select-reject">
+              Rejected
+            </SelectItem>
           </SelectContent>
         </Select>
       </div>

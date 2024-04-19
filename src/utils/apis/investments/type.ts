@@ -52,18 +52,4 @@ export interface ITopup {
     }
   ];
   created_at: string;
-  // transaction_id: string;
-  // order_id: string;
-  // gross_amount: string;
-  // payment_type: string;
-  // transaction_time: string;
-  // transaction_status: string;
-  // va_numbers: [
-  //   {
-  //     bank: string;
-  //     va_number: string;
-  //   }
-  // ];
-  // fraud_status: string;
-  // currency: string;
 }

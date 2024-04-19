@@ -79,7 +79,11 @@ export default function Login() {
             <CardTitle className="text-center">Login</CardTitle>
             <CardDescription className="text-center">
               Don't have an account? Create account{" "}
-              <Link to="/register" className="text-primary underline">
+              <Link
+                to="/register"
+                className="text-primary underline"
+                id="link-register"
+              >
                 here
               </Link>
             </CardDescription>

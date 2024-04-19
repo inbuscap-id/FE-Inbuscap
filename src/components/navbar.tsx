@@ -3,7 +3,12 @@ import { cn } from "@/lib/utils";
 import { useAuthStore } from "@/utils/zustand/store";
 import { Menu } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "./ui/dropdown-menu";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "./ui/dropdown-menu";
 
 export default function Navbar() {
   const location = useLocation();
@@ -14,7 +19,9 @@ export default function Navbar() {
       <div className="w-10/12 flex text-white justify-between items-center py-5">
         <div className="font-lora font-bold text-3xl">
           <h1>
-            <Link to="/">Inbuscap.id</Link>
+            <Link to="/" id="link-home">
+              Inbuscap.id
+            </Link>
           </h1>
         </div>
         <div>
@@ -26,6 +33,7 @@ export default function Navbar() {
                     "hover:text-white text-green-200 hidden lg:block",
                     location.pathname === "/create-business" ? "text-white" : ""
                   )}
+                  id="link-create-business"
                 >
                   <Link to="/create-business">Create Bussiness</Link>
                 </li>
@@ -35,7 +43,9 @@ export default function Navbar() {
                     location.pathname === "/my-business" ? "text-white " : ""
                   )}
                 >
-                  <Link to="/my-business">My Business</Link>
+                  <Link to="/my-business" id="link-my-business">
+                    My Business
+                  </Link>
                 </li>
                 <li
                   className={cn(
@@ -43,7 +53,9 @@ export default function Navbar() {
                     location.pathname === "/" ? "text-white " : ""
                   )}
                 >
-                  <Link to="/">See All Bussiness</Link>
+                  <Link to="/" id="link-all-business">
+                    See All Bussiness
+                  </Link>
                 </li>
               </>
             ) : (
@@ -54,7 +66,9 @@ export default function Navbar() {
                     location.pathname === "/create-business" ? "text-white" : ""
                   )}
                 >
-                  <Link to="/create-business">Create Bussiness</Link>
+                  <Link to="/create-business" id="link-create-business">
+                    Create Bussiness
+                  </Link>
                 </li>
                 <li
                   className={cn(
@@ -62,49 +76,61 @@ export default function Navbar() {
                     location.pathname === "/" ? "text-white " : ""
                   )}
                 >
-                  <Link to="/">See All Bussiness</Link>
+                  <Link to="/" id="link-all-business">
+                    See All Bussiness
+                  </Link>
                 </li>
               </>
             )}
 
             <li className="flex items-center gap-3">
-      <DropdownMenu>
-        <DropdownMenuTrigger>
-          <Menu className="lg:hidden mx-2"/>
-        </DropdownMenuTrigger>
-        <DropdownMenuContent>
-        <DropdownMenuItem>
-        <li
-                  className={cn(
-                    "hover:text-green-300 text-green-500",
-                    location.pathname === "/create-business" ? "text-green-800" : ""
-                  )}
-                >
-                  <Link to="/create-business">Create Bussiness</Link>
-                </li>
-        </DropdownMenuItem>
-        <DropdownMenuItem>
-        <li
-                  className={cn(
-                    "hover:text-green-300 text-green-500",
-                    location.pathname === "/my-business" ? "text-green-800 " : ""
-                  )}
-                >
-                  <Link to="/my-business">My Business</Link>
-                </li>
-        </DropdownMenuItem>
-        <DropdownMenuItem>
-        <li
-                  className={cn(
-                    "hover:text-green-300 text-green-500",
-                    location.pathname === "/" ? "text-green-800 " : ""
-                  )}
-                >
-                  <Link to="/">See All Bussiness</Link>
-                </li>
-        </DropdownMenuItem>
-        </DropdownMenuContent>
-      </DropdownMenu>
+              <DropdownMenu>
+                <DropdownMenuTrigger>
+                  <Menu className="lg:hidden mx-2" />
+                </DropdownMenuTrigger>
+                <DropdownMenuContent>
+                  <DropdownMenuItem>
+                    <li
+                      className={cn(
+                        "hover:text-green-300 text-green-500",
+                        location.pathname === "/create-business"
+                          ? "text-green-800"
+                          : ""
+                      )}
+                    >
+                      <Link to="/create-business" id="link-create-business">
+                        Create Bussiness
+                      </Link>
+                    </li>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem>
+                    <li
+                      className={cn(
+                        "hover:text-green-300 text-green-500",
+                        location.pathname === "/my-business"
+                          ? "text-green-800 "
+                          : ""
+                      )}
+                    >
+                      <Link to="/my-business" id="link-my-business">
+                        My Business
+                      </Link>
+                    </li>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem>
+                    <li
+                      className={cn(
+                        "hover:text-green-300 text-green-500",
+                        location.pathname === "/" ? "text-green-800 " : ""
+                      )}
+                    >
+                      <Link to="/" id="link-all-business">
+                        See All Bussiness
+                      </Link>
+                    </li>
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
               <Dropdown />
             </li>
           </ul>

@@ -28,7 +28,9 @@ export default function InvestedBusiness() {
     <Layout>
       <div className="mb-10 mt-2 flex md:gap-10 gap-4">
         <Link to={"/profile"}>
-          <p className="xl:text-xl md:text-xl text-sm text-slate-600 hover:text-black">My Profile</p>
+          <p className="xl:text-xl md:text-xl text-sm text-slate-600 hover:text-black">
+            My Profile
+          </p>
         </Link>
         <Link to={"/invested-business"}>
           <p
@@ -70,7 +72,6 @@ export default function InvestedBusiness() {
             target={data.capital}
             collected={data.collected}
             id={data.id}
-            // invested
           />
         ))
       )}

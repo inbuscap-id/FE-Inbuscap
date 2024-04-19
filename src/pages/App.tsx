@@ -116,24 +116,6 @@ function Homepage() {
             }
             return null;
           })}
-
-          {/* {datas.map((data) =>
-            data.status === 1 ? (
-              <>
-                <ProposalCard
-                  key={data.id}
-                  title={data.title}
-                  desc={data.description}
-                  image={data.image}
-                  target={data.capital}
-                  collected={data.collected}
-                  id={data.id}
-                />
-              </>
-            ) : (
-              <></>
-            )
-          )} */}
         </div>
       </div>
     </Layout>

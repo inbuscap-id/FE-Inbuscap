@@ -118,25 +118,10 @@ export default function DetailBusiness() {
           <div className="self-end bg-red-100">
             <Dialog>
               <DialogTrigger asChild>
-                {/* {user?.email === data?.user.email ? (
-                  <>
-                    <Button
-                      disabled
-                      className="w-40 h-12 text-lg bg-[#00AC26] hover:bg-[#006516]"
-                    >
-                      Invest
-                    </Button>
-                  </>
-                ) : (
-                  <>
-                    <Button className="w-40 h-12 text-lg bg-[#00AC26] hover:bg-[#006516]">
-                      Invest
-                    </Button>
-                  </>
-                )} */}
                 <Button
                   className="w-40 h-12 text-lg bg-[#00AC26] hover:bg-[#006516]"
                   disabled={user?.email === data?.user.email}
+                  id="btn-show-invest-dialog"
                 >
                   {user?.email === data?.user.email ? (
                     <>Your Own Business</>
@@ -202,7 +187,9 @@ export default function DetailBusiness() {
                       </div>
                     </div>
                     <DialogFooter>
-                      <Button type="submit">Go Invest</Button>
+                      <Button type="submit" id="btn-invest">
+                        Go Invest
+                      </Button>
                     </DialogFooter>
                   </form>
                 </Form>

@@ -78,7 +78,7 @@ const UpdateBusiness = () => {
       <div>
         <Form {...form}>
           <form
-            data-testid="form-create-business"
+            id="form-create-business"
             onSubmit={form.handleSubmit(onSubmit)}
             className="flex gap-3"
           >
@@ -91,6 +91,7 @@ const UpdateBusiness = () => {
                 {(field) => (
                   <Input
                     type="file"
+                    id="input-image"
                     accept="image/png, image/jpeg, image/jpg"
                     multiple={false}
                     disabled={form.formState.isSubmitting}
@@ -111,6 +112,7 @@ const UpdateBusiness = () => {
               >
                 {(field) => (
                   <Input
+                    id="input-title"
                     placeholder="name of your business"
                     disabled={form.formState.isSubmitting}
                     aria-disabled={form.formState.isSubmitting}
@@ -127,6 +129,7 @@ const UpdateBusiness = () => {
               >
                 {(field) => (
                   <Textarea
+                    id="input-description"
                     placeholder="Your business description..."
                     disabled={form.formState.isSubmitting}
                     aria-disabled={form.formState.isSubmitting}
@@ -179,6 +182,7 @@ const UpdateBusiness = () => {
                   <Input
                     type="file"
                     accept="application/pdf"
+                    id="input-proposal"
                     multiple={false}
                     disabled={form.formState.isSubmitting}
                     aria-disabled={form.formState.isSubmitting}

@@ -42,10 +42,6 @@ Inbuscap.id (Investing Business Capital) is an online platform that connects inv
 Helping investors find potential and trusted investment opportunities.
 Helping entrepreneurs get funding to develop their businesses.
 
-## 🌎Demo
-
-Here is a working live demo - [Vercel](https://inbuscap-id.vercel.app/)
-
 ### 🛠️Built With
 
 <br>
@@ -56,11 +52,15 @@ Here is a working live demo - [Vercel](https://inbuscap-id.vercel.app/)
 ![React Hook Form](https://img.shields.io/badge/React%20Hook%20Form-%23EC5990.svg?style=for-the-badge&logo=reacthookform&logoColor=white)
 ![Vite](https://img.shields.io/badge/vite-%23646CFF.svg?style=for-the-badge&logo=vite&logoColor=white)
 <img src="https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white" />
-<img src="https://img.shields.io/badge/DaisyUi-FFFF00?style=for-the-badge&logo=daisyui&logoColor=white" />
 ![Vercel](https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)
 <img src="https://img.shields.io/badge/Sweet Alert-7D4698?style=for-the-badge&logo=Sweet-Alert&logoColor=white" />
 
+## 🌎Demo
 
+Here is a working live demo - [Vercel](https://inbuscap-id.vercel.app/)
+
+## 🎨Prototype
+<img src="src\assets\Prototype.png"alt="">
 
 ## 💫Features
 

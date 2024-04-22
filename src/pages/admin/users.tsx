@@ -17,6 +17,7 @@ import {
 } from "@/components/ui/select";
 
 export default function Users() {
+  const [searchParams, setSearchParams] = useSearchParams();
   const [datas, setDatas] = useState<IVerif[]>([]);
   const [userId, setUserId] = useState<number | null>(null);
   const [fullname, setFullname] = useState("");
@@ -24,7 +25,6 @@ export default function Users() {
   const [showRejectDialog, setShowRejectDialog] = useState(false);
   const navigate = useNavigate();
   const { toast } = useToast();
-  const [searchParams, setSearchParams] = useSearchParams();
 
   useEffect(() => {
     fetchDataReqVerification();

@@ -34,4 +34,11 @@ export interface ITokenData {
 
 export interface Request {
   status?: string;
+  page?: string | number;
+}
+
+export interface Meta {
+  page: number;
+  page_size: number;
+  total_pages: number;
 }

@@ -6,9 +6,15 @@ import { getBusinesses } from "@/utils/apis/business/api";
 import { useEffect, useState } from "react";
 import { IBusiness } from "@/utils/apis/business/type";
 import { toast } from "sonner";
+import Pagination from "@/components/pagination";
+import { useSearchParams } from "react-router-dom";
+import { Meta } from "@/utils/types/api";
 
 function Homepage() {
+  const [searchParams, setSearchParams] = useSearchParams();
   const [datas, setDatas] = useState<IBusiness[]>([]);
+  const [meta, setMeta] = useState<Meta>();
+  console.log(meta);
 
   useEffect(() => {
     handleGetBusiness();
@@ -18,10 +24,16 @@ function Homepage() {
     try {
       const result = await getBusinesses();
       setDatas(result.data);
+      setMeta(result.pagination);
     } catch (error) {
       toast((error as Error).message.toString());
     }
   };
+
+  function handlePrevNextPage(page: string | number) {
+    searchParams.set("page", String(page));
+    setSearchParams(searchParams);
+  }
 
   return (
     <Layout>
@@ -97,9 +109,7 @@ function Homepage() {
           <h1 className="self-start font-semibold text-3xl mb-5">
             All Bussiness
           </h1>
-
           <Separator className="mb-10 rounded-full bg-[#006516]" />
-
           {datas.map((data) => {
             if (data.status === 1) {
               return (
@@ -114,8 +124,15 @@ function Homepage() {
                 />
               );
             }
+
             return null;
           })}
+          <Pagination
+            meta={meta}
+            onClickPrevious={() => handlePrevNextPage(meta?.page! - 1)}
+            onClickNext={() => handlePrevNextPage(meta?.page! + 1)}
+            onClickPage={(page) => handlePrevNextPage(page)}
+          />
         </div>
       </div>
     </Layout>

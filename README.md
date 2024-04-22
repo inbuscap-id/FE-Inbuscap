@@ -62,6 +62,44 @@ Here is a working live demo - [Vercel](https://inbuscap-id.vercel.app/)
 ## 🎨Prototype
 ![MacBook_Air_nobg](image.png)
 
+Here is the link for the UI design : [Figma](https://www.figma.com/file/Nw1gdeJecbvpmllFD2yg3P/Capstone-Project?type=design&node-id=1%3A2&mode=design&t=1RdvHP8imgiROpGX-1)
+
+<br/>
+<br/>
+
+
+## Getting Started
+
+This is an example of how you may give instructions on setting up your project locally.
+To get a local copy up and running follow these simple example steps.
+
+### Prerequisites
+
+- npm
+  ```sh
+  npm install npm@latest -g
+  ```
+
+### Installation
+
+1. Clone the repo
+   ```sh
+   git clone https://github.com/Capstone-Group3-Mentutor/Front-End.git
+   ```
+2. Install NPM packages
+   ```sh
+   npm install
+   ```
+
+### Usage
+
+```sh
+npm run dev
+```
+
+<br/>
+
+
 ## 💫Features
 
 - Login

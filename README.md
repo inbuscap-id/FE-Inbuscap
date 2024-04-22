@@ -33,10 +33,37 @@
     <li><a href="#author">Author</a></li>
   </ol>
 </details>
+<br>
+
+## 📃About The Project
+
+Inbuscap.id (Investing Business Capital) is an online platform that connects investors with entrepreneurs who need funding. This platform was founded with the aim of :
+
+Helping investors find potential and trusted investment opportunities.
+Helping entrepreneurs get funding to develop their businesses.
+
+![Figma](https://img.shields.io/badge/figma-%23F24E1E.svg?style=for-the-badge&logo=figma&logoColor=white)
+![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
+![React Router](https://img.shields.io/badge/React_Router-CA4245?style=for-the-badge&logo=react-router&logoColor=white)
+![React Hook Form](https://img.shields.io/badge/React%20Hook%20Form-%23EC5990.svg?style=for-the-badge&logo=reacthookform&logoColor=white)
+![Vite](https://img.shields.io/badge/vite-%23646CFF.svg?style=for-the-badge&logo=vite&logoColor=white)
+<img src="https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white" />
+<img src="https://img.shields.io/badge/DaisyUi-FFFF00?style=for-the-badge&logo=daisyui&logoColor=white" />
+![Vercel](https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)
+<img src="https://img.shields.io/badge/Sweet Alert-7D4698?style=for-the-badge&logo=Sweet-Alert&logoColor=white" />
+
+## 🌎Demo
+
+Here is a working live demo - [Vercel](https://inbuscap-id.vercel.app/)
+
+### 🛠️Built With
+
+<br>
+
 
 ## 💫Features
 
-- Sign in
+- Login
 - Logout
 - Create, Update, Delete Bisnis
 - Withdrawal
@@ -50,7 +77,7 @@
 
 - Ade Prastyo :
 
-  [![GitHub](https://img.shields.io/badge/-Ade-black?style=for-the-badge&logo=github&logoColor=white)]([https://github.com/adeprastyo) [![LinkedIn](https://img.shields.io/badge/-Ade-blue?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/adeprastyo/)
+  [![GitHub](https://img.shields.io/badge/-Ade-black?style=for-the-badge&logo=github&logoColor=white)](https://github.com/adeprastyo) [![LinkedIn](https://img.shields.io/badge/-Ade-blue?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/adeprastyo/)
 
 [contributors-shield]: https://img.shields.io/github/contributors/inbuscap-id/FE-Inbuscap.svg?style=for-the-badge
 [contributors-url]: https://github.com/inbuscap-id/FE-Inbuscap/graphs/contributors

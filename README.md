@@ -130,8 +130,7 @@ npm run dev
 ### 🧰Backend
 
 - [Github Repository for the Backend team](https://github.com/inbuscap-id/BE-Inbuscap)
-- [Swagger OpenAPI](OpenAPI:
-https://app.swaggerhub.com/apis/BAGIR3008/Inbuscap/1.0.0)
+- [Swagger OpenAPI](https://app.swaggerhub.com/apis/BAGIR3008/Inbuscap/1.0.0)
 
 ## 🤖Author
 

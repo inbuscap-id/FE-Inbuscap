@@ -60,7 +60,7 @@ Helping entrepreneurs get funding to develop their businesses.
 Here is a working live demo - [Vercel](https://inbuscap-id.vercel.app/)
 
 ## 🎨Prototype
-<img src="src\assets\Prototype.png"alt="">
+<img src="src\assets\Prototype.png"alt="" />
 
 ## 💫Features
 

@@ -52,8 +52,11 @@ Helping entrepreneurs get funding to develop their businesses.
 ![React Hook Form](https://img.shields.io/badge/React%20Hook%20Form-%23EC5990.svg?style=for-the-badge&logo=reacthookform&logoColor=white)
 ![Vite](https://img.shields.io/badge/vite-%23646CFF.svg?style=for-the-badge&logo=vite&logoColor=white)
 <img src="https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white" />
+<img src="https://img.shields.io/badge/Shadcn-000000?style=for-the-badge&logo=shadcn&logoColor=white" />
+<img src="https://img.shields.io/badge/Axios-fabbcc?style=for-the-badge&logo=axios&logoColor=white" />
+<img src="https://img.shields.io/badge/Zustand-500211?style=for-the-badge&logo=zustand&logoColor=white" />
 ![Vercel](https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)
-<img src="https://img.shields.io/badge/Sweet Alert-7D4698?style=for-the-badge&logo=Sweet-Alert&logoColor=white" />
+
 
 ## 🌎Demo
 

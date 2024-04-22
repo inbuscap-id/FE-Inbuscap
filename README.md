@@ -84,7 +84,7 @@ To get a local copy up and running follow these simple example steps.
 
 1. Clone the repo
    ```sh
-   git clone https://github.com/Capstone-Group3-Mentutor/Front-End.git
+   git clone https://github.com/inbuscap-id/FE-Inbuscap.git
    ```
 2. Install NPM packages
    ```sh
@@ -107,6 +107,31 @@ npm run dev
 - Create, Update, Delete Bisnis
 - Withdrawal
 - Investment
+
+### 👩‍💻 As admin
+
+- Approve and Reject User or business
+- Edit and delete User or business from list
+- Edit admin data
+
+### 🧑‍🏫 As User
+
+- Create, Update, Delete Business
+- Withdrawal
+- Investment
+- Edit Profile and delete profile
+- Archive Business
+
+## 🤝Collaboration
+
+- [GitHub (Version Control System Platform)](https://github.com/inbuscap-id)
+- [Discord](https://discord.com/)
+
+### 🧰Backend
+
+- [Github Repository for the Backend team](https://github.com/inbuscap-id/BE-Inbuscap)
+- [Swagger OpenAPI](OpenAPI:
+https://app.swaggerhub.com/apis/BAGIR3008/Inbuscap/1.0.0)
 
 ## 🤖Author
 

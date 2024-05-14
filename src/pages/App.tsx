@@ -39,16 +39,6 @@ function Homepage() {
     }
   };
 
-  // const handleGetBusiness = async () => {
-  //   try {
-  //     const result = await getBusinesses();
-  //     setDatas(result.data);
-  //     setMeta(result.pagination);
-  //   } catch (error) {
-  //     toast((error as Error).message.toString());
-  //   }
-  // };
-
   function handlePrevNextPage(page: string | number) {
     searchParams.set("page", String(page));
     setSearchParams(searchParams);

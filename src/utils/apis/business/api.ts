@@ -20,16 +20,6 @@ import {
   valueFormatData,
 } from "@/utils/formatter";
 
-// export const getBusinesses = async () => {
-//   try {
-//     const response = await axiosWithConfig.get("/proposals");
-
-//     return response.data as IResponsePagination<IBusiness[]>;
-//   } catch (error: any) {
-//     throw Error(error.response.data.message);
-//   }
-// };
-
 export const getBusinesses = async (params?: Request) => {
   try {
     let query = "";

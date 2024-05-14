@@ -5,30 +5,49 @@ import { Separator } from "@/components/ui/separator";
 import { getBusinesses } from "@/utils/apis/business/api";
 import { useEffect, useState } from "react";
 import { IBusiness } from "@/utils/apis/business/type";
-import { toast } from "sonner";
 import Pagination from "@/components/pagination";
 import { useSearchParams } from "react-router-dom";
 import { Meta } from "@/utils/types/api";
+import { useToast } from "@/components/ui/use-toast";
 
 function Homepage() {
   const [searchParams, setSearchParams] = useSearchParams();
   const [datas, setDatas] = useState<IBusiness[]>([]);
   const [meta, setMeta] = useState<Meta>();
-  console.log(meta);
+  const { toast } = useToast();
 
   useEffect(() => {
     handleGetBusiness();
-  }, []);
+  }, [searchParams]);
 
   const handleGetBusiness = async () => {
+    let query: { [key: string]: string } = {};
+    for (const entry of searchParams.entries()) {
+      query[entry[0]] = entry[1];
+    }
+
     try {
-      const result = await getBusinesses();
+      const result = await getBusinesses({ ...query });
       setDatas(result.data);
       setMeta(result.pagination);
     } catch (error) {
-      toast((error as Error).message.toString());
+      toast({
+        title: "Oops! Something went wrong.",
+        description: (error as Error).message,
+        variant: "destructive",
+      });
     }
   };
+
+  // const handleGetBusiness = async () => {
+  //   try {
+  //     const result = await getBusinesses();
+  //     setDatas(result.data);
+  //     setMeta(result.pagination);
+  //   } catch (error) {
+  //     toast((error as Error).message.toString());
+  //   }
+  // };
 
   function handlePrevNextPage(page: string | number) {
     searchParams.set("page", String(page));
@@ -37,7 +56,7 @@ function Homepage() {
 
   return (
     <Layout>
-      <div className=" flex flex-col md:items-center">
+      <div className="flex flex-col md:items-center">
         <div className="flex justify-between items-center mb-10">
           <div className="xl:w-1/2 xs:w-full">
             <div className="mt-10">

@@ -20,9 +20,24 @@ import {
   valueFormatData,
 } from "@/utils/formatter";
 
-export const getBusinesses = async () => {
+export const getBusinesses = async (params?: Request) => {
   try {
-    const response = await axiosWithConfig.get("/proposals");
+    let query = "";
+
+    if (params) {
+      const queryParams: string[] = [];
+
+      let key: keyof typeof params;
+      for (key in params) {
+        queryParams.push(`${key}=${params[key]}`);
+      }
+
+      query = queryParams.join("&");
+    }
+
+    const url = query ? `/proposals?${query}` : "/proposals";
+
+    const response = await axiosWithConfig.get(url);
 
     return response.data as IResponsePagination<IBusiness[]>;
   } catch (error: any) {
